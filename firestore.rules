@@ -1,0 +1,16 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    match /users/{uid} {
+    	allow write: if request.resource.data.keys().hasOnly(['firstName', 'lastName'])
+      && request.resource.data.firstName is string
+      && request.resource.data.lastName is string;
+      allow write: if request.resource.data.keys().hasOnly(['email'])
+      && request.auth.uid != null;
+      allow read: if request.auth.uid != null 
+      && request.auth.uid == resource.data.uid;
+    }
+  }
+}
