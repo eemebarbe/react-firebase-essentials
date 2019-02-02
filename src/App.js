@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HashRouter as Router,
   Route,
@@ -15,48 +15,36 @@ import Header from "./containers/Header";
 
 import firebase from "./firebase.js";
 
-class App extends Component {
-  state = {
-    initializationComplete: false,
-    userId: null
-  };
+const App = () => {
+  const [initializationComplete, setInitComplete] = useState(false);
+  const [userId, setUserId] = useState(null);
 
-  componentDidMount() {
+  useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
-        const userId = firebase.auth().currentUser.uid;
-        this.setState({
-          userId: userId
-        });
+        const user = firebase.auth().currentUser.uid;
+        setUserId(user);
       } else {
-        this.setState({
-          userId: null
-        });
+        setUserId(null);
       }
-      this.setState({
-        initializationComplete: true
-      });
+      setInitComplete(true);
     });
-  }
+  }, {});
 
-  signOut = () => {
-    firebase.auth().signOut();
-  };
-
-  noMatch = () => {
+  const noMatch = () => {
     return <>404</>;
   };
 
-  nestedSwitch = () => {
+  const nestedSwitch = () => {
     return (
       <>
-        {this.state.userId && <Header />}
+        {userId && <Header />}
         <Switch>
           <Route
             exact
             path={"/"}
             render={() =>
-              this.state.userId ? (
+              userId ? (
                 <Redirect
                   to={{
                     pathname: "/search"
@@ -70,7 +58,7 @@ class App extends Component {
           <Route
             path={"/signin"}
             render={() =>
-              this.state.userId ? (
+              userId ? (
                 <Redirect
                   to={{
                     pathname: "/search"
@@ -84,7 +72,7 @@ class App extends Component {
           <Route
             path={"/search"}
             render={() =>
-              !this.state.userId ? (
+              !userId ? (
                 <Redirect
                   to={{
                     pathname: "/signin"
@@ -98,7 +86,7 @@ class App extends Component {
           <Route
             path={"/profile"}
             render={() =>
-              !this.state.userId ? (
+              !userId ? (
                 <Redirect
                   to={{
                     pathname: "/signin"
@@ -109,35 +97,29 @@ class App extends Component {
               )
             }
           />
-          <Route path="*" render={this.noMatch} />
+          <Route path="*" render={noMatch} />
         </Switch>
       </>
     );
   };
 
-  router = () => {
+  const router = () => {
     return (
       <Router>
         <Switch>
           <Route path={"/confirmed"} render={() => <Confirmed />} />
-          <Route path="*" render={this.nestedSwitch} />
+          <Route path="*" render={nestedSwitch} />
         </Switch>
       </Router>
     );
   };
 
-  renderApp = () => {
-    const app = !this.state.initializationComplete ? (
-      <div>Initializing...</div>
-    ) : (
-      this.router()
-    );
+  const renderApp = () => {
+    const app = !initializationComplete ? <div>Initializing...</div> : router();
     return app;
   };
 
-  render() {
-    return <div>{this.renderApp()}</div>;
-  }
-}
+  return <div>{renderApp()}</div>;
+};
 
 export default App;

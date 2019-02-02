@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -6,41 +6,35 @@ import firebase from "../firebase.js";
 import "firebase/firestore";
 const db = firebase.firestore();
 
-class Confirmed extends Component {
-  state = {
-    newDevice: false,
-    firstAttempt: true,
-    email: null,
-    complete: false
-  };
+const Confirmed = () => {
+  const [newDevice, setNewDevice] = useState(false);
+  const [firstAttempt, setFirstAttempt] = useState(true);
+  const [email, setEmail] = useState(null);
+  const [complete, setComplete] = useState(false);
 
-  componentDidMount() {
+  useEffect(() => {
     let email = window.localStorage.getItem("userEmail");
     if (!email) {
-      this.setState({
-        newDevice: true
-      });
+      setNewDevice(true);
     } else {
-      this.finishConfirmation(email);
+      finishConfirmation(email);
     }
-  }
+  });
 
-  finishConfirmation = email => {
+  const finishConfirmation = confirmedEmail => {
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
       firebase
         .auth()
-        .signInWithEmailLink(email, window.location.href)
+        .signInWithEmailLink(confirmedEmail, window.location.href)
         .then(result => {
           if (result.additionalUserInfo.isNewUser) {
             db.collection("users")
               .doc(result.user.uid)
               .set({
-                email: email
+                email: confirmedEmail
               })
               .then(res => {
-                this.setState({
-                  complete: true
-                });
+                setComplete(true);
               });
           }
           window.localStorage.removeItem("userEmail");
@@ -50,54 +44,43 @@ class Confirmed extends Component {
         })
         .catch(error => {
           console.log(error);
-          this.setState({
-            firstAttempt: false
-          });
+          setFirstAttempt(false);
         });
     }
   };
 
-  newDevice = () => {
-    const firstAttempt =
+  const newDeviceCheck = () => {
+    const firstAttemptText =
       "Looks like you opened the email we sent you on a different device than the one you signed up on! Enter your email address one more time to complete your verification.";
-    const secondAttempt =
+    const secondAttemptText =
       "It appears you've incorrectly entered your email address. Please try again.";
     return (
       <div>
-        {this.state.firstAttempt ? firstAttempt : secondAttempt}
+        {firstAttempt ? firstAttemptText : secondAttemptText}
         <Input
-          onChange={e =>
-            this.setState({
-              email: e.target.value
-            })
-          }
+          onChange={e => setEmail(e.target.value)}
           name="email"
           placeholder="Email address"
           autoComplete="email"
         />
-        <Button
-          value="Confirm"
-          onClick={() => this.finishConfirmation(this.state.email)}
-        />
+        <Button value="Confirm" onClick={() => finishConfirmation(email)} />
       </div>
     );
   };
 
-  confirmationCheck = () => {
+  const confirmationCheck = () => {
     if (
-      this.state.newDevice === true &&
-      this.state.complete !== true &&
+      newDevice === true &&
+      complete !== true &&
       !firebase.auth().currentUser
     ) {
-      return this.newDevice();
+      return newDeviceCheck();
     } else {
       return <>You are now confirmed! Navigate back to the app!</>;
     }
   };
 
-  render() {
-    return <>{this.confirmationCheck()}</>;
-  }
-}
+  return <>{confirmationCheck()}</>;
+};
 
 export default Confirmed;

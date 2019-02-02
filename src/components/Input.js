@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Input extends Component {
-  render() {
-    return <input {...this.props} />;
-  }
-}
+const Input = props => {
+  return <input {...props} />;
+};
 
 export default Input;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -9,34 +9,29 @@ import "../App.css";
 
 const db = firebase.firestore();
 
-class SignIn extends Component {
-  state = {
-    validCaptcha: false,
-    step: "dataEntry",
-    email: null,
-    firstName: null,
-    lastName: null,
-    userType: null
-  };
+const SignIn = () => {
+  const [validCaptcha, setCaptcha] = useState(false);
+  const [step, setStep] = useState("dataEntry");
+  const [email, setEmail] = useState(email);
 
-  onClickSubmit = () => {
-    window.localStorage.setItem("userEmail", this.state.email);
+  const onClickSubmit = () => {
+    window.localStorage.setItem("userEmail", email);
     const actionCodeSettings = {
       url: "http://" + process.env.REACT_APP_BASE_URL + "/#/confirmed",
       handleCodeInApp: true
     };
     firebase
       .auth()
-      .sendSignInLinkToEmail(this.state.email, actionCodeSettings)
+      .sendSignInLinkToEmail(email, actionCodeSettings)
       .then(() => {
-        this.setState({ step: "pleaseCheckEmail" });
+        setStep("pleaseCheckEmail");
       })
       .catch(error => {
         console.log(error.message, error.code);
       });
   };
 
-  authWithFacebook = () => {
+  const authWithFacebook = () => {
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
     firebase
       .auth()
@@ -59,83 +54,35 @@ class SignIn extends Component {
       });
   };
 
-  dataEntry = () => {
+  const dataEntry = () => {
     return (
       <>
-        SIGN UP
-        <Button value="Facebook" onClick={this.authWithFacebook} />
+        SIGN UP/SIGN IN
+        <Button value="Facebook" onClick={authWithFacebook} />
         <form>
-          {/*<Input
-            onChange={e =>
-              this.setState({
-                firstName: e.target.value
-              })
-            }
-            name="firstName"
-            placeholder="First name"
-            autoComplete="given-name"
-          />
           <Input
-            onChange={e =>
-              this.setState({
-                lastName: e.target.value
-              })
-            }
-            name="lastName"
-            placeholder="Last name"
-            autoComplete="family-name"
-          />*/}
-          <Input
-            onChange={e =>
-              this.setState({
-                email: e.target.value
-              })
-            }
+            onChange={e => setEmail(e.target.value)}
             name="email"
             placeholder="Email address"
             autoComplete="email"
           />
           <ReCAPTCHA
             sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-            onChange={this.captcha}
+            onChange={captcha}
           />
-          {/*<Input
-            onChange={e =>
-              this.setState({
-                userType: e.target.value
-              })
-            }
-            type="radio"
-            name="userType"
-            value="seller"
-          />
-          <div>Seller</div>
-          <Input
-            onChange={e =>
-              this.setState({
-                userType: e.target.value
-              })
-            }
-            type="radio"
-            name="userType"
-            value="buyer"
-          />
-          <div>Buyer</div>*/}
         </form>
-        <Button value="Sign Up" onClick={this.onClickSubmit} />
+        <Button value="Sign Up" onClick={onClickSubmit} />
       </>
     );
   };
 
-  verification = () => {
+  const verification = () => {
     return <>Check your email!</>;
   };
 
-  captcha = value => {
+  const captcha = value => {
     if (!value) {
-      this.setState({
-        validCaptcha: false
-      });
+      setCaptcha(false);
     } else {
       const checkRecaptcha = firebase
         .functions()
@@ -149,11 +96,8 @@ class SignIn extends Component {
     }
   };
 
-  render() {
-    const currentStep =
-      this.state.step === "dataEntry" ? this.dataEntry() : this.verification();
-    return currentStep;
-  }
-}
+  const currentStep = step === "dataEntry" ? dataEntry() : verification();
+  return currentStep;
+};
 
 export default SignIn;
