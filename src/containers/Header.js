@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 import firebase from "../firebase.js";
 import Button from "../components/Button";
 import { withRouter } from "react-router-dom";
@@ -15,8 +14,8 @@ const Header = props => {
 
   return (
     <>
-      <Button onClick={profile} value="Profile" />
-      <Button onClick={signOut} value="Sign Out" />
+      <Button onClick={profile}>Profile</Button>
+      <Button onClick={signOut}>Sign Out</Button>
     </>
   );
 };

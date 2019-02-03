@@ -1,7 +1,8 @@
-import React from "react";
+import styled from "styled-components";
 
-const Input = props => {
-  return <input {...props} />;
-};
+const Input = styled.input`
+  border: 0;
+  outline: none;
+`;
 
 export default Input;

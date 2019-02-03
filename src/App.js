@@ -5,8 +5,8 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import "./App.css";
 import { ToastProvider, ToastConsumer } from "./contexts/toastContext";
+import Toast from "./components/Toast";
 import Lander from "./containers/Lander";
 import SignIn from "./containers/SignIn";
 import Search from "./containers/Search";
@@ -40,7 +40,7 @@ const App = () => {
     return (
       <ToastConsumer>
         {context => {
-          return <div className="toast">{context.message}</div>;
+          return <Toast>{context.message}</Toast>;
         }}
       </ToastConsumer>
     );

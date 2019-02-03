@@ -6,7 +6,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
 import "firebase/functions";
 import "firebase/firestore";
-import "../App.css";
 
 const db = firebase.firestore();
 
@@ -60,7 +59,7 @@ const SignIn = () => {
     return (
       <>
         SIGN UP/SIGN IN
-        <Button value="Facebook" onClick={authWithFacebook} />
+        <Button onClick={authWithFacebook}>Facebook</Button>
         <form>
           <Input
             onChange={e => setEmail(e.target.value)}
@@ -75,7 +74,9 @@ const SignIn = () => {
         </form>
         <ToastConsumer>
           {context => (
-            <Button value="Sign Up" onClick={() => onClickSubmit(context)} />
+            <Button onClick={() => onClickSubmit(context)}>
+              Sign In/Sign Up
+            </Button>
           )}
         </ToastConsumer>
       </>

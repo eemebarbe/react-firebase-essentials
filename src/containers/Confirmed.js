@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import firebase from "../firebase.js";
@@ -63,7 +62,7 @@ const Confirmed = () => {
           placeholder="Email address"
           autoComplete="email"
         />
-        <Button value="Confirm" onClick={() => finishConfirmation(email)} />
+        <Button onClick={() => finishConfirmation(email)}>Confirm</Button>
       </div>
     );
   };
