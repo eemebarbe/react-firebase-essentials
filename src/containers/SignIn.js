@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { ToastConsumer } from "../contexts/toastContext";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
 import "firebase/functions";
@@ -14,7 +15,7 @@ const SignIn = () => {
   const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState(email);
 
-  const onClickSubmit = () => {
+  const onClickSubmit = context => {
     window.localStorage.setItem("userEmail", email);
     const actionCodeSettings = {
       url: "http://" + process.env.REACT_APP_BASE_URL + "/#/confirmed",
@@ -27,6 +28,7 @@ const SignIn = () => {
         setStep("pleaseCheckEmail");
       })
       .catch(error => {
+        context.sendMessage("Some shit went down");
         console.log(error.message, error.code);
       });
   };
@@ -71,7 +73,11 @@ const SignIn = () => {
             onChange={captcha}
           />
         </form>
-        <Button value="Sign Up" onClick={onClickSubmit} />
+        <ToastConsumer>
+          {context => (
+            <Button value="Sign Up" onClick={() => onClickSubmit(context)} />
+          )}
+        </ToastConsumer>
       </>
     );
   };
