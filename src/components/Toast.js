@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import React from "react";
+import { ToastConsumer } from "../contexts/toastContext";
 
 const Toast = styled.div`
   min-height: 60px;
@@ -9,4 +11,8 @@ const Toast = styled.div`
   position: absolute;
 `;
 
-export default Toast;
+const ToastWithContext = props => {
+  return <Toast>{props.toastContext.message}</Toast>;
+};
+
+export default ToastConsumer(ToastWithContext);

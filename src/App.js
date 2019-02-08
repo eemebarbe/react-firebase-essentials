@@ -5,18 +5,18 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import { ToastProvider, ToastConsumer } from "./contexts/toastContext";
+import { ToastProvider } from "./contexts/toastContext";
 import Toast from "./components/Toast";
 import Lander from "./containers/Lander";
 import SignIn from "./containers/SignIn";
-import Search from "./containers/Search";
+import Dashboard from "./containers/Dashboard";
 import Confirmed from "./containers/Confirmed";
 import Profile from "./containers/Profile";
 import Header from "./containers/Header";
 
 import firebase from "./firebase.js";
 
-const App = () => {
+const App = props => {
   const [initializationComplete, setInitComplete] = useState(false);
   const [userId, setUserId] = useState(null);
 
@@ -36,84 +36,72 @@ const App = () => {
     return <>404</>;
   };
 
-  const toast = () => {
-    return (
-      <ToastConsumer>
-        {context => {
-          return <Toast>{context.message}</Toast>;
-        }}
-      </ToastConsumer>
-    );
-  };
-
   const nestedSwitch = () => {
     return (
-      <>
-        <ToastProvider>
-          {userId && <Header />}
-          {toast()}
-          <Switch>
-            <Route
-              exact
-              path={"/"}
-              render={() =>
-                userId ? (
-                  <Redirect
-                    to={{
-                      pathname: "/search"
-                    }}
-                  />
-                ) : (
-                  <Lander />
-                )
-              }
-            />
-            <Route
-              path={"/signin"}
-              render={() =>
-                userId ? (
-                  <Redirect
-                    to={{
-                      pathname: "/search"
-                    }}
-                  />
-                ) : (
-                  <SignIn />
-                )
-              }
-            />
-            <Route
-              path={"/search"}
-              render={() =>
-                !userId ? (
-                  <Redirect
-                    to={{
-                      pathname: "/signin"
-                    }}
-                  />
-                ) : (
-                  <Search />
-                )
-              }
-            />
-            <Route
-              path={"/profile"}
-              render={() =>
-                !userId ? (
-                  <Redirect
-                    to={{
-                      pathname: "/signin"
-                    }}
-                  />
-                ) : (
-                  <Profile />
-                )
-              }
-            />
-            <Route path="*" render={noMatch} />
-          </Switch>
-        </ToastProvider>
-      </>
+      <ToastProvider>
+        {userId && <Header />}
+        <Toast />
+        <Switch>
+          <Route
+            exact
+            path={"/"}
+            render={() =>
+              userId ? (
+                <Redirect
+                  to={{
+                    pathname: "/dashboard"
+                  }}
+                />
+              ) : (
+                <Lander />
+              )
+            }
+          />
+          <Route
+            path={"/signin"}
+            render={() =>
+              userId ? (
+                <Redirect
+                  to={{
+                    pathname: "/dashboard"
+                  }}
+                />
+              ) : (
+                <SignIn />
+              )
+            }
+          />
+          <Route
+            path={"/dashboard"}
+            render={() =>
+              !userId ? (
+                <Redirect
+                  to={{
+                    pathname: "/signin"
+                  }}
+                />
+              ) : (
+                <Dashboard />
+              )
+            }
+          />
+          <Route
+            path={"/profile"}
+            render={() =>
+              !userId ? (
+                <Redirect
+                  to={{
+                    pathname: "/signin"
+                  }}
+                />
+              ) : (
+                <Profile />
+              )
+            }
+          />
+          <Route path="*" render={noMatch} />
+        </Switch>
+      </ToastProvider>
     );
   };
 
@@ -133,7 +121,7 @@ const App = () => {
     return app;
   };
 
-  return <div>{renderApp()}</div>;
+  return <>{renderApp()}</>;
 };
 
 export default App;

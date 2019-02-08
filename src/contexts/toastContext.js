@@ -12,4 +12,12 @@ export const ToastProvider = props => {
   );
 };
 
-export const ToastConsumer = ToastContext.Consumer;
+export const ToastConsumer = Component => {
+  return props => {
+    return (
+      <ToastContext.Consumer>
+        {context => <Component {...props} toastContext={context} />}
+      </ToastContext.Consumer>
+    );
+  };
+};

@@ -9,12 +9,12 @@ import "firebase/firestore";
 
 const db = firebase.firestore();
 
-const SignIn = () => {
+const SignIn = props => {
   const [validCaptcha, setCaptcha] = useState(false);
   const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState(email);
 
-  const onClickSubmit = context => {
+  const onClickSubmit = () => {
     window.localStorage.setItem("userEmail", email);
     const actionCodeSettings = {
       url: "http://" + process.env.REACT_APP_BASE_URL + "/#/confirmed",
@@ -27,8 +27,7 @@ const SignIn = () => {
         setStep("pleaseCheckEmail");
       })
       .catch(error => {
-        context.sendMessage("Some shit went down");
-        console.log(error.message, error.code);
+        props.toastContext.sendMessage(error.message);
       });
   };
 
@@ -51,7 +50,13 @@ const SignIn = () => {
         }
       })
       .catch(err => {
-        console.log(err);
+        if (err.code === "auth/account-exists-with-different-credential") {
+          props.toastContext.sendMessage(
+            "It looks like the email address associated with your Facebook account has already been used to sign in with another method. Please sign in using the original method you signed up with."
+          );
+        } else {
+          props.toastContext.sendMessage(err.message);
+        }
       });
   };
 
@@ -72,13 +77,7 @@ const SignIn = () => {
             onChange={captcha}
           />
         </form>
-        <ToastConsumer>
-          {context => (
-            <Button onClick={() => onClickSubmit(context)}>
-              Sign In/Sign Up
-            </Button>
-          )}
-        </ToastConsumer>
+        <Button onClick={onClickSubmit}>Sign In/Sign Up</Button>
       </>
     );
   };
@@ -107,4 +106,4 @@ const SignIn = () => {
   return currentStep;
 };
 
-export default SignIn;
+export default ToastConsumer(SignIn);
