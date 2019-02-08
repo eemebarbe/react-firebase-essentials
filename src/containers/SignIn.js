@@ -14,7 +14,8 @@ const SignIn = props => {
   const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState(email);
 
-  const onClickSubmit = () => {
+  const onClickSubmit = e => {
+    e.preventDefault();
     window.localStorage.setItem("userEmail", email);
     const actionCodeSettings = {
       url: "http://" + process.env.REACT_APP_BASE_URL + "/#/confirmed",
@@ -64,7 +65,6 @@ const SignIn = props => {
     return (
       <>
         SIGN UP/SIGN IN
-        <Button onClick={authWithFacebook}>Facebook</Button>
         <form>
           <Input
             onChange={e => setEmail(e.target.value)}
@@ -76,8 +76,9 @@ const SignIn = props => {
             sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
             onChange={captcha}
           />
+          <Button onClick={onClickSubmit}>Sign In/Sign Up</Button>
         </form>
-        <Button onClick={onClickSubmit}>Sign In/Sign Up</Button>
+        <Button onClick={authWithFacebook}>Facebook</Button>
       </>
     );
   };

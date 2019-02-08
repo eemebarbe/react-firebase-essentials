@@ -23,9 +23,9 @@ const MainRouter = props => {
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const user = firebase.auth().currentUser.uid;
-        props.userContext.userDispatch({ type: "user", value: user });
+        props.userContext.userDispatch({ type: "userId", value: user });
       } else {
-        props.userContext.userDispatch({ type: "user", value: null });
+        props.userContext.userDispatch({ type: "userId", value: null });
       }
       setInitComplete(true);
     });
@@ -36,16 +36,18 @@ const MainRouter = props => {
   };
 
   const nestedSwitch = () => {
+    const userId =
+      firebase.auth().currentUser && firebase.auth().currentUser.uid;
     return (
       <>
-        {props.userContext.userState.user && <Header />}
+        {userId && <Header />}
         <Toast />
         <Switch>
           <Route
             exact
             path={"/"}
             render={() =>
-              props.userContext.userState.user ? (
+              userId ? (
                 <Redirect
                   to={{
                     pathname: "/dashboard"
@@ -59,7 +61,7 @@ const MainRouter = props => {
           <Route
             path={"/signin"}
             render={() =>
-              props.userContext.userState.user ? (
+              userId ? (
                 <Redirect
                   to={{
                     pathname: "/dashboard"
@@ -73,7 +75,7 @@ const MainRouter = props => {
           <Route
             path={"/dashboard"}
             render={() =>
-              !props.userContext.userState.user ? (
+              !userId ? (
                 <Redirect
                   to={{
                     pathname: "/signin"
@@ -87,7 +89,7 @@ const MainRouter = props => {
           <Route
             path={"/profile"}
             render={() =>
-              !props.userContext.userState.user ? (
+              !userId ? (
                 <Redirect
                   to={{
                     pathname: "/signin"

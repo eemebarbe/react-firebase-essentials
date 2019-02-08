@@ -1,12 +1,12 @@
 import React, { useReducer, createContext } from "react";
 
-const initialState = { user: null };
+const initialState = { userId: null };
 const UserContext = createContext(initialState);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "user":
-      return { ...state, user: action.value };
+    case "userId":
+      return { ...state, userId: action.value };
     default:
       return state;
   }

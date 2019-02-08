@@ -4,7 +4,7 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /users/{uid} {
-    	allow write: if request.resource.data.keys().hasOnly(['firstName', 'lastName'])
+    	allow update: if request.resource.data.keys().hasOnly(['firstName', 'lastName'])
       && request.resource.data.firstName is string
       && request.resource.data.lastName is string;
       allow write: if request.resource.data.keys().hasOnly(['email'])
