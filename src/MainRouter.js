@@ -15,20 +15,40 @@ import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
 
 import firebase from "./firebase.js";
+import "firebase/firestore";
+const db = firebase.firestore();
 
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
-  const { dispatch } = useContext(UserContext);
+  const { userDispatch } = useContext(UserContext);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const user = firebase.auth().currentUser.uid;
-        dispatch({ type: "userId", payload: user });
+        let persistedUser = window.localStorage.getItem("userData");
+        if (!persistedUser) {
+          db.collection("users")
+            .doc(user)
+            .get()
+            .then(res => {
+              userDispatch({ type: "additionalInfo", payload: res.data() });
+              window.localStorage.setItem(
+                "userData",
+                JSON.stringify(res.data())
+              );
+              setInitComplete(true);
+            });
+        } else {
+          userDispatch({
+            type: "additionalInfo",
+            payload: JSON.parse(persistedUser)
+          });
+          setInitComplete(true);
+        }
       } else {
-        dispatch({ type: "userId", payload: null });
+        setInitComplete(true);
       }
-      setInitComplete(true);
     });
   }, []);
 

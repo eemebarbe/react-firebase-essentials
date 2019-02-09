@@ -17,7 +17,7 @@ const SignIn = () => {
 
   const onClickSubmit = e => {
     e.preventDefault();
-    window.localStorage.setItem("userEmail", email);
+    window.localStorage.setItem("confirmationEmail", email);
     const actionCodeSettings = {
       url: "http://" + process.env.REACT_APP_BASE_URL + "/#/confirmed",
       handleCodeInApp: true

@@ -4,10 +4,10 @@ import { ToastContext } from "../contexts/toastContext";
 
 const Toast = styled.div`
   min-height: 60px;
-  min-width: 120px;
+  min-width: 180px;
   background-color: red;
-  bottom: 0px;
-  right: 0px;
+  bottom: 12px;
+  right: 12px;
   position: absolute;
 `;
 

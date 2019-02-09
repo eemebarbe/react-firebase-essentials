@@ -12,7 +12,7 @@ const Confirmed = () => {
   const [complete, setComplete] = useState(false);
 
   useEffect(() => {
-    let email = window.localStorage.getItem("userEmail");
+    let email = window.localStorage.getItem("confirmationEmail");
     if (!email) {
       setNewDevice(true);
     } else {
@@ -36,7 +36,7 @@ const Confirmed = () => {
                 setComplete(true);
               });
           }
-          window.localStorage.removeItem("userEmail");
+          window.localStorage.removeItem("confirmationEmail");
           setTimeout(() => {
             window.close();
           }, 5000);
