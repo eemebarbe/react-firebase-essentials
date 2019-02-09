@@ -32,11 +32,13 @@ const MainRouter = () => {
             .doc(user)
             .get()
             .then(res => {
-              userDispatch({ type: "additionalInfo", payload: res.data() });
-              window.localStorage.setItem(
-                "userData",
-                JSON.stringify(res.data())
-              );
+              if (res.data().firstName) {
+                userDispatch({ type: "additionalInfo", payload: res.data() });
+                window.localStorage.setItem(
+                  "userData",
+                  JSON.stringify(res.data())
+                );
+              }
               setInitComplete(true);
             });
         } else {

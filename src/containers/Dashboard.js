@@ -4,7 +4,6 @@ import Button from "../components/Button";
 import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
 import "firebase/firestore";
-import { type } from "os";
 const db = firebase.firestore();
 
 const Dashboard = () => {
@@ -30,6 +29,7 @@ const Dashboard = () => {
   };
 
   const moreInfo = () => {
+    console.log(useState.email);
     return (
       <form>
         <Input
