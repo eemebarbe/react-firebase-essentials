@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { ToastConsumer } from "../contexts/toastContext";
+import { ToastContext } from "../contexts/toastContext";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
 import "firebase/functions";
@@ -9,10 +9,11 @@ import "firebase/firestore";
 
 const db = firebase.firestore();
 
-const SignIn = props => {
+const SignIn = () => {
   const [validCaptcha, setCaptcha] = useState(false);
   const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState(email);
+  const { sendMessage } = useContext(ToastContext);
 
   const onClickSubmit = e => {
     e.preventDefault();
@@ -28,7 +29,7 @@ const SignIn = props => {
         setStep("pleaseCheckEmail");
       })
       .catch(error => {
-        props.toastContext.sendMessage(error.message);
+        sendMessage(error.message);
       });
   };
 
@@ -52,11 +53,11 @@ const SignIn = props => {
       })
       .catch(err => {
         if (err.code === "auth/account-exists-with-different-credential") {
-          props.toastContext.sendMessage(
+          sendMessage(
             "It looks like the email address associated with your Facebook account has already been used to sign in with another method. Please sign in using the original method you signed up with."
           );
         } else {
-          props.toastContext.sendMessage(err.message);
+          sendMessage(err.message);
         }
       });
   };
@@ -107,4 +108,4 @@ const SignIn = props => {
   return currentStep;
 };
 
-export default ToastConsumer(SignIn);
+export default SignIn;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   HashRouter as Router,
   Route,
@@ -12,24 +12,25 @@ import Dashboard from "./containers/Dashboard";
 import Confirmed from "./containers/Confirmed";
 import Profile from "./containers/Profile";
 import Header from "./containers/Header";
-import { UserConsumer } from "./contexts/userContext";
+import { UserContext } from "./contexts/userContext";
 
 import firebase from "./firebase.js";
 
-const MainRouter = props => {
+const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
+  const { dispatch } = useContext(UserContext);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const user = firebase.auth().currentUser.uid;
-        props.userContext.userDispatch({ type: "userId", value: user });
+        dispatch({ type: "userId", payload: user });
       } else {
-        props.userContext.userDispatch({ type: "userId", value: null });
+        dispatch({ type: "userId", payload: null });
       }
       setInitComplete(true);
     });
-  }, {});
+  }, []);
 
   const noMatch = () => {
     return <>404</>;
@@ -125,4 +126,4 @@ const MainRouter = props => {
   return renderApp();
 };
 
-export default UserConsumer(MainRouter);
+export default MainRouter;
