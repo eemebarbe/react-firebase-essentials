@@ -1,19 +1,53 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
 import { ToastContext } from "../contexts/toastContext";
+import metrics from "../themes/metrics";
 
 const Toast = styled.div`
-  min-height: 60px;
-  min-width: 180px;
+  min-height: ${metrics.baseUnit * 4}px;
+  width: ${metrics.baseUnit * 32}px;
+  font-size: 16px;
+  line-height: ${metrics.baseUnit * 2}px;
+  color: white;
   background-color: red;
-  bottom: 12px;
-  right: 12px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
+
+const ToastInner = styled.div`
+  color: white;
+  padding: ${metrics.baseUnit * 2}px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+`;
+
+const ToastContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
   position: absolute;
+  bottom: ${metrics.baseUnit}px;
+`;
+
+const ToastContainerInner = styled.div`
+  width: ${metrics.bodyWidth}px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const ToastWithContext = () => {
   const { message } = useContext(ToastContext);
-  return <Toast>{message}</Toast>;
+  return (
+    <ToastContainer>
+      <ToastContainerInner>
+        <Toast>
+          <ToastInner>{message}</ToastInner>
+        </Toast>
+      </ToastContainerInner>
+    </ToastContainer>
+  );
 };
 
 export default ToastWithContext;

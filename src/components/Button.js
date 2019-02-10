@@ -1,14 +1,15 @@
 import styled from "styled-components";
+import metrics from "../themes/metrics";
 
 const Button = styled.button`
-  height: 36px;
-  width: 120px;
+  height: ${metrics.baseUnit * 3}px;
+  width: ${metrics.baseUnit * 9}px;
   background-color: blue;
   color: white;
   border: none;
   padding: 0;
-  margin-right: 12px;
   font: inherit;
+  font-size: ${metrics.baseUnit}px;
   cursor: pointer;
   outline: inherit;
 `;

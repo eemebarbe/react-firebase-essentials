@@ -6,17 +6,34 @@ import {
   Switch
 } from "react-router-dom";
 import Toast from "./components/Toast";
+import CenteredDiv from "./components/CenteredDiv";
 import Lander from "./containers/Lander";
 import SignIn from "./containers/SignIn";
 import Dashboard from "./containers/Dashboard";
 import Confirmed from "./containers/Confirmed";
+
 import Profile from "./containers/Profile";
 import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
 
+import metrics from "./themes/metrics";
+import styled from "styled-components";
+
 import firebase from "./firebase.js";
 import "firebase/firestore";
 const db = firebase.firestore();
+
+const RouterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+const RouterWrapperInner = styled.div`
+  width: ${metrics.bodyWidth}px;
+  height: 100%;
+`;
 
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
@@ -49,6 +66,7 @@ const MainRouter = () => {
           setInitComplete(true);
         }
       } else {
+        userDispatch({ type: "additionalInfo", payload: { firstName: null } });
         setInitComplete(true);
       }
     });
@@ -65,66 +83,70 @@ const MainRouter = () => {
       <>
         {userId && <Header />}
         <Toast />
-        <Switch>
-          <Route
-            exact
-            path={"/"}
-            render={() =>
-              userId ? (
-                <Redirect
-                  to={{
-                    pathname: "/dashboard"
-                  }}
-                />
-              ) : (
-                <Lander />
-              )
-            }
-          />
-          <Route
-            path={"/signin"}
-            render={() =>
-              userId ? (
-                <Redirect
-                  to={{
-                    pathname: "/dashboard"
-                  }}
-                />
-              ) : (
-                <SignIn />
-              )
-            }
-          />
-          <Route
-            path={"/dashboard"}
-            render={() =>
-              !userId ? (
-                <Redirect
-                  to={{
-                    pathname: "/signin"
-                  }}
-                />
-              ) : (
-                <Dashboard />
-              )
-            }
-          />
-          <Route
-            path={"/profile"}
-            render={() =>
-              !userId ? (
-                <Redirect
-                  to={{
-                    pathname: "/signin"
-                  }}
-                />
-              ) : (
-                <Profile />
-              )
-            }
-          />
-          <Route path="*" render={noMatch} />
-        </Switch>
+        <RouterWrapper>
+          <RouterWrapperInner>
+            <Switch>
+              <Route
+                exact
+                path={"/"}
+                render={() =>
+                  userId ? (
+                    <Redirect
+                      to={{
+                        pathname: "/dashboard"
+                      }}
+                    />
+                  ) : (
+                    <Lander />
+                  )
+                }
+              />
+              <Route
+                path={"/signin"}
+                render={() =>
+                  userId ? (
+                    <Redirect
+                      to={{
+                        pathname: "/dashboard"
+                      }}
+                    />
+                  ) : (
+                    <SignIn />
+                  )
+                }
+              />
+              <Route
+                path={"/dashboard"}
+                render={() =>
+                  !userId ? (
+                    <Redirect
+                      to={{
+                        pathname: "/signin"
+                      }}
+                    />
+                  ) : (
+                    <Dashboard />
+                  )
+                }
+              />
+              <Route
+                path={"/profile"}
+                render={() =>
+                  !userId ? (
+                    <Redirect
+                      to={{
+                        pathname: "/signin"
+                      }}
+                    />
+                  ) : (
+                    <Profile />
+                  )
+                }
+              />
+              <Route path="*" render={noMatch} />
+            </Switch>
+          </RouterWrapperInner>
+        </RouterWrapper>
       </>
     );
   };
@@ -141,7 +163,11 @@ const MainRouter = () => {
   };
 
   const renderApp = () => {
-    const app = !initializationComplete ? <div>Initializing...</div> : router();
+    const app = !initializationComplete ? (
+      <CenteredDiv>Initializing...</CenteredDiv>
+    ) : (
+      router()
+    );
     return app;
   };
 

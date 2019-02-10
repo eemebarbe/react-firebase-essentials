@@ -3,7 +3,9 @@ import React, { useState } from "react";
 export const ToastContext = React.createContext("");
 
 export const ToastProvider = props => {
-  const [message, sendMessage] = useState("asdfasdfsadfsaedfrasdf");
+  const [message, sendMessage] = useState(
+    "Someone sent you a message about your order. Check your inbox!"
+  );
   return (
     <ToastContext.Provider value={{ message, sendMessage }}>
       {props.children}

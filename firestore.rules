@@ -12,8 +12,7 @@ service cloud.firestore {
       && request.resource.data.firstName is string
       && request.resource.data.lastName is string
       && request.auth.uid != null;
-      allow read: if request.auth.uid != null 
-      && request.auth.uid == resource.data.uid;
+      allow read: if true;
     }
   }
 }

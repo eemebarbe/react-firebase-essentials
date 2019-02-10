@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import CenteredDiv from "../components/CenteredDiv";
 import firebase from "../firebase.js";
 import "firebase/firestore";
 const db = firebase.firestore();
@@ -75,7 +76,11 @@ const Confirmed = () => {
     ) {
       return newDeviceCheck();
     } else {
-      return <>You are now confirmed! Navigate back to the app!</>;
+      return (
+        <CenteredDiv>
+          You are now confirmed! Navigate back to the app!
+        </CenteredDiv>
+      );
     }
   };
 

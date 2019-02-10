@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import H1 from "../components/H1";
 import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
 import "firebase/firestore";
@@ -29,7 +30,6 @@ const Dashboard = () => {
   };
 
   const moreInfo = () => {
-    console.log(useState.email);
     return (
       <form>
         <Input
@@ -50,7 +50,7 @@ const Dashboard = () => {
   };
 
   const dashboard = () => {
-    return <>DASHBOARD</>;
+    return <H1>DASHBOARD</H1>;
   };
 
   return moreInfoComplete || userState.email ? dashboard() : moreInfo();

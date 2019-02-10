@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import H1 from "../components/H1";
+import CenteredDiv from "../components/CenteredDiv";
 import { ToastContext } from "../contexts/toastContext";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
@@ -65,7 +67,7 @@ const SignIn = () => {
   const dataEntry = () => {
     return (
       <>
-        SIGN UP/SIGN IN
+        <H1>SIGN UP/SIGN IN</H1>
         <form>
           <Input
             onChange={e => setEmail(e.target.value)}
@@ -85,7 +87,7 @@ const SignIn = () => {
   };
 
   const verification = () => {
-    return <>Check your email!</>;
+    return <CenteredDiv>Check your email!</CenteredDiv>;
   };
 
   const captcha = value => {
