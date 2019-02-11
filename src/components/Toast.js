@@ -29,6 +29,7 @@ const ToastContainer = styled.div`
   justify-content: center;
   position: absolute;
   bottom: ${metrics.baseUnit}px;
+  pointer-events: none;
 `;
 
 const ToastContainerInner = styled.div`

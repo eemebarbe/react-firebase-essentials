@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input, CenteredDiv } from "../components";
+import { Button, Input, CenteredDiv, Message, Text } from "../components";
 import firebase from "../firebase.js";
 import "firebase/firestore";
 
@@ -54,7 +54,7 @@ const Confirmed = () => {
       "It appears you've incorrectly entered your email address. Please try again.";
     return (
       <div>
-        {firstAttempt ? firstAttemptText : secondAttemptText}
+        <Text>{firstAttempt ? firstAttemptText : secondAttemptText}</Text>
         <Input
           onChange={e => setEmail(e.target.value)}
           name="email"
@@ -76,7 +76,7 @@ const Confirmed = () => {
     } else {
       return (
         <CenteredDiv vertical horizontal>
-          You are now confirmed! Navigate back to the app!
+          <Message>You are now confirmed! Navigate back to the app!</Message>
         </CenteredDiv>
       );
     }

@@ -1,5 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Text, H1, Button, Input, CenteredDiv, Form } from "../components";
+import {
+  Text,
+  H1,
+  Button,
+  Input,
+  CenteredDiv,
+  Form,
+  Message
+} from "../components";
 import { ToastContext } from "../contexts/toastContext";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
@@ -7,7 +15,7 @@ import "firebase/functions";
 import "firebase/firestore";
 
 import styled from "styled-components";
-import { metrics, icons } from "../themes";
+import { metrics } from "../themes";
 
 const ButtonWithMargin = styled(Button)`
   margin-right: ${metrics.baseUnit}px;
@@ -16,7 +24,7 @@ const ButtonWithMargin = styled(Button)`
 const SignIn = () => {
   const [validCaptcha, setCaptcha] = useState(false);
   const [step, setStep] = useState("dataEntry");
-  const [email, setEmail] = useState(email);
+  const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
   const db = firebase.firestore();
 
@@ -107,7 +115,7 @@ const SignIn = () => {
   const verification = () => {
     return (
       <CenteredDiv vertical horizontal>
-        Check your email!
+        <Message>Check your email!</Message>
       </CenteredDiv>
     );
   };

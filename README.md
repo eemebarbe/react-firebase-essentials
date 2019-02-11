@@ -9,4 +9,5 @@ This thing ain't ready yet. But when it is, oh boy:
 - Toast popup system already set up for user feedback
 - VERY few dependencies
 - Cloud function for processing recaptchas
+- Basic security rules written for Firestore
 - A pinch of mother's love

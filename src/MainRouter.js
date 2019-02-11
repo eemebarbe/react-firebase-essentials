@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Redirect,
   Switch
@@ -33,6 +33,7 @@ const RouterWrapperInner = styled.div`
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
   const { userDispatch } = useContext(UserContext);
+  const userId = firebase.auth().currentUser && firebase.auth().currentUser.uid;
   const db = firebase.firestore();
 
   useEffect(() => {
@@ -72,9 +73,19 @@ const MainRouter = () => {
     return <H1>404</H1>;
   };
 
+  const routeWithAuth = destination => {
+    return !userId ? (
+      <Redirect
+        to={{
+          pathname: "/signin"
+        }}
+      />
+    ) : (
+      destination
+    );
+  };
+
   const nestedSwitch = () => {
-    const userId =
-      firebase.auth().currentUser && firebase.auth().currentUser.uid;
     return (
       <>
         {userId && <Header />}
@@ -113,31 +124,11 @@ const MainRouter = () => {
               />
               <Route
                 path={"/dashboard"}
-                render={() =>
-                  !userId ? (
-                    <Redirect
-                      to={{
-                        pathname: "/signin"
-                      }}
-                    />
-                  ) : (
-                    <Dashboard />
-                  )
-                }
+                render={() => routeWithAuth(<Dashboard />)}
               />
               <Route
                 path={"/profile"}
-                render={() =>
-                  !userId ? (
-                    <Redirect
-                      to={{
-                        pathname: "/signin"
-                      }}
-                    />
-                  ) : (
-                    <Profile />
-                  )
-                }
+                render={() => routeWithAuth(<Profile />)}
               />
               <Route path="*" render={noMatch} />
             </Switch>
