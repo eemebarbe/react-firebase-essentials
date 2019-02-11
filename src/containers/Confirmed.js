@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import CenteredDiv from "../components/CenteredDiv";
+import { Button, Input, CenteredDiv } from "../components";
 import firebase from "../firebase.js";
 import "firebase/firestore";
-const db = firebase.firestore();
 
 const Confirmed = () => {
   const [newDevice, setNewDevice] = useState(false);
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [email, setEmail] = useState(null);
   const [complete, setComplete] = useState(false);
+  const db = firebase.firestore();
 
   useEffect(() => {
     let email = window.localStorage.getItem("confirmationEmail");

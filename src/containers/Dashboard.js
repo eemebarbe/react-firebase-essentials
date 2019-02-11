@@ -1,17 +1,15 @@
 import React, { useState, useContext } from "react";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import H1 from "../components/H1";
+import { Text, H1, Button, Input } from "../components";
 import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
 import "firebase/firestore";
-const db = firebase.firestore();
 
 const Dashboard = () => {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [moreInfoComplete, setMoreInfoComplete] = useState(false);
   const { userState } = useContext(UserContext);
+  const db = firebase.firestore();
 
   const onClickSubmit = e => {
     e.preventDefault();
@@ -50,7 +48,16 @@ const Dashboard = () => {
   };
 
   const dashboard = () => {
-    return <H1>DASHBOARD</H1>;
+    return (
+      <>
+        <H1>DASHBOARD</H1>
+        <Text>
+          So this is your dashboard. Maybe you'll put a few graphs here, you've
+          always wanted to try out D3. Maybe a news feed, or updates on new
+          features.
+        </Text>
+      </>
+    );
   };
 
   return moreInfoComplete || userState.email ? dashboard() : moreInfo();

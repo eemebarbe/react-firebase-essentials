@@ -24,10 +24,15 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${metrics.baseUnit * 1.5}px;
     line-height: 2;
     ::selection {
-      background: red; /* WebKit/Blink Browsers */
+      background: red;
     } 
     ::-moz-selection {
-      background: red; /* Gecko Browsers */
+      background: red;
+    }
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      box-shadow: 0 0 0px 1000px white inset;
+      -webkit-text-fill-color: black !important;
     }
   }
   #root {

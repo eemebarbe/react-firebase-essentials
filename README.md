@@ -7,5 +7,6 @@ This thing ain't ready yet. But when it is, oh boy:
 - Styled-Components all day baybeeee
 - Authentication UI flows already built out for email, Facebook and Google
 - Toast popup system already set up for user feedback
+- VERY few dependencies
 - Cloud function for processing recaptchas
 - A pinch of mother's love

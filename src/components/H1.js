@@ -6,6 +6,8 @@ const H1 = styled.h1`
   line-height: 3;
   margin: 0;
   font-family: "Kollektif-Bold";
+  position: relative;
+  top: 6px;
 `;
 
 export default H1;

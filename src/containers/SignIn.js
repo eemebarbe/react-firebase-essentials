@@ -1,10 +1,5 @@
 import React, { useState, useContext } from "react";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import Text from "../components/Text";
-import H1 from "../components/H1";
-import Form from "../components/Form";
-import CenteredDiv from "../components/CenteredDiv";
+import { Text, H1, Button, Input, CenteredDiv, Form } from "../components";
 import { ToastContext } from "../contexts/toastContext";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
@@ -12,7 +7,7 @@ import "firebase/functions";
 import "firebase/firestore";
 
 import styled from "styled-components";
-import { metrics } from "../themes";
+import { metrics, icons } from "../themes";
 
 const ButtonWithMargin = styled(Button)`
   margin-right: ${metrics.baseUnit}px;
@@ -76,7 +71,12 @@ const SignIn = () => {
     return (
       <>
         <H1>SIGN UP/SIGN IN</H1>
-        <Text>Signing in and signing up are the same process.</Text>
+        <Text>
+          Signing in and signing up are the same process...hopefully you don't
+          mind! Users typically don't log out of applications anyway, and I
+          believe that verification by email feels more secure in the era of so
+          many data breaches. I hope to have both options built in the future.
+        </Text>
         <Form>
           <div>
             <Input

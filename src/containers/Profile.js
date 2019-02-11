@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import Input from "../components/Input";
-import H1 from "../components/H1";
-import Text from "../components/Text";
-import Button from "../components/Button";
-import Form from "../components/Form";
+import { Text, H1, Button, Input, Form } from "../components";
 import firebase from "../firebase.js";
 import "firebase/firestore";
 

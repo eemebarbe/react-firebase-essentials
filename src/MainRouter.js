@@ -5,24 +5,18 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import Toast from "./components/Toast";
-import CenteredDiv from "./components/CenteredDiv";
-import H1 from "./components/H1";
 import Lander from "./containers/Lander";
 import SignIn from "./containers/SignIn";
 import Dashboard from "./containers/Dashboard";
 import Confirmed from "./containers/Confirmed";
-
 import Profile from "./containers/Profile";
 import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
-
 import { metrics } from "./themes";
+import { CenteredDiv, H1, Toast, Message } from "./components";
 import styled from "styled-components";
-
 import firebase from "./firebase.js";
 import "firebase/firestore";
-const db = firebase.firestore();
 
 const RouterWrapper = styled.div`
   display: flex;
@@ -39,6 +33,7 @@ const RouterWrapperInner = styled.div`
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
   const { userDispatch } = useContext(UserContext);
+  const db = firebase.firestore();
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
@@ -166,7 +161,7 @@ const MainRouter = () => {
   const renderApp = () => {
     const app = !initializationComplete ? (
       <CenteredDiv vertical horizontal>
-        Initializing...
+        <Message>Initializing...</Message>
       </CenteredDiv>
     ) : (
       router()
