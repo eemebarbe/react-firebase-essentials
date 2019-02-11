@@ -77,7 +77,7 @@ const Confirmed = () => {
       return newDeviceCheck();
     } else {
       return (
-        <CenteredDiv>
+        <CenteredDiv vertical horizontal>
           You are now confirmed! Navigate back to the app!
         </CenteredDiv>
       );

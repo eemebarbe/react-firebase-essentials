@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import firebase from "../firebase.js";
 import Button from "../components/Button";
 import { withRouter } from "react-router-dom";
-import metrics from "../themes/metrics";
+import styled from "styled-components";
+import { metrics } from "../themes";
 
 const Header = styled.div`
   width: 100%;
@@ -12,13 +12,14 @@ const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: ${metrics.baseUnit}px;
 `;
 
 const HeaderInner = styled.div`
   width: ${metrics.bodyWidth}px;
   height: ${metrics.baseUnit * 5}px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -39,8 +40,13 @@ const HeaderWithRouter = props => {
   return (
     <Header>
       <HeaderInner>
-        <ButtonWithMargin onClick={profile}>PROFILE</ButtonWithMargin>
-        <Button onClick={signOut}>SIGN OUT</Button>
+        <div>
+          <Button square>H</Button>
+        </div>
+        <div>
+          <ButtonWithMargin onClick={profile}>PROFILE</ButtonWithMargin>
+          <Button onClick={signOut}>SIGN OUT</Button>
+        </div>
       </HeaderInner>
     </Header>
   );

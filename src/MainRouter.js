@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Toast from "./components/Toast";
 import CenteredDiv from "./components/CenteredDiv";
+import H1 from "./components/H1";
 import Lander from "./containers/Lander";
 import SignIn from "./containers/SignIn";
 import Dashboard from "./containers/Dashboard";
@@ -16,7 +17,7 @@ import Profile from "./containers/Profile";
 import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
 
-import metrics from "./themes/metrics";
+import { metrics } from "./themes";
 import styled from "styled-components";
 
 import firebase from "./firebase.js";
@@ -73,7 +74,7 @@ const MainRouter = () => {
   }, []);
 
   const noMatch = () => {
-    return <>404</>;
+    return <H1>404</H1>;
   };
 
   const nestedSwitch = () => {
@@ -164,7 +165,9 @@ const MainRouter = () => {
 
   const renderApp = () => {
     const app = !initializationComplete ? (
-      <CenteredDiv>Initializing...</CenteredDiv>
+      <CenteredDiv vertical horizontal>
+        Initializing...
+      </CenteredDiv>
     ) : (
       router()
     );

@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import Text from "../components/Text";
 import H1 from "../components/H1";
+import Form from "../components/Form";
 import CenteredDiv from "../components/CenteredDiv";
 import { ToastContext } from "../contexts/toastContext";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -9,13 +11,19 @@ import firebase from "../firebase.js";
 import "firebase/functions";
 import "firebase/firestore";
 
-const db = firebase.firestore();
+import styled from "styled-components";
+import { metrics } from "../themes";
+
+const ButtonWithMargin = styled(Button)`
+  margin-right: ${metrics.baseUnit}px;
+`;
 
 const SignIn = () => {
   const [validCaptcha, setCaptcha] = useState(false);
   const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState(email);
   const { sendMessage } = useContext(ToastContext);
+  const db = firebase.firestore();
 
   const onClickSubmit = e => {
     e.preventDefault();
@@ -68,26 +76,40 @@ const SignIn = () => {
     return (
       <>
         <H1>SIGN UP/SIGN IN</H1>
-        <form>
-          <Input
-            onChange={e => setEmail(e.target.value)}
-            name="email"
-            placeholder="Email address"
-            autoComplete="email"
-          />
+        <Text>Signing in and signing up are the same process.</Text>
+        <Form>
+          <div>
+            <Input
+              onChange={e => setEmail(e.target.value)}
+              name="email"
+              placeholder="Email address"
+              autoComplete="email"
+            />
+          </div>
+          {/*
           <ReCAPTCHA
             sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
             onChange={captcha}
           />
-          <Button onClick={onClickSubmit}>Sign In/Sign Up</Button>
-        </form>
-        <Button onClick={authWithFacebook}>Facebook</Button>
+          */}
+          <ButtonWithMargin onClick={onClickSubmit}>SIGN IN</ButtonWithMargin>
+          <ButtonWithMargin square onClick={authWithFacebook}>
+            F
+          </ButtonWithMargin>
+          <Button square onClick={authWithFacebook}>
+            G
+          </Button>
+        </Form>
       </>
     );
   };
 
   const verification = () => {
-    return <CenteredDiv>Check your email!</CenteredDiv>;
+    return (
+      <CenteredDiv vertical horizontal>
+        Check your email!
+      </CenteredDiv>
+    );
   };
 
   const captcha = value => {

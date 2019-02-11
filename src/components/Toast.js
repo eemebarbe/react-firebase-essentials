@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
 import { ToastContext } from "../contexts/toastContext";
-import metrics from "../themes/metrics";
+import { metrics } from "../themes";
 
 const Toast = styled.div`
   min-height: ${metrics.baseUnit * 4}px;
@@ -13,13 +13,13 @@ const Toast = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
+  font-family: "Kollektif-Bold";
 `;
 
 const ToastInner = styled.div`
   color: white;
   padding: ${metrics.baseUnit * 2}px;
   width: 100%;
-  height: 100%;
   text-align: center;
 `;
 

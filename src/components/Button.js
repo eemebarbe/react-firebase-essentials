@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import metrics from "../themes/metrics";
+import { metrics } from "../themes";
 
 const Button = styled.button`
   height: ${metrics.baseUnit * 3}px;
-  width: ${metrics.baseUnit * 9}px;
-  background-color: blue;
+  width: ${props =>
+    props.square ? metrics.baseUnit * 3 + "px" : metrics.baseUnit * 8 + "px"};
+  background-color: ${props => props.color || "blue"};
   color: white;
   border: none;
   padding: 0;

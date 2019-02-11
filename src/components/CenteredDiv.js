@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import metrics from "../themes/metrics";
+import { metrics } from "../themes";
 
 const CenteredDiv = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: ${props => (props.horizontal ? "center" : "flex-start")};
+  align-items: ${props => (props.vertical ? "center" : "flex-start")};
   height: 100%;
-  font-size: ${metrics.baseUnit * 2}px;
-  color: lightgray;
 `;
 
 export default CenteredDiv;
