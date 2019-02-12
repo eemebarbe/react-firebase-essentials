@@ -1,6 +1,11 @@
 import React, { useReducer, createContext } from "react";
 
-const initialState = { email: null, firstName: null, lastName: null };
+const initialState = {
+  userId: null,
+  email: null,
+  firstName: null,
+  lastName: null
+};
 export const UserContext = createContext(initialState);
 
 const reducer = (state, action) => {

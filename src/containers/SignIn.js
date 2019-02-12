@@ -32,7 +32,7 @@ const SignIn = () => {
     e.preventDefault();
     window.localStorage.setItem("confirmationEmail", email);
     const actionCodeSettings = {
-      url: "http://" + process.env.REACT_APP_BASE_URL + "/#/confirmed",
+      url: "http://" + process.env.REACT_APP_BASE_URL + "/confirmed",
       handleCodeInApp: true
     };
     firebase
@@ -51,17 +51,13 @@ const SignIn = () => {
     firebase
       .auth()
       .signInWithPopup(facebookProvider)
-      .then((result, error) => {
-        if (error) {
-          console.log(error);
-        } else {
-          if (result.additionalUserInfo.isNewUser) {
-            db.collection("users")
-              .doc(result.user.uid)
-              .set({
-                email: result.additionalUserInfo.profile.email
-              });
-          }
+      .then(result => {
+        if (result.additionalUserInfo.isNewUser) {
+          db.collection("users")
+            .doc(result.user.uid)
+            .set({
+              email: result.additionalUserInfo.profile.email
+            });
         }
       })
       .catch(err => {
@@ -101,13 +97,13 @@ const SignIn = () => {
           />
           */}
           <ButtonWithMargin onClick={onClickSubmit}>SIGN IN</ButtonWithMargin>
-          <ButtonWithMargin square onClick={authWithFacebook}>
-            F
-          </ButtonWithMargin>
-          <Button square onClick={authWithFacebook}>
-            G
-          </Button>
         </Form>
+        <ButtonWithMargin square onClick={authWithFacebook}>
+          F
+        </ButtonWithMargin>
+        <Button square onClick={authWithFacebook}>
+          G
+        </Button>
       </>
     );
   };

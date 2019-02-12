@@ -6,12 +6,14 @@ import GlobalStyle from "./themes/GlobalStyle";
 
 const App = () => {
   return (
-    <ToastProvider>
-      <UserProvider>
-        <GlobalStyle />
-        <MainRouter />
-      </UserProvider>
-    </ToastProvider>
+    <>
+      <GlobalStyle />
+      <ToastProvider>
+        <UserProvider>
+          <MainRouter />
+        </UserProvider>
+      </ToastProvider>
+    </>
   );
 };
 

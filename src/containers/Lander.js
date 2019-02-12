@@ -9,12 +9,12 @@ const Lander = props => {
 
   return (
     <>
-      <H1>ADVERTISING LANDER</H1>
+      <H1>REACT-FIREBASE-BOILERPLATE</H1>
       <H2>This thing ain't ready yet. But when it is, oh boy:</H2>
       <Text>
         - All components are built with Hooks
         <br /> - Utilizing the Context API for shared data
-        <br /> - Styled-Components all day baybeeee
+        <br /> - Styled-Components all day, baybeeee
         <br /> - Authentication UI flows already built out for email, Facebook
         and Google
         <br /> - Toast popup system already set up for user feedback

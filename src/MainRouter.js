@@ -39,20 +39,21 @@ const MainRouter = () => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
-        const user = firebase.auth().currentUser.uid;
+        const uid = firebase.auth().currentUser.uid;
         let persistedUser = window.localStorage.getItem("userData");
         if (!persistedUser) {
           db.collection("users")
-            .doc(user)
+            .doc(uid)
             .get()
             .then(res => {
-              if (res.data().firstName) {
+              if (res.data() && res.data().firstName) {
                 userDispatch({ type: "additionalInfo", payload: res.data() });
                 window.localStorage.setItem(
                   "userData",
                   JSON.stringify(res.data())
                 );
               }
+              console.log("HERE!");
               setInitComplete(true);
             });
         } else {
