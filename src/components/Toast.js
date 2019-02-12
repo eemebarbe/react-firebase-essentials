@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ToastContext } from "../contexts/toastContext";
 import { metrics } from "../themes";
 
 const Toast = styled.div`
+  visibility: ${props => props.visibility};
   min-height: ${metrics.baseUnit * 4}px;
   width: ${metrics.baseUnit * 32}px;
   font-size: 16px;
@@ -39,11 +40,23 @@ const ToastContainerInner = styled.div`
 `;
 
 const ToastWithContext = () => {
-  const { message } = useContext(ToastContext);
+  const [visibility, setVisibility] = useState("hidden");
+  const { message, sendMessage } = useContext(ToastContext);
+
+  useEffect(() => {
+    if (message) {
+      setVisibility("visible");
+      setTimeout(() => {
+        sendMessage("");
+        setVisibility("hidden");
+      }, 3000);
+    }
+  }, [message]);
+
   return (
     <ToastContainer>
       <ToastContainerInner>
-        <Toast>
+        <Toast visibility={visibility}>
           <ToastInner>{message}</ToastInner>
         </Toast>
       </ToastContainerInner>

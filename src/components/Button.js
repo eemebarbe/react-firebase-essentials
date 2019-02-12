@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { metrics } from "../themes";
 
@@ -9,6 +10,7 @@ const Button = styled.button`
   color: white;
   border: 0;
   padding: 0;
+  margin: 0;
   font: inherit;
   font-size: ${metrics.baseUnit}px;
   cursor: pointer;
@@ -16,4 +18,15 @@ const Button = styled.button`
   font-family: "Kollektif-Bold";
 `;
 
-export default Button;
+const ButtonWithLoadState = props => {
+  const loadState = () => {
+    if (props.loadState === "loading") {
+      return "LOADING";
+    } else {
+      return props.children;
+    }
+  };
+  return <Button {...props}>{loadState()}</Button>;
+};
+
+export default ButtonWithLoadState;

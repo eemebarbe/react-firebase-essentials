@@ -9,7 +9,7 @@ const Input = styled.input`
   margin-bottom: ${metrics.baseUnit}px;
   font-family: inherit;
   padding: 0;
-  height: ${metrics.baseUnit * 3}px;
+  height: ${metrics.baseUnit * 3 - 2}px;
   width: ${metrics.baseUnit * 16}px;
   font-size: ${metrics.baseUnit * 1.5}px;
   &::placeholder {
@@ -18,9 +18,9 @@ const Input = styled.input`
   &:focus {
     border-bottom: 1px solid ${colors.maintext};
   }
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box; /* Opera/IE 8+ */
+  -webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: content-box; /* Firefox, other Gecko */
+  box-sizing: content-box; /* Opera/IE 8+ */
 `;
 
 export default Input;

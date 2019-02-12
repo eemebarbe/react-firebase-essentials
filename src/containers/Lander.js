@@ -9,7 +9,7 @@ const Lander = props => {
 
   return (
     <>
-      <H1>REACT-FIREBASE-BOILERPLATE</H1>
+      <H1>REACT-FIREBASE-ESSENTIALS</H1>
       <H2>This thing ain't ready yet. But when it is, oh boy:</H2>
       <Text>
         - All components are built with Hooks
