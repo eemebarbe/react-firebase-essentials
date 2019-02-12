@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import firebase from "../firebase.js";
 import { Button } from "../components";
 import { withRouter } from "react-router-dom";
+import { UserContext } from "../contexts/userContext";
 import styled from "styled-components";
 import { metrics, colors } from "../themes";
 
@@ -27,8 +28,13 @@ const ButtonWithMargin = styled(Button)`
 `;
 
 const HeaderWithRouter = props => {
+  const { userDispatch } = useContext(UserContext);
   const signOut = () => {
     firebase.auth().signOut();
+    userDispatch({
+      type: "userId",
+      payload: null
+    });
     window.localStorage.removeItem("userData");
   };
 

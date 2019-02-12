@@ -33,12 +33,12 @@ const Confirmed = () => {
               })
               .then(res => {
                 setComplete(true);
+                setTimeout(() => {
+                  window.close();
+                }, 5000);
               });
           }
           window.localStorage.removeItem("confirmationEmail");
-          setTimeout(() => {
-            window.close();
-          }, 5000);
         })
         .catch(error => {
           console.log(error);

@@ -32,8 +32,8 @@ const RouterWrapperInner = styled.div`
 
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
-  const { userDispatch } = useContext(UserContext);
-  const userId = firebase.auth().currentUser && firebase.auth().currentUser.uid;
+  const { userState, userDispatch } = useContext(UserContext);
+  const userId = userState.userId;
   const db = firebase.firestore();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const MainRouter = () => {
                   JSON.stringify(res.data())
                 );
               }
-              console.log("HERE!");
+              userDispatch({ type: "userId", payload: uid });
               setInitComplete(true);
             });
         } else {
@@ -61,10 +61,14 @@ const MainRouter = () => {
             type: "additionalInfo",
             payload: JSON.parse(persistedUser)
           });
+          userDispatch({ type: "userId", payload: uid });
           setInitComplete(true);
         }
       } else {
-        userDispatch({ type: "additionalInfo", payload: { firstName: null } });
+        userDispatch({
+          type: "additionalInfo",
+          payload: { firstName: null, lastName: null, email: null }
+        });
         setInitComplete(true);
       }
     });
