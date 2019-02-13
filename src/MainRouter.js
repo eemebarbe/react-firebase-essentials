@@ -93,7 +93,7 @@ const MainRouter = () => {
   const nestedSwitch = () => {
     return (
       <>
-        {userId && <Header />}
+        <Header />
         <Toast />
         <RouterWrapper>
           <RouterWrapperInner>

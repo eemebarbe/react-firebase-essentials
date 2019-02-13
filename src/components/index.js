@@ -8,5 +8,18 @@ import Toast from "../components/Toast";
 import CenteredDiv from "../components/CenteredDiv";
 import Icon from "../components/Icon";
 import Form from "../components/Form";
+import Spinner from "./Spinner";
 
-export { Input, Button, H1, H2, Text, Message, Toast, CenteredDiv, Icon, Form };
+export {
+  Input,
+  Button,
+  H1,
+  H2,
+  Text,
+  Message,
+  Toast,
+  CenteredDiv,
+  Icon,
+  Spinner,
+  Form
+};
