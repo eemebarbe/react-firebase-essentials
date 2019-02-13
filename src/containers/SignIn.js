@@ -3,6 +3,8 @@ import {
   Text,
   H1,
   Button,
+  FacebookAuth,
+  GoogleAuth,
   Input,
   CenteredDiv,
   Form,
@@ -15,11 +17,7 @@ import "firebase/functions";
 import "firebase/firestore";
 
 import styled from "styled-components";
-import { metrics } from "../themes";
-
-const ButtonWithMargin = styled(Button)`
-  margin-right: ${metrics.baseUnit}px;
-`;
+import { metrics, icons } from "../themes";
 
 const SignIn = () => {
   const [validCaptcha, setCaptcha] = useState(false);
@@ -89,21 +87,19 @@ const SignIn = () => {
               placeholder="Email address"
               autoComplete="email"
             />
-          </div>
-          {/*
+            {/*
           <ReCAPTCHA
             sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
             onChange={captcha}
           />
           */}
-          <ButtonWithMargin onClick={onClickSubmit}>SIGN IN</ButtonWithMargin>
+            <Button marginLeft onClick={onClickSubmit}>
+              SIGN IN
+            </Button>
+          </div>
         </Form>
-        <ButtonWithMargin square onClick={authWithFacebook}>
-          F
-        </ButtonWithMargin>
-        <Button square onClick={authWithFacebook}>
-          G
-        </Button>
+        <FacebookAuth onClick={authWithFacebook} />
+        <GoogleAuth />
       </>
     );
   };

@@ -1,13 +1,11 @@
-import google from "./icons/btn_google_light_normal_ios.svg";
 import facebook from "./icons/flogo-HexRBG-Wht-72.svg";
 import github from "./icons/github-brands.svg";
-import spinner from "./icons/spinner-solid.svg";
+import google from "./icons/icons8-google-48.png";
 
 const icons = {
   google: google,
   facebook: facebook,
-  github: github,
-  spinner: spinner
+  github: github
 };
 
 export default icons;

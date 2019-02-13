@@ -6,23 +6,16 @@ const Icon = styled.img`
   height: ${metrics.baseUnit * 3}px;
   width: ${metrics.baseUnit * 3}px;
   src: url(${props => props.src});
-  color: white;
-`;
-
-const IconWithButton = styled.button`
-  border: 0;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  outline: inherit;
-  background-color: transparent;
+  a {
+    height: ${metrics.baseUnit * 3}px;
+  }
 `;
 
 const wrappedIcon = props => {
   return (
-    <IconWithButton>
+    <a href={"http://github.com/eemebarbe/react-firebase-essentials"}>
       <Icon {...props} />
-    </IconWithButton>
+    </a>
   );
 };
 

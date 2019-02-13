@@ -13,7 +13,7 @@ import Profile from "./containers/Profile";
 import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
 import { metrics } from "./themes";
-import { CenteredDiv, H1, Toast, Message } from "./components";
+import { CenteredDiv, H1, Toast, Spinner } from "./components";
 import styled from "styled-components";
 import firebase from "./firebase.js";
 import "firebase/firestore";
@@ -157,7 +157,7 @@ const MainRouter = () => {
   const renderApp = () => {
     const app = !initializationComplete ? (
       <CenteredDiv vertical horizontal>
-        <Message>Initializing...</Message>
+        <Spinner large />
       </CenteredDiv>
     ) : (
       router()

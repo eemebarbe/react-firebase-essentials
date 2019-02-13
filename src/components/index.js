@@ -9,6 +9,7 @@ import CenteredDiv from "../components/CenteredDiv";
 import Icon from "../components/Icon";
 import Form from "../components/Form";
 import Spinner from "./Spinner";
+import { GoogleAuth, FacebookAuth } from "./SocialAuthButton";
 
 export {
   Input,
@@ -21,5 +22,7 @@ export {
   CenteredDiv,
   Icon,
   Spinner,
-  Form
+  Form,
+  GoogleAuth,
+  FacebookAuth
 };

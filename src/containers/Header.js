@@ -39,12 +39,6 @@ const HeaderWithRouter = props => {
     window.localStorage.removeItem("userData");
   };
 
-  const githubPage = e => {
-    e.preventDefault();
-    window.location.href =
-      "http://github.com/eemebarbe/react-firebase-essentials";
-  };
-
   const profile = () => {
     props.history.push("/profile");
   };
@@ -61,7 +55,10 @@ const HeaderWithRouter = props => {
   return (
     <Header>
       <HeaderInner>
-        <Icon onClick={githubPage} src={icons.github} />
+        <Icon
+          linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
+          src={icons.github}
+        />
         {userId && userMenu()}
       </HeaderInner>
     </Header>

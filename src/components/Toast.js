@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import React, { useContext, useState, useEffect } from "react";
+import styled from "styled-components";
+import { Motion, spring } from "react-motion";
 import { ToastContext } from "../contexts/toastContext";
 import { metrics } from "../themes";
 
@@ -29,8 +30,9 @@ const ToastContainer = styled.div`
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: ${metrics.baseUnit}px;
+  bottom: -${metrics.baseUnit * 4}px;
   pointer-events: none;
+  transform: ${props => "translateY(" + props.motionStyle.y + "px)"};
 `;
 
 const ToastContainerInner = styled.div`
@@ -40,27 +42,32 @@ const ToastContainerInner = styled.div`
 `;
 
 const ToastWithContext = () => {
-  const [visibility, setVisibility] = useState("hidden");
+  const [show, setShow] = useState(false);
   const { message, sendMessage } = useContext(ToastContext);
 
   useEffect(() => {
     if (message) {
-      setVisibility("visible");
-      setTimeout(() => {
-        sendMessage("");
-        setVisibility("hidden");
-      }, 3000);
+      setShow(true);
     }
   }, [message]);
 
   return (
-    <ToastContainer>
-      <ToastContainerInner>
-        <Toast visibility={visibility}>
-          <ToastInner>{message}</ToastInner>
-        </Toast>
-      </ToastContainerInner>
-    </ToastContainer>
+    <Motion
+      defaultStyle={{ y: 0, opacity: 0 }}
+      style={{
+        y: spring(show ? -60 : 0),
+        opacity: spring(show ? 1 : 0)
+      }}>
+      {motionStyle => (
+        <ToastContainer motionStyle={motionStyle}>
+          <ToastContainerInner>
+            <Toast>
+              <ToastInner>{message}</ToastInner>
+            </Toast>
+          </ToastContainerInner>
+        </ToastContainer>
+      )}
+    </Motion>
   );
 };
 

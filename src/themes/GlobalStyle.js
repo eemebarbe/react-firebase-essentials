@@ -22,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
     }
     font-family: 'Kollektif';
     font-size: ${metrics.baseUnit * 1.5}px;
-    line-height: 2;
     input:-webkit-autofill {
       -webkit-box-shadow: 0 0 0px 1000px white inset;
       box-shadow: 0 0 0px 1000px white inset;
