@@ -2,20 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import { metrics } from "../themes";
 
-const Icon = styled.img`
+const Link = styled.a`
   height: ${metrics.baseUnit * 3}px;
   width: ${metrics.baseUnit * 3}px;
-  src: url(${props => props.src});
-  a {
+  img {
     height: ${metrics.baseUnit * 3}px;
+    width: ${metrics.baseUnit * 3}px;
+    src: url(${props => props.src});
   }
 `;
 
 const wrappedIcon = props => {
   return (
-    <a href={"http://github.com/eemebarbe/react-firebase-essentials"}>
-      <Icon {...props} />
-    </a>
+    <Link href={"http://github.com/eemebarbe/react-firebase-essentials"}>
+      <img {...props} />
+    </Link>
   );
 };
 

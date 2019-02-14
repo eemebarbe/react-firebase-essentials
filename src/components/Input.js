@@ -9,7 +9,7 @@ const Input = styled.input`
   margin-bottom: ${metrics.baseUnit}px;
   font-family: inherit;
   padding: 0;
-  height: ${metrics.baseUnit * 3 - 2}px;
+  height: ${metrics.baseUnit * 3 - 1}px;
   width: ${metrics.baseUnit * 16}px;
   font-size: ${metrics.baseUnit * 1.5}px;
   &::placeholder {

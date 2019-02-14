@@ -20,7 +20,7 @@ const SpinnerOuter = styled.div`
     props.large ? metrics.baseUnit * 6 : metrics.baseUnit * 1.5}px;
   border: 1px solid rgb(255, 255, 255, 0.2);
   border-top-color: rgb(255, 255, 255);
-  animation: ${rotate} 1s infinite ease-in;
+  animation: ${rotate} 1s infinite ease-in-out;
   margin: 0 auto;
 `;
 

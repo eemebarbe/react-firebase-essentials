@@ -18,16 +18,19 @@ import styled from "styled-components";
 import firebase from "./firebase.js";
 import "firebase/firestore";
 
+const ScrollBox = styled.div`
+  height: 100%;
+  overflow-y: auto;
+`;
+
 const RouterWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 `;
 
 const RouterWrapperInner = styled.div`
   width: ${metrics.bodyWidth}px;
-  height: 100%;
 `;
 
 const MainRouter = () => {
@@ -92,7 +95,7 @@ const MainRouter = () => {
 
   const nestedSwitch = () => {
     return (
-      <>
+      <ScrollBox>
         <Header />
         <Toast />
         <RouterWrapper>
@@ -139,7 +142,7 @@ const MainRouter = () => {
             </Switch>
           </RouterWrapperInner>
         </RouterWrapper>
-      </>
+      </ScrollBox>
     );
   };
 

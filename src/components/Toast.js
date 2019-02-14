@@ -48,15 +48,18 @@ const ToastWithContext = () => {
   useEffect(() => {
     if (message) {
       setShow(true);
+      setTimeout(() => {
+        setShow(false);
+        sendMessage("");
+      }, 3000);
     }
   }, [message]);
 
   return (
     <Motion
-      defaultStyle={{ y: 0, opacity: 0 }}
+      defaultStyle={{ y: 0 }}
       style={{
-        y: spring(show ? -60 : 0),
-        opacity: spring(show ? 1 : 0)
+        y: spring(show ? -60 : 0)
       }}>
       {motionStyle => (
         <ToastContainer motionStyle={motionStyle}>

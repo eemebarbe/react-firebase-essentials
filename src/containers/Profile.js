@@ -9,14 +9,14 @@ const Profile = () => {
   const { userState } = useContext(UserContext);
   const [firstName, setFirstName] = useState(userState.firstName);
   const [lastName, setLastName] = useState(userState.lastName);
-  const [loadState, setloadState] = useState(null);
+  const [loadState, setloadState] = useState(false);
   const { sendMessage } = useContext(ToastContext);
   const db = firebase.firestore();
 
   const onClickSubmit = e => {
     e.preventDefault();
     if (firstName || lastName) {
-      setloadState("loading");
+      setloadState(true);
       db.collection("users")
         .doc(firebase.auth().currentUser.uid)
         .update({
@@ -24,11 +24,11 @@ const Profile = () => {
           lastName: lastName !== userState.lastName && lastName
         })
         .then(() => {
-          setloadState("complete");
+          setloadState(false);
           sendMessage("Update successful!");
         })
         .catch(err => {
-          setloadState(null);
+          setloadState(false);
           sendMessage(err.message);
         });
     } else {
@@ -60,7 +60,7 @@ const Profile = () => {
           />
         </div>
         <div>
-          <Button loadState={loadState} onClick={e => onClickSubmit(e)}>
+          <Button loading={loadState} onClick={e => onClickSubmit(e)}>
             SUBMIT
           </Button>
         </div>

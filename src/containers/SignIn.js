@@ -17,10 +17,27 @@ import "firebase/functions";
 import "firebase/firestore";
 
 import styled from "styled-components";
-import { metrics, icons } from "../themes";
+import { metrics, colors } from "../themes";
+
+const AuthSeparator = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  font-size: ${metrics.baseUnit}px;
+  height: ${metrics.baseUnit * 1}px;
+  width: ${metrics.baseUnit * 16}px;
+  margin-bottom: ${metrics.baseUnit}px;
+  color: ${colors.inactive};
+  font-family: "Kollektif-Bold";
+  span {
+    margin: 0px ${metrics.baseUnit}px;
+  }
+`;
 
 const SignIn = () => {
   const [validCaptcha, setCaptcha] = useState(false);
+  const [facebookLoadState, setFacebookLoadState] = useState(false);
   const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
@@ -45,6 +62,7 @@ const SignIn = () => {
   };
 
   const authWithFacebook = () => {
+    setFacebookLoadState(true);
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
     firebase
       .auth()
@@ -66,6 +84,7 @@ const SignIn = () => {
         } else {
           sendMessage(err.message);
         }
+        setFacebookLoadState(false);
       });
   };
 
@@ -87,19 +106,28 @@ const SignIn = () => {
               placeholder="Email address"
               autoComplete="email"
             />
-            {/*
+          </div>
+          {/*
           <ReCAPTCHA
             sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
             onChange={captcha}
           />
           */}
-            <Button marginLeft onClick={onClickSubmit}>
-              SIGN IN
+          <div>
+            <Button marginBottom onClick={onClickSubmit}>
+              SIGN IN WITH EMAIL
             </Button>
           </div>
         </Form>
-        <FacebookAuth onClick={authWithFacebook} />
-        <GoogleAuth />
+        <AuthSeparator>
+          <span>OR</span>
+        </AuthSeparator>
+        <FacebookAuth
+          marginBottom
+          loading={facebookLoadState}
+          onClick={authWithFacebook}
+        />
+        <GoogleAuth marginBottom />
       </>
     );
   };
