@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { metrics } from "../themes";
+import { metrics, colors } from "../themes";
 import { Spinner } from "../components";
 
 const Button = styled.button`
   min-height: ${metrics.baseUnit * 3}px;
   width: ${metrics.baseUnit * 16}px;
   background-color: ${props => props.color || "blue"};
-  color: white;
+  color: ${colors.detailText};
   border: 0;
   padding: 0;
   border-radius: ${metrics.globalBorderRadius}px;
@@ -17,14 +17,16 @@ const Button = styled.button`
   margin-top: ${props => (props.marginTop ? metrics.baseUnit + "px" : 0)};
   font-size: ${metrics.baseUnit}px;
   cursor: pointer;
-  outline: inherit;
-  text-align: center;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: "Kollektif-Bold";
 `;
 
 const ButtonWithLoadState = props => {
   const loadState = () => {
-    if (props.loading === true) {
+    if (props.loading) {
       return <Spinner />;
     } else {
       return props.children;

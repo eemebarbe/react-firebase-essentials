@@ -9,6 +9,7 @@ const Link = styled.a`
   margin-right: ${props => (props.marginRight ? metrics.baseUnit + "px" : 0)};
   margin-bottom: ${props => (props.marginBottom ? metrics.baseUnit + "px" : 0)};
   margin-top: ${props => (props.marginTop ? metrics.baseUnit + "px" : 0)};
+  cursor: pointer;
   img {
     height: ${metrics.baseUnit * 3}px;
     width: ${metrics.baseUnit * 3}px;
@@ -18,9 +19,7 @@ const Link = styled.a`
 
 const wrappedIcon = props => {
   return (
-    <Link
-      {...props}
-      href={"http://github.com/eemebarbe/react-firebase-essentials"}>
+    <Link {...props} href={props.linkTo}>
       <img {...props} />
     </Link>
   );

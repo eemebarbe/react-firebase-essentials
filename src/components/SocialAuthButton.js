@@ -1,21 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import { Spinner, Button } from "../components";
-import { metrics, icons, colors } from "../themes";
+import { Button } from "../components";
+import { metrics, icons } from "../themes";
+
+const LogoWrapper = styled.div`
+  width: ${metrics.baseUnit * 3}px;
+  height: ${metrics.baseUnit * 3}px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const SocialAuthIcon = styled.img`
   width: ${metrics.baseUnit * 1.5}px;
   height: ${metrics.baseUnit * 1.5}px;
-  margin: ${metrics.baseUnit * 0.75}px;
-  margin-right: 0;
   src: ${props => props.src};
 `;
 
 const GoogleAuthWrapper = styled.div`
   width: ${metrics.baseUnit * 2}px;
   height: ${metrics.baseUnit * 2}px;
-  margin: ${metrics.baseUnit * 0.5}px;
-  margin-right: 0;
   background-color: white;
   border-radius: 2px;
   img {
@@ -35,17 +39,16 @@ const GoogleAuthIcon = props => {
 };
 
 const AuthButton = styled(Button)`
-  display: flex;
-  align-items: center;
   span {
-    margin: 0 auto;
+    text-align: center;
+    width: ${metrics.baseUnit * 13}px;
   }
 `;
 
 const SocialConstructor = props => {
   return (
     <AuthButton {...props} onClick={props.onClick}>
-      {props.children}
+      <LogoWrapper>{props.children}</LogoWrapper>
       <span>SIGN IN WITH {props.company}</span>
     </AuthButton>
   );

@@ -43,6 +43,10 @@ const HeaderWithRouter = props => {
     props.history.push("/profile");
   };
 
+  const dashboard = () => {
+    props.history.push("/");
+  };
+
   const userMenu = () => {
     return (
       <div>
@@ -56,11 +60,7 @@ const HeaderWithRouter = props => {
     <Header>
       <HeaderInner>
         <div>
-          <Icon
-            marginRight
-            linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
-            src={icons.home}
-          />
+          <Icon marginRight onClick={dashboard} src={icons.home} />
           <Icon
             linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
             src={icons.github}
