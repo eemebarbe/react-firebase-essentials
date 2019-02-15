@@ -6,6 +6,7 @@ import { metrics } from "../themes";
 
 const Toast = styled.div`
   visibility: ${props => props.visibility};
+  border-radius: ${metrics.globalBorderRadius}px;
   min-height: ${metrics.baseUnit * 4}px;
   width: ${metrics.baseUnit * 32}px;
   font-size: 16px;

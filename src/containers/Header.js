@@ -55,10 +55,17 @@ const HeaderWithRouter = props => {
   return (
     <Header>
       <HeaderInner>
-        <Icon
-          linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
-          src={icons.github}
-        />
+        <div>
+          <Icon
+            marginRight
+            linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
+            src={icons.home}
+          />
+          <Icon
+            linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
+            src={icons.github}
+          />
+        </div>
         {userId && userMenu()}
       </HeaderInner>
     </Header>

@@ -4,14 +4,13 @@ import { metrics } from "../themes";
 import { Spinner } from "../components";
 
 const Button = styled.button`
-  height: ${metrics.baseUnit * 3}px;
+  min-height: ${metrics.baseUnit * 3}px;
   width: ${metrics.baseUnit * 16}px;
   background-color: ${props => props.color || "blue"};
   color: white;
   border: 0;
   padding: 0;
-  border-radius: ${props =>
-    props.borderRadius ? props.borderRadius + "px" : 0};
+  border-radius: ${metrics.globalBorderRadius}px;
   margin-left: ${props => (props.marginLeft ? metrics.baseUnit + "px" : 0)};
   margin-right: ${props => (props.marginRight ? metrics.baseUnit + "px" : 0)};
   margin-bottom: ${props => (props.marginBottom ? metrics.baseUnit + "px" : 0)};
