@@ -12,31 +12,27 @@ const rotate = keyframes`
   }
 `;
 
-const Circle = styled.div`
-  margin: 0 auto;
+const SpinnerTemplate = styled.div`
   border-radius: 50%;
   width: ${props =>
     props.large ? metrics.baseUnit * 6 + 4 : metrics.baseUnit * 1.5}px;
   height: ${props =>
     props.large ? metrics.baseUnit * 6 + 4 : metrics.baseUnit * 1.5}px;
-  border: 2px solid ${colors.detailText};
-  opacity: 0.33;
   position: absolute;
 `;
 
-const Highlight = styled.div`
-  border-radius: 50%;
-  width: ${props =>
-    props.large ? metrics.baseUnit * 6 + 4 : metrics.baseUnit * 1.5}px;
-  height: ${props =>
-    props.large ? metrics.baseUnit * 6 + 4 : metrics.baseUnit * 1.5}px;
+const Circle = styled(SpinnerTemplate)`
+  border: 2px solid ${colors.detailText};
+  opacity: 0.33;
+`;
+
+const Highlight = styled(SpinnerTemplate)`
   border: 2px solid rgb(0, 0, 0, 0);
   border-top: 2px solid ${colors.detailText};
   animation: ${rotate} 1s infinite ease-in-out;
-  position: absolute;
 `;
 
-const SpinnerInner = props => {
+const Spinner = props => {
   return (
     <>
       <Circle {...props} />
@@ -45,4 +41,4 @@ const SpinnerInner = props => {
   );
 };
 
-export default SpinnerInner;
+export default Spinner;

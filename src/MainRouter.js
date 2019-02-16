@@ -93,6 +93,18 @@ const MainRouter = () => {
     );
   };
 
+  const reRouteIfAuthenticated = destination => {
+    return userId ? (
+      <Redirect
+        to={{
+          pathname: "/dashboard"
+        }}
+      />
+    ) : (
+      destination
+    );
+  };
+
   const nestedSwitch = () => {
     return (
       <ScrollBox>
@@ -104,31 +116,11 @@ const MainRouter = () => {
               <Route
                 exact
                 path={"/"}
-                render={() =>
-                  userId ? (
-                    <Redirect
-                      to={{
-                        pathname: "/dashboard"
-                      }}
-                    />
-                  ) : (
-                    <Lander />
-                  )
-                }
+                render={() => reRouteIfAuthenticated(<Lander />)}
               />
               <Route
                 path={"/signin"}
-                render={() =>
-                  userId ? (
-                    <Redirect
-                      to={{
-                        pathname: "/dashboard"
-                      }}
-                    />
-                  ) : (
-                    <SignIn />
-                  )
-                }
+                render={() => reRouteIfAuthenticated(<SignIn />)}
               />
               <Route
                 path={"/dashboard"}

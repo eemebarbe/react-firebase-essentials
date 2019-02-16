@@ -21,6 +21,9 @@ const HeaderInner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  div {
+    display: inline-flex;
+  }
 `;
 
 const ButtonWithMargin = styled(Button)`
