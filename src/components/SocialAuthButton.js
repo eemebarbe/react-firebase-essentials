@@ -3,48 +3,11 @@ import styled from "styled-components";
 import { Button } from "../components";
 import { metrics, icons } from "../themes";
 
-const LogoWrapper = styled.div`
-  width: ${metrics.baseUnit * 2.5}px;
-  height: ${metrics.baseUnit * 3}px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  div {
-    width: ${metrics.baseUnit * 2}px;
-    height: ${metrics.baseUnit * 2}px;
-    background-color: ${props => (props.background ? "white" : null)};
-    border-radius: ${metrics.globalBorderRadius / 2}px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: ${metrics.baseUnit * 1.5}px;
-      height: ${metrics.baseUnit * 1.5}px;
-      src: ${props => props.src};
-    }
-  }
-`;
-
-const IconWrapper = styled.div`
-  width: ${metrics.baseUnit * 2}px;
-  height: ${metrics.baseUnit * 2}px;
-  background-color: ${props => (props.background ? "white" : null)};
-  border-radius: ${metrics.globalBorderRadius / 2}px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: ${metrics.baseUnit * 1.5}px;
-    height: ${metrics.baseUnit * 1.5}px;
-    src: ${props => props.src};
-  }
-`;
-
 const CompanyIcon = props => {
   return (
-    <IconWrapper {...props}>
+    <div {...props}>
       <img {...props} />
-    </IconWrapper>
+    </div>
   );
 };
 
@@ -53,12 +16,37 @@ const AuthButton = styled(Button)`
     text-align: center;
     width: ${metrics.baseUnit * 13.5}px;
   }
+  div {
+    width: ${metrics.baseUnit * 2.5}px;
+    height: ${metrics.baseUnit * 3}px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    div {
+      width: ${metrics.baseUnit * 2}px;
+      height: ${metrics.baseUnit * 2}px;
+      background-color: ${props => (props.background ? "white" : null)};
+      border-radius: ${metrics.globalBorderRadius / 2}px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: ${metrics.baseUnit * 1.5}px;
+        height: ${metrics.baseUnit * 1.5}px;
+        src: ${props => props.src};
+      }
+    }
+  }
 `;
 
 const SocialConstructor = props => {
   return (
     <AuthButton {...props} onClick={props.onClick}>
-      <LogoWrapper>{props.children}</LogoWrapper>
+      <div>
+        <div {...props}>
+          <img src={props.logo} />
+        </div>
+      </div>
       <span>SIGN IN WITH {props.company}</span>
     </AuthButton>
   );
@@ -66,16 +54,23 @@ const SocialConstructor = props => {
 
 export const FacebookAuth = props => {
   return (
-    <SocialConstructor {...props} company="FACEBOOK" onClick={props.onClick}>
-      <CompanyIcon src={icons.facebook} />
-    </SocialConstructor>
+    <SocialConstructor
+      {...props}
+      logo={icons.facebook}
+      company="FACEBOOK"
+      onClick={props.onClick}
+    />
   );
 };
 
 export const GoogleAuth = props => {
   return (
-    <SocialConstructor {...props} company="GOOGLE" onClick={props.onClick}>
-      <CompanyIcon background src={icons.google} />
-    </SocialConstructor>
+    <SocialConstructor
+      background
+      {...props}
+      logo={icons.google}
+      company="FACEBOOK"
+      onClick={props.onClick}
+    />
   );
 };
