@@ -4,45 +4,42 @@ import { Motion, spring } from "react-motion";
 import { ToastContext } from "../contexts/toastContext";
 import { metrics } from "../themes";
 
-const Toast = styled.div`
-  visibility: ${props => props.visibility};
-  border-radius: ${metrics.globalBorderRadius}px;
-  min-height: ${metrics.baseUnit * 4}px;
-  width: ${metrics.baseUnit * 32}px;
-  font-size: 16px;
-  line-height: ${metrics.baseUnit * 2}px;
-  color: white;
-  background-color: red;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  font-family: "Kollektif-Bold";
-`;
-
-const ToastInner = styled.div`
-  color: white;
-  padding: ${metrics.baseUnit * 2}px;
-  width: 100%;
-  text-align: center;
-`;
-
 const ToastContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: -${metrics.baseUnit * 4}px;
+  bottom: -${metrics.baseUnit * 8}px;
   pointer-events: none;
   transform: ${props => "translateY(" + props.motionStyle.y + "px)"};
+  div {
+    width: ${metrics.bodyWidth}px;
+    display: flex;
+    justify-content: flex-end;
+    div {
+      visibility: ${props => props.visibility};
+      border-radius: ${metrics.globalBorderRadius}px;
+      min-height: ${metrics.baseUnit * 4}px;
+      width: ${metrics.baseUnit * 32}px;
+      font-size: 16px;
+      line-height: ${metrics.baseUnit * 2}px;
+      color: white;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      font-family: "Kollektif-Bold";
+      div {
+        color: white;
+        padding: ${metrics.baseUnit * 2}px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
 `;
 
-const ToastContainerInner = styled.div`
-  width: ${metrics.bodyWidth}px;
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const ToastWithContext = () => {
+const ToastWithContext = props => {
   const [show, setShow] = useState(false);
   const { message, sendMessage } = useContext(ToastContext);
 
@@ -52,7 +49,7 @@ const ToastWithContext = () => {
       setTimeout(() => {
         setShow(false);
         sendMessage("");
-      }, 3000);
+      }, 4000);
     }
   }, [message]);
 
@@ -60,15 +57,15 @@ const ToastWithContext = () => {
     <Motion
       defaultStyle={{ y: 0 }}
       style={{
-        y: spring(show ? -60 : 0)
+        y: spring(show ? -108 : 0)
       }}>
       {motionStyle => (
-        <ToastContainer motionStyle={motionStyle}>
-          <ToastContainerInner>
-            <Toast>
-              <ToastInner>{message}</ToastInner>
-            </Toast>
-          </ToastContainerInner>
+        <ToastContainer {...props} id="container" motionStyle={motionStyle}>
+          <div {...props}>
+            <div {...props}>
+              <div {...props}>{message}</div>
+            </div>
+          </div>
         </ToastContainer>
       )}
     </Motion>

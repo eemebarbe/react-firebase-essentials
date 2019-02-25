@@ -1,13 +1,26 @@
+import React from "react";
 import styled from "styled-components";
 import { metrics } from "../themes";
 
-const H1 = styled.h1`
+const Text = styled.h1`
   font-size: ${metrics.baseUnit * 4}px;
-  line-height: 3;
+  line-height: 1.5;
   margin: 0;
   font-family: "Kollektif-Bold";
   position: relative;
   top: 6px;
 `;
+
+const Container = styled.div`
+  margin: ${metrics.baseUnit * 3}px 0px;
+`;
+
+const H1 = props => {
+  return (
+    <Container>
+      <Text>{props.children}</Text>
+    </Container>
+  );
+};
 
 export default H1;
