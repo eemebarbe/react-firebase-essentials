@@ -12,16 +12,18 @@ const Lander = props => {
       <H1>REACT-FIREBASE-ESSENTIALS</H1>
       <H2>This thing ain't ready yet. But when it is, oh boy:</H2>
       <Text>
-        - All components are built with Hooks
-        <br /> - Utilizing the Context API for shared data
-        <br /> - Styled-Components all day, baybeeee
-        <br /> - Authentication UI flows already built out for email, Facebook
-        and Google
-        <br /> - Toast popup system already set up for user feedback
-        <br /> - VERY few dependencies
-        <br /> - Cloud function for processing recaptchas
-        <br /> - Basic security rules written for Firestore
-        <br /> - A pinch of mother's love
+        <li>All components are built with Hooks</li>
+        <li>Utilizing the Context API for shared data</li>
+        <li>Styled-Components all day, baybeeee</li>
+        <li>
+          Authentication UI flows already built out for email, Facebook and
+          Google
+        </li>
+        <li>Toast popup system already set up for user feedback</li>
+        <li>VERY few dependencies</li>
+        <li>Cloud function for processing recaptchas</li>
+        <li>Basic security rules written for Firestore</li>
+        <li>A pinch of mother's love</li>
       </Text>
       <Button marginBottom onClick={signIn}>
         SIGN UP

@@ -17,6 +17,7 @@ const Header = styled.div`
 
 const HeaderInner = styled.div`
   width: ${metrics.bodyWidth}px;
+  padding: 0px ${metrics.baseUnit * 2}px;
   height: ${metrics.baseUnit * 5}px;
   display: flex;
   justify-content: space-between;

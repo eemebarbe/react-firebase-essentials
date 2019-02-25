@@ -15,13 +15,16 @@ const Button = styled.button`
   margin-right: ${props => (props.marginRight ? metrics.baseUnit + "px" : 0)};
   margin-bottom: ${props => (props.marginBottom ? metrics.baseUnit + "px" : 0)};
   margin-top: ${props => (props.marginTop ? metrics.baseUnit + "px" : 0)};
-  font-size: ${metrics.baseUnit}px;
+  font-size: 1rem;
   cursor: pointer;
   outline: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Kollektif-Bold";
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 const ButtonWithLoadState = props => {

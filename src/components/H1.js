@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { metrics } from "../themes";
 
 const Text = styled.h1`
-  font-size: ${metrics.baseUnit * 4}px;
+  font-size: 4rem;
   line-height: 1.5;
   margin: 0;
   font-family: "Kollektif-Bold";

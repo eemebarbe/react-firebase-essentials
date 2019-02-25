@@ -11,7 +11,7 @@ const Input = styled.input`
   padding: 0;
   height: ${metrics.baseUnit * 3 - 1}px;
   width: ${metrics.baseUnit * 16}px;
-  font-size: ${metrics.baseUnit * 1.5}px;
+  font-size: 1.5rem;
   &::placeholder {
     color: ${colors.inactive};
   }

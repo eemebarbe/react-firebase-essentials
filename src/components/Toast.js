@@ -5,6 +5,7 @@ import { ToastContext } from "../contexts/toastContext";
 import { metrics } from "../themes";
 
 const ToastContainer = styled.div`
+  z-index: 2;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -21,7 +22,7 @@ const ToastContainer = styled.div`
       border-radius: ${metrics.globalBorderRadius}px;
       min-height: ${metrics.baseUnit * 4}px;
       width: ${metrics.baseUnit * 32}px;
-      font-size: 16px;
+      font-size: 1.5rem;
       line-height: ${metrics.baseUnit * 2}px;
       color: white;
       background-color: red;

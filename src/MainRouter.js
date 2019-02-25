@@ -20,7 +20,8 @@ import "firebase/firestore";
 
 const ScrollBox = styled.div`
   height: 100%;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const RouterWrapper = styled.div`
@@ -31,6 +32,8 @@ const RouterWrapper = styled.div`
 
 const RouterWrapperInner = styled.div`
   width: ${metrics.bodyWidth}px;
+  padding: 0px ${metrics.baseUnit * 2}px;
+  padding-bottom: ${metrics.baseUnit * 4}px;
 `;
 
 const MainRouter = () => {
@@ -107,34 +110,36 @@ const MainRouter = () => {
 
   const nestedSwitch = () => {
     return (
-      <ScrollBox>
-        <Header />
-        <Toast />
-        <RouterWrapper>
-          <RouterWrapperInner>
-            <Switch>
-              <Route
-                exact
-                path={"/"}
-                render={() => reRouteIfAuthenticated(<Lander />)}
-              />
-              <Route
-                path={"/signin"}
-                render={() => reRouteIfAuthenticated(<SignIn />)}
-              />
-              <Route
-                path={"/dashboard"}
-                render={() => routeWithAuth(<Dashboard />)}
-              />
-              <Route
-                path={"/profile"}
-                render={() => routeWithAuth(<Profile />)}
-              />
-              <Route path="*" render={noMatch} />
-            </Switch>
-          </RouterWrapperInner>
-        </RouterWrapper>
-      </ScrollBox>
+      <>
+        {/*<Toast />*/}
+        <ScrollBox>
+          <Header />
+          <RouterWrapper>
+            <RouterWrapperInner>
+              <Switch>
+                <Route
+                  exact
+                  path={"/"}
+                  render={() => reRouteIfAuthenticated(<Lander />)}
+                />
+                <Route
+                  path={"/signin"}
+                  render={() => reRouteIfAuthenticated(<SignIn />)}
+                />
+                <Route
+                  path={"/dashboard"}
+                  render={() => routeWithAuth(<Dashboard />)}
+                />
+                <Route
+                  path={"/profile"}
+                  render={() => routeWithAuth(<Profile />)}
+                />
+                <Route path="*" render={noMatch} />
+              </Switch>
+            </RouterWrapperInner>
+          </RouterWrapper>
+        </ScrollBox>
+      </>
     );
   };
 
