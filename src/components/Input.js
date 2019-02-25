@@ -21,6 +21,9 @@ const Input = styled.input`
   -webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: content-box; /* Firefox, other Gecko */
   box-sizing: content-box; /* Opera/IE 8+ */
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export default Input;

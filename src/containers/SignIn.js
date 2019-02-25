@@ -33,6 +33,9 @@ const AuthSeparator = styled.div`
   span {
     margin: 0px ${metrics.baseUnit}px;
   }
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 const SignIn = () => {
