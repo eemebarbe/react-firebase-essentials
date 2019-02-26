@@ -17,6 +17,10 @@ const ToastContainer = styled.div`
     width: ${metrics.bodyWidth}px;
     display: flex;
     justify-content: flex-end;
+    @media (max-width: 480px) {
+      width: 100%;
+      margin: 0px ${metrics.baseUnit}px;
+    }
     div {
       visibility: ${props => props.visibility};
       border-radius: ${metrics.globalBorderRadius}px;

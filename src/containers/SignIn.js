@@ -8,7 +8,8 @@ import {
   Input,
   CenteredDiv,
   Form,
-  Message
+  Message,
+  BodyWrapper
 } from "../components";
 import { ToastContext } from "../contexts/toastContext";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -93,13 +94,14 @@ const SignIn = () => {
 
   const dataEntry = () => {
     return (
-      <>
+      <BodyWrapper>
         <H1>SIGN UP/SIGN IN</H1>
         <Text>
-          Signing in and signing up are the same process...hopefully you don't
-          mind! Users typically don't log out of applications anyway, and I
-          believe that verification by email feels more secure in the era of so
-          many data breaches. I hope to have both options built in the future.
+          Signing in and signing up are the same process, and no password is
+          asked for...hopefully you don't mind! Users typically don't log out of
+          applications anyway, and I believe that verification by email feels
+          more secure in the era of so many data breaches. I hope to have both
+          options built in the future.
         </Text>
         <Form>
           <div>
@@ -131,7 +133,7 @@ const SignIn = () => {
           onClick={authWithFacebook}
         />
         <GoogleAuth marginBottom />
-      </>
+      </BodyWrapper>
     );
   };
 

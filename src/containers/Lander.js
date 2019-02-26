@@ -1,5 +1,5 @@
 import React from "react";
-import { H1, H2, Text, Button } from "../components";
+import { H1, H2, Text, Button, BodyWrapper } from "../components";
 import { withRouter } from "react-router-dom";
 
 const Lander = props => {
@@ -8,7 +8,7 @@ const Lander = props => {
   };
 
   return (
-    <>
+    <BodyWrapper>
       <H1>REACT-FIREBASE-ESSENTIALS</H1>
       <H2>This thing ain't ready yet. But when it is, oh boy:</H2>
       <Text>
@@ -26,7 +26,7 @@ const Lander = props => {
         <li>A pinch of mother's love</li>
       </Text>
       <Button onClick={signIn}>SIGN UP</Button>
-    </>
+    </BodyWrapper>
   );
 };
 

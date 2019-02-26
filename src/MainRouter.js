@@ -32,8 +32,6 @@ const RouterWrapper = styled.div`
 
 const RouterWrapperInner = styled.div`
   width: ${metrics.bodyWidth}px;
-  padding: 0px ${metrics.baseUnit * 2}px;
-  padding-bottom: ${metrics.baseUnit * 4}px;
 `;
 
 const MainRouter = () => {
@@ -111,7 +109,7 @@ const MainRouter = () => {
   const nestedSwitch = () => {
     return (
       <>
-        {/*<Toast />*/}
+        <Toast />
         <ScrollBox>
           <Header />
           <RouterWrapper>

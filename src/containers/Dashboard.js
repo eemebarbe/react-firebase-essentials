@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Text, H1, Button, Input, Form } from "../components";
+import { Text, H1, Button, Input, Form, BodyWrapper } from "../components";
 import { UserContext } from "../contexts/userContext";
 import { ToastContext } from "../contexts/toastContext";
 import firebase from "../firebase.js";
@@ -32,7 +32,7 @@ const Dashboard = () => {
 
   const moreInfo = () => {
     return (
-      <>
+      <BodyWrapper>
         <H1>MORE INFO</H1>
         <Text>
           This is an introduction screen that shows up after the user
@@ -59,7 +59,7 @@ const Dashboard = () => {
           </div>
           <Button onClick={e => onClickSubmit(e)}>SUBMIT</Button>
         </Form>
-      </>
+      </BodyWrapper>
     );
   };
 

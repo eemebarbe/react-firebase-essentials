@@ -3,6 +3,7 @@ import { metrics, colors } from "../themes";
 
 const Input = styled.input`
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid ${colors.inactive};
   outline: none;
   margin: none;
