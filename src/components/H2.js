@@ -8,6 +8,9 @@ const H2 = styled.h2`
   margin-bottom: ${metrics.baseUnit * 2}px;
   font-family: "Kollektif-Bold";
   position: relative;
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export default H2;

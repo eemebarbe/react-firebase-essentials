@@ -17,16 +17,17 @@ const ToastContainer = styled.div`
     width: ${metrics.bodyWidth}px;
     display: flex;
     justify-content: flex-end;
+    font-size: 1.5rem;
     @media (max-width: 480px) {
       width: 100%;
       margin: 0px ${metrics.baseUnit}px;
+      font-size: 1.25rem;
     }
     div {
       visibility: ${props => props.visibility};
       border-radius: ${metrics.globalBorderRadius}px;
       min-height: ${metrics.baseUnit * 4}px;
       width: ${metrics.baseUnit * 32}px;
-      font-size: 1.5rem;
       line-height: ${metrics.baseUnit * 2}px;
       color: white;
       background-color: red;

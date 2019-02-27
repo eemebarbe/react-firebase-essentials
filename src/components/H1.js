@@ -9,6 +9,9 @@ const Text = styled.h1`
   font-family: "Kollektif-Bold";
   position: relative;
   top: 6px;
+  @media (max-width: 480px) {
+    font-size: 3.5rem;
+  }
 `;
 
 const Container = styled.div`

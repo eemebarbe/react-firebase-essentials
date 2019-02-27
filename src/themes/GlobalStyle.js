@@ -10,12 +10,13 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     font-size: ${metrics.baseUnit}px;
     @media (max-width: 480px){ 
-      font-size: ${metrics.baseUnit * 0.8}px;
+      font-size: ${metrics.baseUnit}px;
     }
   }
   body {
     height: 100%;
     width: 100%;
+    overflow: hidden;
     @font-face {
       font-family: 'Kollektif';
       src: url('${Kollektif}') format('truetype');

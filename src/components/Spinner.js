@@ -28,7 +28,7 @@ const Circle = styled(SpinnerTemplate)`
 `;
 
 const Highlight = styled(SpinnerTemplate)`
-  border: 2px solid rgb(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0);
   border-top: 2px solid ${colors.detailText};
   animation: ${rotate} 1s infinite ease-in-out;
 `;
