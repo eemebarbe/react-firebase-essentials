@@ -14,19 +14,20 @@ const ToastContainer = styled.div`
   pointer-events: none;
   transform: ${props => "translateY(" + props.motionStyle.y + "px)"};
   div {
+    padding: 0px ${metrics.baseUnit * 2}px;
     width: ${metrics.bodyWidth}px;
     display: flex;
     justify-content: flex-end;
     font-size: 1.5rem;
     @media (max-width: 480px) {
       width: 100%;
+      padding: 0;
       margin: 0px ${metrics.baseUnit}px;
       font-size: 1.25rem;
     }
     div {
       visibility: ${props => props.visibility};
       border-radius: ${metrics.globalBorderRadius}px;
-      min-height: ${metrics.baseUnit * 4}px;
       width: ${metrics.baseUnit * 32}px;
       line-height: ${metrics.baseUnit * 2}px;
       color: white;
@@ -54,17 +55,21 @@ const ToastWithContext = props => {
       setShow(true);
       setTimeout(() => {
         setShow(false);
-        sendMessage("");
       }, 4000);
     }
   }, [message]);
+
+  const onRest = () => {
+    !show && sendMessage("");
+  };
 
   return (
     <Motion
       defaultStyle={{ y: 0 }}
       style={{
         y: spring(show ? -108 : 0)
-      }}>
+      }}
+      onRest={onRest}>
       {motionStyle => (
         <ToastContainer {...props} id="container" motionStyle={motionStyle}>
           <div {...props}>

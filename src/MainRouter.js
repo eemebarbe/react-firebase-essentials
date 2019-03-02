@@ -27,7 +27,7 @@ const AppWrapper = styled.div`
 
 const ScrollBox = styled.div`
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 `;
 

@@ -42,6 +42,7 @@ const AuthSeparator = styled.div`
 const SignIn = () => {
   const [validCaptcha, setCaptcha] = useState(false);
   const [facebookLoadState, setFacebookLoadState] = useState(false);
+  const [googleLoadState, setGoogleLoadState] = useState(false);
   const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
@@ -71,6 +72,33 @@ const SignIn = () => {
     firebase
       .auth()
       .signInWithPopup(facebookProvider)
+      .then(result => {
+        if (result.additionalUserInfo.isNewUser) {
+          db.collection("users")
+            .doc(result.user.uid)
+            .set({
+              email: result.additionalUserInfo.profile.email
+            });
+        }
+      })
+      .catch(err => {
+        if (err.code === "auth/account-exists-with-different-credential") {
+          sendMessage(
+            "It looks like the email address associated with your Facebook account has already been used to sign in with another method. Please sign in using the original method you signed up with."
+          );
+        } else {
+          sendMessage(err.message);
+        }
+        setFacebookLoadState(false);
+      });
+  };
+
+  const authWithGoogle = () => {
+    setGoogleLoadState(true);
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(googleProvider)
       .then(result => {
         if (result.additionalUserInfo.isNewUser) {
           db.collection("users")
@@ -132,7 +160,11 @@ const SignIn = () => {
           loading={facebookLoadState}
           onClick={authWithFacebook}
         />
-        <GoogleAuth marginBottom />
+        <GoogleAuth
+          marginBottom
+          loading={googleLoadState}
+          onClick={authWithGoogle}
+        />
       </BodyWrapper>
     );
   };
