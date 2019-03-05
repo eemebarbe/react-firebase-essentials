@@ -1,8 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
-import { Motion, spring } from "react-motion";
 import { ToastContext } from "../contexts/toastContext";
 import { metrics } from "../themes";
+import Transition from "react-transition-group/Transition";
+
+const duration = 500;
+
+const transitionStyles = {
+  entered: {
+    transform: "translateY(-108px)",
+    transition: `transform ${duration}ms ease-in-out`
+  },
+  exiting: {
+    transform: "translateY(0px)",
+    transition: `transform ${duration}ms ease-in-out`
+  },
+  exited: {
+    transform: "translateY(0px)"
+  }
+};
 
 const ToastContainer = styled.div`
   z-index: 2;
@@ -12,7 +28,6 @@ const ToastContainer = styled.div`
   position: absolute;
   bottom: -${metrics.baseUnit * 8}px;
   pointer-events: none;
-  transform: ${props => "translateY(" + props.motionStyle.y + "px)"};
   div {
     padding: 0px ${metrics.baseUnit * 2}px;
     width: ${metrics.bodyWidth}px;
@@ -64,14 +79,14 @@ const ToastWithContext = props => {
   };
 
   return (
-    <Motion
-      defaultStyle={{ y: 0 }}
-      style={{
-        y: spring(show ? -108 : 0)
-      }}
-      onRest={onRest}>
-      {motionStyle => (
-        <ToastContainer {...props} id="container" motionStyle={motionStyle}>
+    <Transition in={show} timeout={duration} onExited={onRest}>
+      {motionState => (
+        <ToastContainer
+          {...props}
+          id="container"
+          style={{
+            ...transitionStyles[motionState]
+          }}>
           <div {...props}>
             <div {...props}>
               <div {...props}>{message}</div>
@@ -79,7 +94,7 @@ const ToastWithContext = props => {
           </div>
         </ToastContainer>
       )}
-    </Motion>
+    </Transition>
   );
 };
 
