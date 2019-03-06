@@ -8,7 +8,7 @@ const duration = 500;
 
 const transitionStyles = {
   entered: {
-    transform: "translateY(-108px)",
+    transform: `translateY(-${metrics.baseUnit * 9}px)`,
     transition: `transform ${duration}ms ease-in-out`
   },
   exiting: {

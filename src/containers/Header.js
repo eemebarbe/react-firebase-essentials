@@ -43,18 +43,16 @@ const HeaderWithRouter = props => {
     window.localStorage.removeItem("userData");
   };
 
-  const profile = () => {
-    props.history.push("/profile");
-  };
-
-  const dashboard = () => {
-    props.history.push("/");
+  const pushTo = path => {
+    props.location.pathname !== path && props.history.push(path);
   };
 
   const userMenu = () => {
     return (
       <div>
-        <ButtonWithMargin onClick={profile}>PROFILE</ButtonWithMargin>
+        <ButtonWithMargin onClick={() => pushTo("/profile")}>
+          PROFILE
+        </ButtonWithMargin>
         <Button onClick={signOut}>SIGN OUT</Button>
       </div>
     );
@@ -64,7 +62,7 @@ const HeaderWithRouter = props => {
     <Header>
       <HeaderInner>
         <div>
-          <Icon marginRight onClick={dashboard} src={icons.home} />
+          <Icon marginRight onClick={() => pushTo("/")} src={icons.home} />
           <Icon
             linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
             src={icons.github}

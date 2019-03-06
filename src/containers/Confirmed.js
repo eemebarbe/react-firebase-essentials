@@ -61,7 +61,7 @@ const Confirmed = () => {
           placeholder="Email address"
           autoComplete="email"
         />
-        <Button onClick={() => finishConfirmation(email)}>Confirm</Button>
+        <Button onClick={() => finishConfirmation(email)}>CONFIRM</Button>
       </div>
     );
   };

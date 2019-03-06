@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
     height: 100%;
     width: 100%;
     overflow: hidden;
