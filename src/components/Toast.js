@@ -4,7 +4,7 @@ import { ToastContext } from "../contexts/toastContext";
 import { metrics } from "../themes";
 import Transition from "react-transition-group/Transition";
 
-const duration = 500;
+const duration = 400;
 
 const transitionStyles = {
   entered: {

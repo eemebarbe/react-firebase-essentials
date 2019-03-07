@@ -3,15 +3,12 @@
   opacity: 0;
   z-index: 1;
   transform: translateX(24px);
-  filter: blur(2px);
 }
 .fade-appear-active,
 .fade-enter.fade-enter-active {
   opacity: 1;
   transform: translateX(0);
-  filter: blur(0px);
-  transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms,
-    filter 500ms ease-out 500ms;
+  transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
 }
 
 .fade-exit {
@@ -21,7 +18,5 @@
 .fade-exit.fade-exit-active {
   opacity: 0;
   transform: translateX(-24px);
-  filter: blur(2px);
-  transition: opacity 400ms linear, transform 400ms ease-in,
-    filter 500ms ease-in;
+  transition: opacity 400ms linear, transform 400ms ease-in;
 }

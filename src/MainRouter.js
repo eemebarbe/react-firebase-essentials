@@ -104,7 +104,7 @@ const MainRouter = () => {
         <Header />
         <Route
           render={({ location }) => (
-            <TransitionGroup>
+            <TransitionGroup appear>
               <CSSTransition
                 key={location.key}
                 timeout={1000}
@@ -151,7 +151,7 @@ const MainRouter = () => {
   const renderApp = () => {
     const app = !initializationComplete ? (
       <CenteredDiv vertical horizontal>
-        <Spinner large />
+        <Spinner large secondary />
       </CenteredDiv>
     ) : (
       router()

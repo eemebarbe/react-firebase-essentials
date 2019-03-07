@@ -22,14 +22,16 @@ const SpinnerTemplate = styled.div`
 `;
 
 const Circle = styled(SpinnerTemplate)`
-  border: 2px solid ${colors.detailText};
+  border: 2px solid
+    ${props => (props.secondary && colors.inactive) || colors.detailText};
   opacity: 0.33;
   visibility: visible;
 `;
 
 const Highlight = styled(SpinnerTemplate)`
   border: 2px solid rgba(0, 0, 0, 0);
-  border-top: 2px solid ${colors.detailText};
+  border-top: 2px solid
+    ${props => (props.secondary && colors.inactive) || colors.detailText};
   animation: ${rotate} 1s infinite ease-in-out;
 `;
 

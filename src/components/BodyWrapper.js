@@ -5,23 +5,25 @@ import { metrics } from "../themes";
 const BodyOuter = styled.div`
   display: flex;
   justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const BodyWrapper = styled.div`
-  padding-bottom: ${metrics.baseUnit * 4}px;
-  position: absolute;
-  width: ${metrics.bodyWidth}px;
   padding: 0px ${metrics.baseUnit * 2}px;
+  width: ${metrics.bodyWidth}px;
+  height: 100%;
   @media (max-width: 480px) {
     width: 100%;
   }
 `;
 
 const BodyInner = styled.div`
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  padding-bottom: ${metrics.baseUnit * 4}px;
 `;
 
 const Wrapper = props => {
