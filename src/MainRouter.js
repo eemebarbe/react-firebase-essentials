@@ -11,9 +11,17 @@ import SignIn from "./containers/SignIn";
 import Dashboard from "./containers/Dashboard";
 import Confirmed from "./containers/Confirmed";
 import Profile from "./containers/Profile";
-import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
-import { CenteredDiv, H1, Toast, Spinner } from "./components";
+import { OverlayContext } from "./contexts/overlayContext";
+import {
+  CenteredDiv,
+  H1,
+  Toast,
+  Spinner,
+  MobileMenuBar,
+  MenuButton,
+  Overlay
+} from "./components";
 import styled from "styled-components";
 import firebase from "./firebase.js";
 import "firebase/firestore";
@@ -25,9 +33,19 @@ const AppWrapper = styled.div`
   position: absolute;
 `;
 
+const ScrollBox = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+`;
+
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
   const { userState, userDispatch } = useContext(UserContext);
+  const { page } = useContext(OverlayContext);
   const userId = userState.userId;
   const db = firebase.firestore();
 
@@ -101,38 +119,42 @@ const MainRouter = () => {
     return (
       <AppWrapper>
         <Toast />
-        <Header />
-        <Route
-          render={({ location }) => (
-            <TransitionGroup appear>
-              <CSSTransition
-                key={location.key}
-                timeout={1000}
-                classNames="fade">
-                <Switch location={location}>
-                  <Route
-                    exact
-                    path={"/"}
-                    render={() => reRouteIfAuthenticated(<Lander />)}
-                  />
-                  <Route
-                    path={"/signin"}
-                    render={() => reRouteIfAuthenticated(<SignIn />)}
-                  />
-                  <Route
-                    path={"/dashboard"}
-                    render={() => routeWithAuth(<Dashboard />)}
-                  />
-                  <Route
-                    path={"/profile"}
-                    render={() => routeWithAuth(<Profile />)}
-                  />
-                  <Route path="*" render={noMatch} />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-          )}
-        />
+        {page && <Overlay />}
+        {userId && <MobileMenuBar />}
+        {userId && <MenuButton />}
+        <ScrollBox>
+          <Route
+            render={({ location }) => (
+              <TransitionGroup appear>
+                <CSSTransition
+                  key={location.key}
+                  timeout={1000}
+                  classNames="fade">
+                  <Switch location={location}>
+                    <Route
+                      exact
+                      path={"/"}
+                      render={() => reRouteIfAuthenticated(<Lander />)}
+                    />
+                    <Route
+                      path={"/signin"}
+                      render={() => reRouteIfAuthenticated(<SignIn />)}
+                    />
+                    <Route
+                      path={"/dashboard"}
+                      render={() => routeWithAuth(<Dashboard />)}
+                    />
+                    <Route
+                      path={"/profile"}
+                      render={() => routeWithAuth(<Profile />)}
+                    />
+                    <Route path="*" render={noMatch} />
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+            )}
+          />
+        </ScrollBox>
       </AppWrapper>
     );
   };

@@ -160,11 +160,7 @@ const SignIn = () => {
           loading={facebookLoadState}
           onClick={authWithFacebook}
         />
-        <GoogleAuth
-          marginBottom
-          loading={googleLoadState}
-          onClick={authWithGoogle}
-        />
+        <GoogleAuth loading={googleLoadState} onClick={authWithGoogle} />
       </BodyWrapper>
     );
   };

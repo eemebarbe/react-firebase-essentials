@@ -1,40 +1,32 @@
 import React, { useContext } from "react";
 import firebase from "../firebase.js";
-import { Button, Icon } from "../components";
 import { withRouter } from "react-router-dom";
 import { UserContext } from "../contexts/userContext";
+import { OverlayContext } from "../contexts/overlayContext";
 import styled from "styled-components";
 import { metrics, colors, icons } from "../themes";
 
-const Header = styled.div`
-  width: 100%;
-  height: ${metrics.baseUnit * 5}px;
-  background-color: ${colors.inactive};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const HeaderInner = styled.div`
-  width: ${metrics.bodyWidth}px;
-  padding: 0px ${metrics.baseUnit * 2}px;
-  height: ${metrics.baseUnit * 5}px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  div {
-    display: inline-flex;
-  }
-`;
-
-const ButtonWithMargin = styled(Button)`
-  margin-right: ${metrics.baseUnit}px;
+const MenuItem = styled.button`
+  position: relative;
+  display: block;
+  background-color: transparent;
+  border: 0;
+  height: ${metrics.baseUnit * 12}px;
+  outline: none;
+  padding: 0;
+  font-size: 4rem;
+  line-height: 1.5;
+  top: 2px;
+  cursor: pointer;
+  outline: 0;
+  font-family: "Kollektif-Bold";
 `;
 
 const HeaderWithRouter = props => {
-  const { userState, userDispatch } = useContext(UserContext);
-  const userId = userState.userId;
+  const { userDispatch } = useContext(UserContext);
+  const { setPage } = useContext(OverlayContext);
   const signOut = () => {
+    setPage(null);
     firebase.auth().signOut();
     userDispatch({
       type: "userId",
@@ -44,33 +36,22 @@ const HeaderWithRouter = props => {
   };
 
   const pushTo = path => {
+    setPage(null);
     props.location.pathname !== path && props.history.push(path);
   };
 
-  const userMenu = () => {
-    return (
-      <div>
-        <ButtonWithMargin onClick={() => pushTo("/profile")}>
-          PROFILE
-        </ButtonWithMargin>
-        <Button onClick={signOut}>SIGN OUT</Button>
-      </div>
-    );
-  };
-
   return (
-    <Header>
-      <HeaderInner>
-        <div>
-          <Icon marginRight onClick={() => pushTo("/")} src={icons.home} />
-          <Icon
-            linkTo={"http://github.com/eemebarbe/react-firebase-essentials"}
-            src={icons.github}
-          />
-        </div>
-        {userId && userMenu()}
-      </HeaderInner>
-    </Header>
+    <>
+      <MenuItem onClick={() => pushTo("/profile")}>PROFILE</MenuItem>
+      <MenuItem onClick={() => pushTo("/dashboard")}>DASHBOARD</MenuItem>
+      <MenuItem
+        onClick={() => {
+          "http://github.com/eemebarbe/react-firebase-essentials";
+        }}>
+        GITHUB
+      </MenuItem>
+      <MenuItem onClick={signOut}>SIGN OUT</MenuItem>
+    </>
   );
 };
 

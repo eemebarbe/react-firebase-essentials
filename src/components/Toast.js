@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { ToastContext } from "../contexts/toastContext";
-import { metrics } from "../themes";
+import { metrics, colors } from "../themes";
 import Transition from "react-transition-group/Transition";
 
 const duration = 400;
@@ -28,8 +28,11 @@ const ToastContainer = styled.div`
   position: absolute;
   bottom: -${metrics.baseUnit * 8}px;
   pointer-events: none;
+  @media (max-width: 480px) {
+    bottom: ${-(metrics.baseUnit * 8) + metrics.mobileMenuHeight}px;
+  }
   div {
-    padding: 0px ${metrics.baseUnit * 2}px;
+    padding: 0px ${metrics.bodyPadding}px;
     width: ${metrics.bodyWidth}px;
     display: flex;
     justify-content: flex-end;
@@ -46,7 +49,7 @@ const ToastContainer = styled.div`
       width: ${metrics.baseUnit * 32}px;
       line-height: ${metrics.baseUnit * 2}px;
       color: white;
-      background-color: red;
+      background-color: ${colors.secondaryColor};
       display: flex;
       justify-content: center;
       align-content: center;
