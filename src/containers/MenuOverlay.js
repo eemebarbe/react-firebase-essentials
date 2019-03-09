@@ -28,6 +28,8 @@ const MenuItem = styled.button`
   position: relative;
   display: block;
   background-color: transparent;
+  color: ${props => (props.samePath ? "darkgray" : "inherit")};
+  pointer-events: ${props => (props.samePath ? "none" : "initial")};
   border: 0;
   height: ${metrics.baseUnit * 12}px;
   outline: none;
@@ -55,7 +57,11 @@ const MenuOverlay = props => {
 
   const pushTo = path => {
     setPage(null);
-    props.location.pathname !== path && props.history.push(path);
+    !samePath(path) && props.history.push(path);
+  };
+
+  const samePath = path => {
+    return props.location.pathname === path;
   };
 
   return (
@@ -63,8 +69,16 @@ const MenuOverlay = props => {
       <MenuBar />
       <Container>
         <BackgroundInner>
-          <MenuItem onClick={() => pushTo("/dashboard")}>DASHBOARD</MenuItem>
-          <MenuItem onClick={() => pushTo("/profile")}>PROFILE</MenuItem>
+          <MenuItem
+            samePath={samePath("/dashboard")}
+            onClick={() => pushTo("/dashboard")}>
+            DASHBOARD
+          </MenuItem>
+          <MenuItem
+            samePath={samePath("/profile")}
+            onClick={() => pushTo("/profile")}>
+            PROFILE
+          </MenuItem>
           <MenuItem
             onClick={() => {
               "http://github.com/eemebarbe/react-firebase-essentials";
