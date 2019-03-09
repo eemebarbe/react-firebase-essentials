@@ -11,6 +11,7 @@ import SignIn from "./containers/SignIn";
 import Dashboard from "./containers/Dashboard";
 import Confirmed from "./containers/Confirmed";
 import Profile from "./containers/Profile";
+import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
 import { OverlayContext } from "./contexts/overlayContext";
 import {
@@ -19,7 +20,6 @@ import {
   Toast,
   Spinner,
   MobileMenuBar,
-  MenuButton,
   Overlay
 } from "./components";
 import styled from "styled-components";
@@ -121,8 +121,8 @@ const MainRouter = () => {
         <Toast />
         {page && <Overlay />}
         {userId && <MobileMenuBar />}
-        {userId && <MenuButton />}
         <ScrollBox>
+          <Header />
           <Route
             render={({ location }) => (
               <TransitionGroup appear>

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { metrics, colors } from "../themes";
-import Header from "../containers/Header";
+import { colors } from "../themes";
+import MenuOverlay from "../containers/MenuOverlay";
+import { CenteredDiv, Message } from "../components";
 import { OverlayContext } from "../contexts/overlayContext";
 
 const Background = styled.div`
@@ -9,35 +10,24 @@ const Background = styled.div`
   z-index: 4;
   height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-content: center;
   background-color: ${colors.inactive};
-  @media (max-width: 480px) {
-    display: none;
-  }
-`;
-
-const BackgroundInner = styled.div`
-  padding: 0px ${metrics.bodyPadding}px;
-  width: ${metrics.bodyWidth}px;
 `;
 
 const Overlay = () => {
   const { page } = useContext(OverlayContext);
   const getContent = () => {
     if (page === "menu") {
-      return <Header />;
+      return <MenuOverlay />;
     } else if (page === "checkEmail") {
+      return (
+        <CenteredDiv vertical horizontal>
+          <Message>Check your email!</Message>
+        </CenteredDiv>
+      );
     } else if (page === "confirmed") {
     }
   };
-  console.log(page);
-  return (
-    <Background>
-      <BackgroundInner>{getContent()}</BackgroundInner>
-    </Background>
-  );
+  return <Background>{getContent()}</Background>;
 };
 
 export default Overlay;

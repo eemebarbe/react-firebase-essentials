@@ -9,6 +9,9 @@ const metrics = {
   },
   get mobileMenuHeight() {
     return this.baseUnit * 4;
+  },
+  get mobileHeaderHeight() {
+    return this.baseUnit * 6;
   }
 };
 

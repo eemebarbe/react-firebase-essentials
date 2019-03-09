@@ -12,6 +12,7 @@ import {
   BodyWrapper
 } from "../components";
 import { ToastContext } from "../contexts/toastContext";
+import { OverlayContext } from "../contexts/overlayContext";
 import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
 import "firebase/functions";
@@ -43,9 +44,9 @@ const SignIn = () => {
   const [validCaptcha, setCaptcha] = useState(false);
   const [facebookLoadState, setFacebookLoadState] = useState(false);
   const [googleLoadState, setGoogleLoadState] = useState(false);
-  const [step, setStep] = useState("dataEntry");
   const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
+  const { setPage } = useContext(OverlayContext);
   const db = firebase.firestore();
 
   const onClickSubmit = e => {
@@ -59,7 +60,7 @@ const SignIn = () => {
       .auth()
       .sendSignInLinkToEmail(email, actionCodeSettings)
       .then(() => {
-        setStep("pleaseCheckEmail");
+        setPage("checkEmail");
       })
       .catch(error => {
         sendMessage(error.message);
@@ -120,59 +121,6 @@ const SignIn = () => {
       });
   };
 
-  const dataEntry = () => {
-    return (
-      <BodyWrapper>
-        <H1>SIGN UP/SIGN IN</H1>
-        <Text>
-          Signing in and signing up are the same process, and no password is
-          asked for...hopefully you don't mind! Users typically don't log out of
-          applications anyway, and I believe that verification by email feels
-          more secure in the era of so many data breaches. I hope to have both
-          options built in the future.
-        </Text>
-        <Form>
-          <div>
-            <Input
-              onChange={e => setEmail(e.target.value)}
-              name="email"
-              placeholder="Email address"
-              autoComplete="email"
-            />
-          </div>
-          {/*
-          <ReCAPTCHA
-            sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-            onChange={captcha}
-          />
-          */}
-          <div>
-            <Button marginBottom onClick={onClickSubmit}>
-              SIGN IN WITH EMAIL
-            </Button>
-          </div>
-        </Form>
-        <AuthSeparator>
-          <span>OR</span>
-        </AuthSeparator>
-        <FacebookAuth
-          marginBottom
-          loading={facebookLoadState}
-          onClick={authWithFacebook}
-        />
-        <GoogleAuth loading={googleLoadState} onClick={authWithGoogle} />
-      </BodyWrapper>
-    );
-  };
-
-  const verification = () => {
-    return (
-      <CenteredDiv vertical horizontal>
-        <Message>Check your email!</Message>
-      </CenteredDiv>
-    );
-  };
-
   const captcha = value => {
     if (!value) {
       setCaptcha(false);
@@ -189,8 +137,48 @@ const SignIn = () => {
     }
   };
 
-  const currentStep = step === "dataEntry" ? dataEntry() : verification();
-  return currentStep;
+  return (
+    <BodyWrapper>
+      <H1>SIGN UP/SIGN IN</H1>
+      <Text>
+        Signing in and signing up are the same process, and no password is asked
+        for...hopefully you don't mind! Users typically don't log out of
+        applications anyway, and I believe that verification by email feels more
+        secure in the era of so many data breaches. I hope to have both options
+        built in the future.
+      </Text>
+      <Form>
+        <div>
+          <Input
+            onChange={e => setEmail(e.target.value)}
+            name="email"
+            placeholder="Email address"
+            autoComplete="email"
+          />
+        </div>
+        {/*
+      <ReCAPTCHA
+        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+        onChange={captcha}
+      />
+      */}
+        <div>
+          <Button marginBottom onClick={onClickSubmit}>
+            SIGN IN WITH EMAIL
+          </Button>
+        </div>
+      </Form>
+      <AuthSeparator>
+        <span>OR</span>
+      </AuthSeparator>
+      <FacebookAuth
+        marginBottom
+        loading={facebookLoadState}
+        onClick={authWithFacebook}
+      />
+      <GoogleAuth loading={googleLoadState} onClick={authWithGoogle} />
+    </BodyWrapper>
+  );
 };
 
 export default SignIn;
