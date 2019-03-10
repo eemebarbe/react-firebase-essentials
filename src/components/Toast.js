@@ -4,16 +4,14 @@ import { ToastContext } from "../contexts/toastContext";
 import { metrics, colors } from "../themes";
 import Transition from "react-transition-group/Transition";
 
-const duration = 400;
-
 const transitionStyles = {
   entered: {
     transform: `translateY(-${metrics.baseUnit * 9}px)`,
-    transition: `transform ${duration}ms ease-in-out`
+    transition: `transform 400ms ease-in-out`
   },
   exiting: {
     transform: "translateY(0px)",
-    transition: `transform ${duration}ms ease-in-out`
+    transition: `transform 400ms ease-in-out`
   },
   exited: {
     transform: "translateY(0px)"
@@ -32,7 +30,7 @@ const ToastContainer = styled.div`
     bottom: ${-(metrics.baseUnit * 8) + metrics.mobileMenuHeight}px;
   }
   div {
-    padding: 0px ${metrics.bodyPadding}px;
+    padding: 0px ${metrics.baseUnit * 2}px;
     width: ${metrics.bodyWidth}px;
     display: flex;
     justify-content: flex-end;
@@ -46,7 +44,8 @@ const ToastContainer = styled.div`
     div {
       visibility: ${props => props.visibility};
       border-radius: ${metrics.globalBorderRadius}px;
-      width: ${metrics.baseUnit * 32}px;
+      padding: 0;
+      width: ${metrics.bodyWidth / 2}px;
       line-height: ${metrics.baseUnit * 2}px;
       color: white;
       background-color: ${colors.secondaryColor};
@@ -82,7 +81,7 @@ const ToastWithContext = props => {
   };
 
   return (
-    <Transition in={show} timeout={duration} onExited={onRest}>
+    <Transition in={show} timeout={400} onExited={onRest}>
       {motionState => (
         <ToastContainer
           {...props}

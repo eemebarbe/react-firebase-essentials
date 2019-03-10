@@ -51,7 +51,6 @@ const Hamburger = styled.div`
   }
   &.grow-exit.grow-exit-active {
     width: 0px;
-    transition: width 0ms ease-out 0ms;
   }
 `;
 
@@ -96,7 +95,6 @@ const Close = styled.div`
   &.grow-exit.grow-exit-active:before,
   &.grow-exit.grow-exit-active:after {
     height: 0px;
-    transition: height 0ms ease-out 0ms;
   }
 `;
 
