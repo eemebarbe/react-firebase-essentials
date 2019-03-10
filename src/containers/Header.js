@@ -18,7 +18,20 @@ const Header = styled.div`
   }
 `;
 
+const CompanyLogo = styled.button`
+  background-color: transparent;
+  pointer-events: ${props => (props.samePath ? "none" : "initial")};
+  border: 0;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  outline: 0;
+  font-size: 1rem;
+  font-family: "Kollektif";
+`;
+
 const Hamburger = styled.div`
+  position: absolute;
   flex-direction: column;
   justify-content: center;
   height: ${metrics.mobileHeaderHeight / 3}px;
@@ -44,7 +57,11 @@ const Hamburger = styled.div`
   &.grow-appear-active,
   &.grow-enter.grow-enter-active {
     width: ${metrics.mobileHeaderHeight / 3}px;
-    transition: width 400ms ease-out 400ms;
+    transition: width 400ms ease-out;
+    -webkit-transition: width 400ms ease-out;
+    -moz-transition: width 400ms ease-out;
+    -o-transition: width 400ms ease-out;
+    transition: width 400ms ease-out;
   }
   &.grow-exit {
     width: ${metrics.mobileHeaderHeight / 3}px;
@@ -55,6 +72,7 @@ const Hamburger = styled.div`
 `;
 
 const Close = styled.div`
+  position: absolute;
   flex-direction: column;
   justify-content: center;
   height: ${metrics.mobileHeaderHeight / 3}px;
@@ -70,9 +88,17 @@ const Close = styled.div`
   }
   &:before {
     transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
   }
   &:after {
     transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
   }
   &.grow-appear:before,
   &.grow-enter:before,
@@ -86,7 +112,11 @@ const Close = styled.div`
   &.grow-appear-active:after,
   &.grow-enter.grow-enter-active:after {
     height: ${metrics.baseUnit * 3 - 2}px;
-    transition: height 400ms ease-out 400ms;
+    transition: height 400ms ease-out;
+    -webkit-transition: height 400ms ease-out;
+    -moz-transition: height 400ms ease-out;
+    -o-transition: height 400ms ease-out;
+    transition: height 400ms ease-out;
   }
   &.grow-exit:before,
   &.grow-exit:after {
@@ -148,9 +178,10 @@ const HeaderWithRouter = props => {
   return (
     <Header>
       <HeaderInner>
-        <div onClick={() => pushTo("/dashboard")}>
+        <CompanyLogo
+          onClick={() => (userId ? pushTo("/dashboard") : pushTo("/"))}>
           REACT-FIREBASE-ESSENTIALS
-        </div>
+        </CompanyLogo>
         {userId && (
           <MenuButton onClick={toggleMenu}>
             <TransitionGroup appear>{menuButtonState()}</TransitionGroup>

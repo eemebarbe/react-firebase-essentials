@@ -21,7 +21,9 @@ const Overlay = () => {
     } else if (page === "checkEmail") {
       return (
         <CenteredDiv vertical horizontal>
-          <Message>Check your email!</Message>
+          <Message>
+            Please open the email we sent you, so we can verify your account!
+          </Message>
         </CenteredDiv>
       );
     } else if (page === "confirmed") {

@@ -53,16 +53,18 @@ const Confirmed = () => {
     const secondAttemptText =
       "It appears you've incorrectly entered your email address. Please try again.";
     return (
-      <div>
-        <Text>{firstAttempt ? firstAttemptText : secondAttemptText}</Text>
-        <Input
-          onChange={e => setEmail(e.target.value)}
-          name="email"
-          placeholder="Email address"
-          autoComplete="email"
-        />
-        <Button onClick={() => finishConfirmation(email)}>CONFIRM</Button>
-      </div>
+      <CenteredDiv vertical horizontal>
+        <div>
+          <Text>{firstAttempt ? firstAttemptText : secondAttemptText}</Text>
+          <Input
+            onChange={e => setEmail(e.target.value)}
+            name="email"
+            placeholder="Email address"
+            autoComplete="email"
+          />
+          <Button onClick={() => finishConfirmation(email)}>CONFIRM</Button>
+        </div>
+      </CenteredDiv>
     );
   };
 

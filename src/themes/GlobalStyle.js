@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     overflow: hidden;
     font-family: 'Kollektif';
+    list-style-position: inside;
     input:-webkit-autofill {
       -webkit-box-shadow: 0 0 0px 1000px white inset;
       box-shadow: 0 0 0px 1000px white inset;

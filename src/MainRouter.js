@@ -45,7 +45,7 @@ const ScrollBox = styled.div`
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
   const { userState, userDispatch } = useContext(UserContext);
-  const { page } = useContext(OverlayContext);
+  const { page, setPage } = useContext(OverlayContext);
   const userId = userState.userId;
   const db = firebase.firestore();
 
@@ -59,6 +59,7 @@ const MainRouter = () => {
             .doc(uid)
             .get()
             .then(res => {
+              setPage(null);
               if (res.data() && res.data().firstName) {
                 userDispatch({ type: "additionalInfo", payload: res.data() });
                 window.localStorage.setItem(

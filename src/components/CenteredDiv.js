@@ -6,6 +6,10 @@ const CenteredDiv = styled.div`
   justify-content: ${props => (props.horizontal ? "center" : "flex-start")};
   align-items: ${props => (props.vertical ? "center" : "flex-start")};
   height: 100%;
+  text-align: center;
+  @media (max-width: 480px) {
+    text-align: left;
+  }
 `;
 
 export default CenteredDiv;

@@ -51,20 +51,24 @@ const SignIn = () => {
 
   const onClickSubmit = e => {
     e.preventDefault();
-    window.localStorage.setItem("confirmationEmail", email);
-    const actionCodeSettings = {
-      url: "http://" + process.env.REACT_APP_BASE_URL + "/confirmed",
-      handleCodeInApp: true
-    };
-    firebase
-      .auth()
-      .sendSignInLinkToEmail(email, actionCodeSettings)
-      .then(() => {
-        setPage("checkEmail");
-      })
-      .catch(error => {
-        sendMessage(error.message);
-      });
+    if (email) {
+      window.localStorage.setItem("confirmationEmail", email);
+      const actionCodeSettings = {
+        url: "http://" + process.env.REACT_APP_BASE_URL + "/confirmed",
+        handleCodeInApp: true
+      };
+      firebase
+        .auth()
+        .sendSignInLinkToEmail(email, actionCodeSettings)
+        .then(() => {
+          setPage("checkEmail");
+        })
+        .catch(error => {
+          sendMessage(error.message);
+        });
+    } else {
+      sendMessage("Please enter a valid email address.");
+    }
   };
 
   const authWithFacebook = () => {

@@ -11,6 +11,7 @@ import Form from "./Form";
 import BodyWrapper from "./BodyWrapper";
 import MobileMenuBar from "./MobileMenuBar";
 import Spinner from "./Spinner";
+import Switch from "./Switch";
 import Overlay from "./Overlay";
 import { GoogleAuth, FacebookAuth } from "./SocialAuthButton";
 
@@ -23,6 +24,7 @@ export {
   Message,
   Toast,
   CenteredDiv,
+  Switch,
   Icon,
   Spinner,
   Form,

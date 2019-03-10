@@ -15,24 +15,31 @@ const Profile = () => {
 
   const onClickSubmit = e => {
     e.preventDefault();
-    if (firstName || lastName) {
-      setloadState(true);
-      db.collection("users")
-        .doc(firebase.auth().currentUser.uid)
-        .update({
-          firstName: firstName !== userState.firstName && firstName,
-          lastName: lastName !== userState.lastName && lastName
-        })
-        .then(() => {
-          setloadState(false);
-          sendMessage("Update successful!");
-        })
-        .catch(err => {
-          setloadState(false);
-          sendMessage(err.message);
-        });
+    if (firstName && lastName) {
+      if (
+        firstName !== userState.firstName ||
+        lastName !== userState.lastName
+      ) {
+        setloadState(true);
+        db.collection("users")
+          .doc(firebase.auth().currentUser.uid)
+          .update({
+            firstName: firstName,
+            lastName: lastName
+          })
+          .then(() => {
+            setloadState(false);
+            sendMessage("Update successful!");
+          })
+          .catch(err => {
+            setloadState(false);
+            sendMessage(err.message);
+          });
+      } else {
+        sendMessage("You didn't enter any new information.");
+      }
     } else {
-      sendMessage("You didn't enter any new profile information.");
+      sendMessage("You can't leave any of your information blank.");
     }
   };
 
