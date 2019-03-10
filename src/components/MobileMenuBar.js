@@ -8,9 +8,10 @@ const Container = styled.div`
   z-index: 4;
   width: 100%;
   justify-content: center;
+  background-color: white;
   bottom: 0;
   position: absolute;
-  background-color: ${colors.inactive};
+  border-top: 1px solid ${colors.inactive};
   @media (max-width: 480px) {
     display: flex;
   }
@@ -21,7 +22,7 @@ const Container = styled.div`
     justify-content: flex-start;
     div {
       padding: 0;
-      height: ${metrics.mobileMenuHeight}px;
+      height: ${metrics.mobileMenuHeight - 1}px;
       align-items: center;
       justify-content: space-between;
       div {
