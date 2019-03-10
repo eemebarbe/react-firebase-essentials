@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { OverlayContext } from "../contexts/overlayContext";
+import { UserContext } from "../contexts/userContext";
 import styled from "styled-components";
 import { metrics, colors, icons } from "../themes";
 
@@ -50,6 +51,7 @@ const Hamburger = styled.div`
   }
   &.grow-exit.grow-exit-active {
     width: 0px;
+    transition: width 0ms ease-out 0ms;
   }
 `;
 
@@ -73,22 +75,28 @@ const Close = styled.div`
   &:after {
     transform: rotate(-45deg);
   }
-  &.grow-appear,
-  &.grow-enter {
-    width: 0px;
+  &.grow-appear:before,
+  &.grow-enter:before,
+  &.grow-appear:after,
+  &.grow-enter:after {
+    height: 0px;
     z-index: 1;
   }
-  &.grow-appear-active,
-  &.grow-enter.grow-enter-active {
-    width: ${metrics.mobileHeaderHeight / 3}px;
-    transition: width 400ms ease-out 400ms;
+  &.grow-appear-active:before,
+  &.grow-enter.grow-enter-active:before,
+  &.grow-appear-active:after,
+  &.grow-enter.grow-enter-active:after {
+    height: ${metrics.baseUnit * 3 - 2}px;
+    transition: height 400ms ease-out 400ms;
   }
-  &.grow-exit {
-    width: ${metrics.mobileHeaderHeight / 3}px;
+  &.grow-exit:before,
+  &.grow-exit:after {
+    height: ${metrics.baseUnit * 3 - 2}px;
   }
-  &.grow-exit.grow-exit-active {
-    width: 0px;
-    transition: width 0ms ease-out 0ms;
+  &.grow-exit.grow-exit-active:before,
+  &.grow-exit.grow-exit-active:after {
+    height: 0px;
+    transition: height 0ms ease-out 0ms;
   }
 `;
 
@@ -104,10 +112,14 @@ const HeaderInner = styled.div`
 `;
 
 const MenuButton = styled.div`
+  height: ${metrics.mobileHeaderHeight / 3}px;
+  width: ${metrics.mobileHeaderHeight / 3}px;
   z-index: 6;
 `;
 
 const HeaderWithRouter = props => {
+  const { userState } = useContext(UserContext);
+  const userId = userState.userId;
   const { page, setPage } = useContext(OverlayContext);
   const pushTo = path => {
     props.location.pathname !== path && props.history.push(path);
@@ -126,9 +138,9 @@ const HeaderWithRouter = props => {
       <CSSTransition key="hamburger" timeout={1000} classNames="grow">
         <Hamburger>
           <div>
-            <div />
-            <div />
-            <div />
+            <span />
+            <span />
+            <span />
           </div>
         </Hamburger>
       </CSSTransition>
@@ -141,9 +153,11 @@ const HeaderWithRouter = props => {
         <div onClick={() => pushTo("/dashboard")}>
           REACT-FIREBASE-ESSENTIALS
         </div>
-        <MenuButton onClick={toggleMenu}>
-          <TransitionGroup appear>{menuButtonState()}</TransitionGroup>
-        </MenuButton>
+        {userId && (
+          <MenuButton onClick={toggleMenu}>
+            <TransitionGroup appear>{menuButtonState()}</TransitionGroup>
+          </MenuButton>
+        )}
       </HeaderInner>
     </Header>
   );
