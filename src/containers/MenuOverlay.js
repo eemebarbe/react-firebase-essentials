@@ -16,9 +16,24 @@ const Container = styled.div`
   align-content: center;
 `;
 
-const MenuBar = styled.div`
+const Header = styled.div`
+  width: 100%;
   height: ${metrics.mobileHeaderHeight - 1}px;
-  border-bottom: 1px solid darkgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid ${props => props.theme.overlayDetail};
+`;
+
+const HeaderInner = styled.div`
+  width: ${metrics.bodyWidth}px;
+  padding: 0px ${metrics.baseUnit * 2}px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    display: inline-flex;
+  }
 `;
 
 const BackgroundInner = styled.div`
@@ -30,7 +45,7 @@ const MenuItem = styled.button`
   position: relative;
   display: block;
   background-color: transparent;
-  color: ${props => (props.samePath ? "darkgray" : "inherit")};
+  color: ${props => (props.samePath ? props.theme.inactive : "inherit")};
   pointer-events: ${props => (props.samePath ? "none" : "initial")};
   border: 0;
   margin-top: ${metrics.baseUnit * 3}px;
@@ -72,7 +87,7 @@ const MenuItem = styled.button`
 `;
 
 const MenuOverlay = props => {
-  const { userDispatch } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext);
   const { setPage } = useContext(OverlayContext);
   const signOut = () => {
     setPage(null);
@@ -93,11 +108,23 @@ const MenuOverlay = props => {
     return props.location.pathname === path;
   };
 
+  const toggleStyles = () => {
+    userDispatch({
+      type: "styleMode",
+      payload: userState.styleMode === "main" ? "dark" : "main"
+    });
+  };
+
   return (
     <>
-      <MenuBar>
-        <Switch />
-      </MenuBar>
+      <Header>
+        <HeaderInner>
+          <Switch
+            checked={userState.styleMode === "dark"}
+            onChange={toggleStyles}
+          />
+        </HeaderInner>
+      </Header>
       <Container>
         <BackgroundInner>
           <TransitionGroup appear>

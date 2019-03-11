@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { metrics, colors } from "../themes";
+import { metrics } from "../themes";
 
 const Input = styled.input`
+  background-color: transparent;
+  color: ${props => props.theme.maintext};
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid ${colors.inactive};
+  border-bottom: 1px solid ${props => props.theme.inactive};
   outline: none;
   margin: none;
   margin-bottom: ${metrics.baseUnit}px;
@@ -14,10 +16,10 @@ const Input = styled.input`
   width: ${metrics.baseUnit * 16}px;
   font-size: 1.5rem;
   &::placeholder {
-    color: ${colors.inactive};
+    color: ${props => props.theme.inactive};
   }
   &:focus {
-    border-bottom: 1px solid ${colors.maintext};
+    border-bottom: 1px solid ${props => props.theme.maintext};
   }
   -webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: content-box; /* Firefox, other Gecko */

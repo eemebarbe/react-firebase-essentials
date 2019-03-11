@@ -4,7 +4,8 @@ const initialState = {
   userId: null,
   email: null,
   firstName: null,
-  lastName: null
+  lastName: null,
+  styleMode: "main"
 };
 export const UserContext = createContext(initialState);
 
@@ -19,6 +20,8 @@ const reducer = (state, action) => {
         firstName: action.payload.firstName,
         lastName: action.payload.lastName
       };
+    case "styleMode":
+      return { ...state, styleMode: action.payload };
     default:
       return state;
   }

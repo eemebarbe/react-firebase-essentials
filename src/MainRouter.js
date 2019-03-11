@@ -22,9 +22,11 @@ import {
   MobileMenuBar,
   Overlay
 } from "./components";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import GlobalStyle from "./themes/GlobalStyle";
 import firebase from "./firebase.js";
 import "firebase/firestore";
+import { colors } from "./themes";
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -181,8 +183,15 @@ const MainRouter = () => {
     );
     return app;
   };
-
-  return renderApp();
+  return (
+    <ThemeProvider
+      theme={userState.styleMode === "main" ? colors.main : colors.dark}>
+      <>
+        <GlobalStyle />
+        {renderApp()}
+      </>
+    </ThemeProvider>
+  );
 };
 
 export default MainRouter;

@@ -41,9 +41,14 @@ const Confirmed = () => {
           window.localStorage.removeItem("confirmationEmail");
         })
         .catch(error => {
-          console.log(error);
           setFirstAttempt(false);
         });
+    }
+  };
+
+  const newDeviceCompletion = email => {
+    if (email) {
+      finishConfirmation(email);
     }
   };
 
@@ -62,7 +67,7 @@ const Confirmed = () => {
             placeholder="Email address"
             autoComplete="email"
           />
-          <Button onClick={() => finishConfirmation(email)}>CONFIRM</Button>
+          <Button onClick={() => newDeviceCompletion(email)}>CONFIRM</Button>
         </div>
       </CenteredDiv>
     );

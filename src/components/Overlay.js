@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { colors } from "../themes";
 import MenuOverlay from "../containers/MenuOverlay";
 import { CenteredDiv, Message } from "../components";
 import { OverlayContext } from "../contexts/overlayContext";
@@ -10,7 +9,7 @@ const Background = styled.div`
   z-index: 4;
   height: 100%;
   width: 100%;
-  background-color: ${colors.inactive};
+  background-color: ${props => props.theme.overlayBackground};
 `;
 
 const Overlay = () => {

@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     overflow: hidden;
     font-size: ${metrics.baseUnit}px;
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.maintext};
     @font-face {
       font-family: 'Kollektif';
       src: url('${Kollektif}') format('truetype');

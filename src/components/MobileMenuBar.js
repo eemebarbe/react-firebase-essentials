@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import { metrics, colors } from "../themes";
+import { metrics } from "../themes";
 
 const Container = styled.div`
   display: none;
@@ -11,7 +11,7 @@ const Container = styled.div`
   background-color: white;
   bottom: 0;
   position: absolute;
-  border-top: 1px solid ${colors.inactive};
+  border-top: 1px solid ${props => props.theme.inactive};
   @media (max-width: 480px) {
     display: flex;
   }

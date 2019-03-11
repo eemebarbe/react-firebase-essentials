@@ -6,9 +6,7 @@ import {
   FacebookAuth,
   GoogleAuth,
   Input,
-  CenteredDiv,
   Form,
-  Message,
   BodyWrapper
 } from "../components";
 import { ToastContext } from "../contexts/toastContext";
@@ -17,9 +15,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
 import "firebase/functions";
 import "firebase/firestore";
-
 import styled from "styled-components";
-import { metrics, colors } from "../themes";
+import { metrics } from "../themes";
 
 const AuthSeparator = styled.div`
   display: flex;
@@ -30,7 +27,7 @@ const AuthSeparator = styled.div`
   height: ${metrics.baseUnit * 1}px;
   width: ${metrics.baseUnit * 16}px;
   margin-bottom: ${metrics.baseUnit}px;
-  color: ${colors.inactive};
+  color: ${props => props.theme.inactive};
   font-family: "Kollektif-Bold";
   span {
     margin: 0px ${metrics.baseUnit}px;

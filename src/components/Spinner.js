@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { metrics, colors } from "../themes";
+import { metrics } from "../themes";
 
 const rotate = keyframes`
   from {
@@ -23,7 +23,8 @@ const SpinnerTemplate = styled.div`
 
 const Circle = styled(SpinnerTemplate)`
   border: 2px solid
-    ${props => (props.secondary && colors.inactive) || colors.detailText};
+    ${props =>
+      (props.secondary && props.theme.inactive) || props.theme.detailText};
   opacity: 0.33;
   visibility: visible;
 `;
@@ -31,7 +32,8 @@ const Circle = styled(SpinnerTemplate)`
 const Highlight = styled(SpinnerTemplate)`
   border: 2px solid rgba(0, 0, 0, 0);
   border-top: 2px solid
-    ${props => (props.secondary && colors.inactive) || colors.detailText};
+    ${props =>
+      (props.secondary && props.theme.inactive) || props.theme.detailText};
   animation: ${rotate} 1s infinite ease-in-out;
 `;
 

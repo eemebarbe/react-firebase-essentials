@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { metrics, colors } from "../themes";
+import { metrics } from "../themes";
 
 const Switched = styled.label`
   position: relative;
   display: inline-block;
-  width: ${metrics.baseUnit * 8}px;
+  width: ${metrics.baseUnit * 6}px;
   height: ${metrics.baseUnit * 3}px;
   input {
     opacity: 0;
@@ -19,7 +19,7 @@ const Switched = styled.label`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: darkgray;
+    background-color: ${props => props.theme.inactive};
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: ${metrics.baseUnit * 3}px;
@@ -37,20 +37,24 @@ const Switched = styled.label`
     }
   }
   input:checked + span {
-    background-color: ${colors.primarybutton};
+    background-color: ${props => props.theme.overlayDetail};
   }
 
   input:checked + span:before {
-    -webkit-transform: translateX(${metrics.baseUnit * 5}px);
-    -ms-transform: translateX(${metrics.baseUnit * 5}px);
-    transform: translateX(${metrics.baseUnit * 5}px);
+    -webkit-transform: translateX(${metrics.baseUnit * 3}px);
+    -ms-transform: translateX(${metrics.baseUnit * 3}px);
+    transform: translateX(${metrics.baseUnit * 3}px);
   }
 `;
 
-const Switch = () => {
+const Switch = props => {
   return (
     <Switched>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        onChange={props.onChange}
+        checked={props.checked}
+      />
       <span />
     </Switched>
   );

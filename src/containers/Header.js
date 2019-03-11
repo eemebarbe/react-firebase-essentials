@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { OverlayContext } from "../contexts/overlayContext";
 import { UserContext } from "../contexts/userContext";
 import styled from "styled-components";
-import { metrics, colors, icons } from "../themes";
+import { metrics } from "../themes";
 
 const Header = styled.div`
   width: 100%;
@@ -12,13 +12,25 @@ const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${colors.inactive};
+  border-bottom: 1px solid ${props => props.theme.inactive};
   @media (max-width: 480px) {
     display: none;
   }
 `;
 
+const HeaderInner = styled.div`
+  width: ${metrics.bodyWidth}px;
+  padding: 0px ${metrics.baseUnit * 2}px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    display: inline-flex;
+  }
+`;
+
 const CompanyLogo = styled.button`
+  color: ${props => props.theme.maintext};
   background-color: transparent;
   pointer-events: ${props => (props.samePath ? "none" : "initial")};
   border: 0;
@@ -47,7 +59,7 @@ const Hamburger = styled.div`
   span {
     width: 100%;
     height: 0;
-    border-top: 1px solid ${colors.maintext};
+    border-top: 1px solid ${props => props.theme.maintext};
   }
   &.grow-appear,
   &.grow-enter {
@@ -84,7 +96,7 @@ const Close = styled.div`
     content: " ";
     height: ${metrics.baseUnit * 3 - 2}px;
     width: 1px;
-    background-color: #333;
+    background-color: ${props => props.theme.maintext};
   }
   &:before {
     transform: rotate(45deg);
@@ -125,17 +137,6 @@ const Close = styled.div`
   &.grow-exit.grow-exit-active:before,
   &.grow-exit.grow-exit-active:after {
     height: 0px;
-  }
-`;
-
-const HeaderInner = styled.div`
-  width: ${metrics.bodyWidth}px;
-  padding: 0px ${metrics.baseUnit * 2}px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  div {
-    display: inline-flex;
   }
 `;
 

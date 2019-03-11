@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { ToastContext } from "../contexts/toastContext";
-import { metrics, colors } from "../themes";
+import { metrics } from "../themes";
 import Transition from "react-transition-group/Transition";
 
 const transitionStyles = {
@@ -48,7 +48,7 @@ const ToastContainer = styled.div`
       width: ${metrics.bodyWidth / 2}px;
       line-height: ${metrics.baseUnit * 2}px;
       color: white;
-      background-color: ${colors.secondaryColor};
+      background-color: ${props => props.theme.secondaryColor};
       display: flex;
       justify-content: center;
       align-content: center;

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { metrics, colors } from "../themes";
+import { metrics } from "../themes";
 import { Spinner } from "../components";
 
 const Button = styled.button`
   min-height: ${metrics.baseUnit * 3}px;
   width: ${metrics.baseUnit * 16}px;
-  background-color: ${props => props.color || "blue"};
-  color: ${colors.detailText};
+  background-color: ${props => props.color || props.theme.primarybutton};
+  color: ${props => props.theme.detailText};
   border: 0;
   padding: 0;
   border-radius: ${metrics.globalBorderRadius}px;
