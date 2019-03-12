@@ -45,7 +45,7 @@ const MenuItem = styled.button`
   position: relative;
   display: block;
   background-color: transparent;
-  color: ${props => (props.samePath ? props.theme.inactive : "inherit")};
+  color: ${props => (props.samePath ? props.theme.overlayDetail : "inherit")};
   pointer-events: ${props => (props.samePath ? "none" : "initial")};
   border: 0;
   margin-top: ${metrics.baseUnit * 3}px;
@@ -96,7 +96,7 @@ const MenuOverlay = props => {
       type: "userId",
       payload: null
     });
-    window.localStorage.removeItem("userData");
+    window.localStorage.removeItem("user");
   };
 
   const pushTo = path => {

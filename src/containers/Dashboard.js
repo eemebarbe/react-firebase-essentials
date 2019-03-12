@@ -75,8 +75,9 @@ const Dashboard = () => {
       </BodyWrapper>
     );
   };
-
-  return moreInfoComplete || userState.email ? dashboard() : moreInfo();
+  return moreInfoComplete || userState.userData.email
+    ? dashboard()
+    : moreInfo();
 };
 
 export default Dashboard;

@@ -19,7 +19,7 @@ const Switched = styled.label`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${props => props.theme.inactive};
+    background-color: ${props => props.theme.overlayDetail};
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: ${metrics.baseUnit * 3}px;

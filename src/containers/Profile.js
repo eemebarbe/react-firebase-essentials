@@ -7,8 +7,8 @@ import "firebase/firestore";
 
 const Profile = () => {
   const { userState } = useContext(UserContext);
-  const [firstName, setFirstName] = useState(userState.firstName);
-  const [lastName, setLastName] = useState(userState.lastName);
+  const [firstName, setFirstName] = useState(userState.userData.firstName);
+  const [lastName, setLastName] = useState(userState.userData.lastName);
   const [loadState, setloadState] = useState(false);
   const { sendMessage } = useContext(ToastContext);
   const db = firebase.firestore();
@@ -17,8 +17,8 @@ const Profile = () => {
     e.preventDefault();
     if (firstName && lastName) {
       if (
-        firstName !== userState.firstName ||
-        lastName !== userState.lastName
+        firstName !== userState.userData.firstName ||
+        lastName !== userState.userData.lastName
       ) {
         setloadState(true);
         db.collection("users")

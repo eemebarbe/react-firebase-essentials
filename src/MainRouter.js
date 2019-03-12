@@ -64,17 +64,13 @@ const MainRouter = () => {
               setPage(null);
               if (res.data() && res.data().firstName) {
                 userDispatch({ type: "additionalInfo", payload: res.data() });
-                window.localStorage.setItem(
-                  "userData",
-                  JSON.stringify(res.data())
-                );
               }
               userDispatch({ type: "userId", payload: uid });
               setInitComplete(true);
             });
         } else {
           userDispatch({
-            type: "additionalInfo",
+            type: "persistedUser",
             payload: JSON.parse(persistedUser)
           });
           userDispatch({ type: "userId", payload: uid });
@@ -183,9 +179,13 @@ const MainRouter = () => {
     );
     return app;
   };
+
+  const userData = JSON.parse(window.localStorage.getItem("userData"));
   return (
     <ThemeProvider
-      theme={userState.styleMode === "main" ? colors.main : colors.dark}>
+      theme={
+        userData && userData.styleMode === "dark" ? colors.dark : colors.main
+      }>
       <>
         <GlobalStyle />
         {renderApp()}

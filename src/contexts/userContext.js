@@ -2,23 +2,25 @@ import React, { useReducer, createContext } from "react";
 
 const initialState = {
   userId: null,
-  email: null,
-  firstName: null,
-  lastName: null,
-  styleMode: "main"
+  userData: { email: null, firstName: null, lastName: null },
+  styleMode: null
 };
 export const UserContext = createContext(initialState);
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "persistedUser":
+      return { ...action.payload };
     case "userId":
       return { ...state, userId: action.payload };
     case "additionalInfo":
       return {
         ...state,
-        email: action.payload.email,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName
+        userData: {
+          email: action.payload.email,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName
+        }
       };
     case "styleMode":
       return { ...state, styleMode: action.payload };
@@ -29,6 +31,8 @@ const reducer = (state, action) => {
 
 export const UserProvider = props => {
   const [userState, userDispatch] = useReducer(reducer, initialState);
+  userState.userData.email &&
+    window.localStorage.setItem("user", JSON.stringify(userState));
   return (
     <UserContext.Provider value={{ userState, userDispatch }}>
       {props.children}
