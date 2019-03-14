@@ -6,7 +6,7 @@ import firebase from "../firebase.js";
 import "firebase/firestore";
 
 const Profile = () => {
-  const { userState } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext);
   const [firstName, setFirstName] = useState(userState.userData.firstName);
   const [lastName, setLastName] = useState(userState.userData.lastName);
   const [loadState, setloadState] = useState(false);
@@ -29,6 +29,13 @@ const Profile = () => {
           })
           .then(() => {
             setloadState(false);
+            userDispatch({
+              type: "updateProfile",
+              payload: {
+                firstName: firstName,
+                lastName: lastName
+              }
+            });
             sendMessage("Update successful!");
           })
           .catch(err => {

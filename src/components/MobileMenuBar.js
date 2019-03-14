@@ -8,7 +8,7 @@ const Container = styled.div`
   z-index: 4;
   width: 100%;
   justify-content: center;
-  background-color: white;
+  background-color: ${props => props.theme.background};
   bottom: 0;
   position: absolute;
   border-top: 1px solid ${props => props.theme.inactive};

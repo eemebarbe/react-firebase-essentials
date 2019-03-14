@@ -3,9 +3,9 @@ import React, { useState } from "react";
 export const OverlayContext = React.createContext("");
 
 export const OverlayProvider = props => {
-  const [page, setPage] = useState("");
+  const [page, setOverlay] = useState("");
   return (
-    <OverlayContext.Provider value={{ page, setPage }}>
+    <OverlayContext.Provider value={{ page, setOverlay }}>
       {props.children}
     </OverlayContext.Provider>
   );

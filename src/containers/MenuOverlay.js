@@ -88,19 +88,19 @@ const MenuItem = styled.button`
 
 const MenuOverlay = props => {
   const { userState, userDispatch } = useContext(UserContext);
-  const { setPage } = useContext(OverlayContext);
+  const { setOverlay } = useContext(OverlayContext);
   const signOut = () => {
-    setPage(null);
+    window.localStorage.removeItem("userData");
+    setOverlay(null);
     firebase.auth().signOut();
     userDispatch({
       type: "userId",
       payload: null
     });
-    window.localStorage.removeItem("user");
   };
 
   const pushTo = path => {
-    setPage(null);
+    setOverlay(null);
     !samePath(path) && props.history.push(path);
   };
 
@@ -114,7 +114,6 @@ const MenuOverlay = props => {
       payload: userState.styleMode === "main" ? "dark" : "main"
     });
   };
-
   return (
     <>
       <Header>

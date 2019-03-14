@@ -43,7 +43,7 @@ const SignIn = () => {
   const [googleLoadState, setGoogleLoadState] = useState(false);
   const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
-  const { setPage } = useContext(OverlayContext);
+  const { setOverlay } = useContext(OverlayContext);
   const db = firebase.firestore();
 
   const onClickSubmit = e => {
@@ -58,7 +58,7 @@ const SignIn = () => {
         .auth()
         .sendSignInLinkToEmail(email, actionCodeSettings)
         .then(() => {
-          setPage("checkEmail");
+          setOverlay("checkEmail");
         })
         .catch(error => {
           sendMessage(error.message);

@@ -149,13 +149,13 @@ const MenuButton = styled.div`
 const HeaderWithRouter = props => {
   const { userState } = useContext(UserContext);
   const userId = userState.userId;
-  const { page, setPage } = useContext(OverlayContext);
+  const { page, setOverlay } = useContext(OverlayContext);
   const pushTo = path => {
     props.location.pathname !== path && props.history.push(path);
   };
 
   const toggleMenu = () => {
-    page ? setPage(null) : setPage("menu");
+    page ? setOverlay(null) : setOverlay("menu");
   };
 
   const menuButtonState = () => {

@@ -69,7 +69,7 @@ const BodyWrapper = styled.div`
 const BodyInner = styled.div`
   padding-bottom: ${metrics.baseUnit * 4}px;
   @media (max-width: 480px) {
-    padding-bottom: ${metrics.baseUnit * 4 + metrics.mobileMenuHeight}px;
+    padding-bottom: ${metrics.baseUnit * 4}px;
   }
 `;
 
