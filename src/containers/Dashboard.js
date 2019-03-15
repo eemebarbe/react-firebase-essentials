@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Text, H1, Button, Input, Form, BodyWrapper } from "../components";
+import { P, H1, Button, Input, Form, BodyWrapper } from "../components";
 import { UserContext } from "../contexts/userContext";
 import { ToastContext } from "../contexts/toastContext";
 import firebase from "../firebase.js";
@@ -34,12 +34,12 @@ const Dashboard = () => {
     return (
       <BodyWrapper>
         <H1>MORE INFO</H1>
-        <Text>
+        <P>
           This is an introduction screen that shows up after the user
           successfully logs in for the first time. It's a good opportunity to
           collect additional information or provide them with important details
           about how your application works.
-        </Text>
+        </P>
         <Form>
           <div>
             <Input
@@ -67,41 +67,49 @@ const Dashboard = () => {
     return (
       <BodyWrapper>
         <H1>DASHBOARD</H1>
-        <Text>
+        <P>
           So this is your dashboard. Maybe you'll put a few graphs here, you've
           always wanted to try out D3. Maybe a news feed, or updates on new
           features.
-        </Text>
-        <Text>
+        </P>
+        <P>
+          So this is your dashboard. Maybe you'll put a few graphs here, you've
+          always wanted to try out D3. Maybe a news feed, or updates on new
+          features. So this is your dashboard. Maybe you'll put a few graphs
+          here, you've always wanted to try out D3. Maybe a news feed, or
+          updates on new features. So this is your dashboard. Maybe you'll put a
+          few graphs here, you've always wanted to try out D3. Maybe a news
+          feed, or updates on new features.
+        </P>
+        <P>
           So this is your dashboard. Maybe you'll put a few graphs here, you've
           always wanted to try out D3. Maybe a news feed, or updates on new
           features.
-        </Text>
-        <Text>
+        </P>
+        <P>
+          So this is your dashboard. Maybe you'll put a few graphs here, you've
+          always wanted to try out D3. Maybe a news feed, or updates on new
+          features. So this is your dashboard. Maybe you'll put a few graphs
+          here, you've always wanted to try out D3. Maybe a news feed, or
+          updates on new features.
+        </P>
+        <P>
           So this is your dashboard. Maybe you'll put a few graphs here, you've
           always wanted to try out D3. Maybe a news feed, or updates on new
           features.
-        </Text>
-        <Text>
+        </P>
+        <P>
+          So this is your dashboard. Maybe you'll put a few graphs here, you've
+          always wanted to try out D3. Maybe a news feed, or updates on new
+          features. So this is your dashboard. Maybe you'll put a few graphs
+          here, you've always wanted to try out D3. Maybe a news feed, or
+          updates on new features.
+        </P>
+        <P>
           So this is your dashboard. Maybe you'll put a few graphs here, you've
           always wanted to try out D3. Maybe a news feed, or updates on new
           features.
-        </Text>
-        <Text>
-          So this is your dashboard. Maybe you'll put a few graphs here, you've
-          always wanted to try out D3. Maybe a news feed, or updates on new
-          features.
-        </Text>
-        <Text>
-          So this is your dashboard. Maybe you'll put a few graphs here, you've
-          always wanted to try out D3. Maybe a news feed, or updates on new
-          features.
-        </Text>
-        <Text>
-          So this is your dashboard. Maybe you'll put a few graphs here, you've
-          always wanted to try out D3. Maybe a news feed, or updates on new
-          features.
-        </Text>
+        </P>
       </BodyWrapper>
     );
   };

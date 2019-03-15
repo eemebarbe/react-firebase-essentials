@@ -1,7 +1,7 @@
 const main = {
   inactive: "rgb(211, 211, 211)",
-  primarybutton: "rgb(0, 0, 255)",
-  maintext: "rgb(0, 0, 0)",
+  primaryButton: "rgb(0, 0, 255)",
+  mainText: "rgb(0, 0, 0)",
   detailText: "rgb(255, 255, 255)",
   secondaryColor: "rgb(255,0,0)",
   background: "rgb(255, 255, 255)",
@@ -11,13 +11,13 @@ const main = {
 
 const dark = {
   inactive: "rgb(120, 120, 120)",
-  primarybutton: "rgb(0, 0, 255)",
-  maintext: "rgb(255, 255, 255)",
+  primaryButton: "rgb(0, 0, 255)",
+  mainText: "rgb(255, 255, 255)",
   detailText: "rgb(255, 255, 255)",
   secondaryColor: "rgb(255,0,0)",
   background: "rgb(40, 40, 40)",
   overlayBackground: "rgb(40, 40, 40)",
-  overlayDetail: "rgb(0,0,0)"
+  overlayDetail: "rgb(68,68,68)"
 };
 
 const colors = {

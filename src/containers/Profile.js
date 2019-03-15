@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Text, H1, Button, Input, Form, BodyWrapper } from "../components";
+import { P, H1, Button, Input, Form, BodyWrapper } from "../components";
 import { ToastContext } from "../contexts/toastContext";
 import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
@@ -53,7 +53,7 @@ const Profile = () => {
   return (
     <BodyWrapper>
       <H1>PROFILE</H1>
-      <Text>Update your personal information here.</Text>
+      <P>Update your personal information here.</P>
       <Form>
         <div>
           <Input

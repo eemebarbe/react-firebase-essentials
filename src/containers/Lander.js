@@ -1,5 +1,5 @@
 import React from "react";
-import { H1, H2, Text, Button, BodyWrapper } from "../components";
+import { H1, H2, P, Button, BodyWrapper } from "../components";
 import { withRouter } from "react-router-dom";
 
 const Lander = props => {
@@ -11,7 +11,7 @@ const Lander = props => {
     <BodyWrapper>
       <H1>REACT-FIREBASE-ESSENTIALS</H1>
       <H2>This thing ain't ready yet. But when it is, oh boy:</H2>
-      <Text>
+      <P>
         <li>All components are built with Hooks</li>
         <li>Utilizing the Context API for shared data</li>
         <li>Styled-Components all day, baybeeee</li>
@@ -24,7 +24,7 @@ const Lander = props => {
         <li>Cloud function for processing recaptchas</li>
         <li>Basic security rules written for Firestore</li>
         <li>A pinch of mother's love</li>
-      </Text>
+      </P>
       <Button onClick={signIn}>TAKE A TOUR</Button>
     </BodyWrapper>
   );

@@ -6,7 +6,7 @@ import { Spinner } from "../components";
 const Button = styled.button`
   min-height: ${metrics.baseUnit * 3}px;
   width: ${metrics.baseUnit * 16}px;
-  background-color: ${props => props.color || props.theme.primarybutton};
+  background-color: ${props => props.color || props.theme.primaryButton};
   color: ${props => props.theme.detailText};
   border: 0;
   padding: 0;

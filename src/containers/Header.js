@@ -7,6 +7,9 @@ import styled from "styled-components";
 import { metrics } from "../themes";
 
 const Header = styled.div`
+  z-index: 8;
+  position: absolute;
+  background-color: ${props => props.theme.background};
   width: 100%;
   height: ${metrics.mobileHeaderHeight - 1}px;
   display: flex;
@@ -30,7 +33,7 @@ const HeaderInner = styled.div`
 `;
 
 const CompanyLogo = styled.button`
-  color: ${props => props.theme.maintext};
+  color: ${props => props.theme.mainText};
   background-color: transparent;
   pointer-events: ${props => (props.samePath ? "none" : "initial")};
   border: 0;
@@ -59,7 +62,7 @@ const Hamburger = styled.div`
   span {
     width: 100%;
     height: 0;
-    border-top: 1px solid ${props => props.theme.maintext};
+    border-top: 1px solid ${props => props.theme.mainText};
   }
   &.grow-appear,
   &.grow-enter {
@@ -96,7 +99,7 @@ const Close = styled.div`
     content: " ";
     height: ${metrics.baseUnit * 3 - 2}px;
     width: 1px;
-    background-color: ${props => props.theme.maintext};
+    background-color: ${props => props.theme.mainText};
   }
   &:before {
     transform: rotate(45deg);

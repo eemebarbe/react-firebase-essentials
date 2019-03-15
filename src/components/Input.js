@@ -3,7 +3,7 @@ import { metrics } from "../themes";
 
 const Input = styled.input`
   background-color: transparent;
-  color: ${props => props.theme.maintext};
+  color: ${props => props.theme.mainText};
   border: none;
   border-radius: 0;
   border-bottom: 1px solid ${props => props.theme.inactive};
@@ -19,7 +19,7 @@ const Input = styled.input`
     color: ${props => props.theme.inactive};
   }
   &:focus {
-    border-bottom: 1px solid ${props => props.theme.maintext};
+    border-bottom: 1px solid ${props => props.theme.mainText};
   }
   -webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: content-box; /* Firefox, other Gecko */

@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     font-size: ${metrics.baseUnit}px;
     background-color: ${props => props.theme.background};
-    color: ${props => props.theme.maintext};
+    color: ${props => props.theme.mainText};
     @font-face {
       font-family: 'Kollektif';
       src: url('${Kollektif}') format('truetype');
@@ -33,10 +33,11 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     font-family: 'Kollektif';
     list-style-position: inside;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
     input:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0px 1000px white inset;
-      box-shadow: 0 0 0px 1000px white inset;
-      -webkit-text-fill-color: black !important;
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+      box-shadow: 0 0 0px 1000px transparent inset;
+      -webkit-text-fill-color: ${props => props.theme.mainText} !important;
     }
   }
   #root {

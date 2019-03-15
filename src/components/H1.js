@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { metrics } from "../themes";
 
-const Text = styled.h1`
+const P = styled.h1`
   font-size: 4rem;
   line-height: 1.5;
   margin: 0;
@@ -21,7 +21,7 @@ const Container = styled.div`
 const H1 = props => {
   return (
     <Container>
-      <Text>{props.children}</Text>
+      <P>{props.children}</P>
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input, CenteredDiv, Message, Text } from "../components";
+import { Button, Input, CenteredDiv, Message, P } from "../components";
 import firebase from "../firebase.js";
 import "firebase/firestore";
 
@@ -60,7 +60,7 @@ const Confirmed = () => {
     return (
       <CenteredDiv vertical horizontal>
         <div>
-          <Text>{firstAttempt ? firstAttemptText : secondAttemptText}</Text>
+          <P>{firstAttempt ? firstAttemptText : secondAttemptText}</P>
           <Input
             onChange={e => setEmail(e.target.value)}
             name="email"
