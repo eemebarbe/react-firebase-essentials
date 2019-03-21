@@ -7,11 +7,12 @@ import styled from "styled-components";
 import { metrics } from "../themes";
 
 const Header = styled.div`
+  transform: translateY(${props => "-" + props.scrollTop}px);
   z-index: 8;
   position: absolute;
   background-color: ${props => props.theme.background};
   width: 100%;
-  height: ${metrics.mobileHeaderHeight - 1}px;
+  height: ${metrics.headerHeight - 1}px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,8 +50,8 @@ const Hamburger = styled.div`
   position: absolute;
   flex-direction: column;
   justify-content: center;
-  height: ${metrics.mobileHeaderHeight / 3}px;
-  width: ${metrics.mobileHeaderHeight / 3}px;
+  height: ${metrics.headerHeight / 3}px;
+  width: ${metrics.headerHeight / 3}px;
   div {
     flex-direction: column;
     width: 100%;
@@ -71,7 +72,7 @@ const Hamburger = styled.div`
   }
   &.grow-appear-active,
   &.grow-enter.grow-enter-active {
-    width: ${metrics.mobileHeaderHeight / 3}px;
+    width: ${metrics.headerHeight / 3}px;
     transition: width 400ms ease-out;
     -webkit-transition: width 400ms ease-out;
     -moz-transition: width 400ms ease-out;
@@ -79,7 +80,7 @@ const Hamburger = styled.div`
     transition: width 400ms ease-out;
   }
   &.grow-exit {
-    width: ${metrics.mobileHeaderHeight / 3}px;
+    width: ${metrics.headerHeight / 3}px;
   }
   &.grow-exit.grow-exit-active {
     width: 0px;
@@ -90,8 +91,8 @@ const Close = styled.div`
   position: absolute;
   flex-direction: column;
   justify-content: center;
-  height: ${metrics.mobileHeaderHeight / 3}px;
-  width: ${metrics.mobileHeaderHeight / 3}px;
+  height: ${metrics.headerHeight / 3}px;
+  width: ${metrics.headerHeight / 3}px;
   &:before,
   &:after {
     position: absolute;
@@ -144,9 +145,9 @@ const Close = styled.div`
 `;
 
 const MenuButton = styled.div`
-  height: ${metrics.mobileHeaderHeight / 3}px;
-  width: ${metrics.mobileHeaderHeight / 3}px;
-  z-index: 6;
+  height: ${metrics.headerHeight / 3}px;
+  width: ${metrics.headerHeight / 3}px;
+  z-index: 30;
 `;
 
 const HeaderWithRouter = props => {
@@ -180,7 +181,7 @@ const HeaderWithRouter = props => {
   };
 
   return (
-    <Header>
+    <Header {...props}>
       <HeaderInner>
         <CompanyLogo
           onClick={() => (userId ? pushTo("/dashboard") : pushTo("/"))}>

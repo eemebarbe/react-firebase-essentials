@@ -6,7 +6,7 @@ import { OverlayContext } from "../contexts/overlayContext";
 
 const Background = styled.div`
   position: absolute;
-  z-index: 4;
+  z-index: 10;
   height: 100%;
   width: 100%;
   background-color: ${props => props.theme.overlayBackground};

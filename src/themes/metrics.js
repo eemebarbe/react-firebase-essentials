@@ -10,7 +10,7 @@ const metrics = {
   get mobileMenuHeight() {
     return this.baseUnit * 4;
   },
-  get mobileHeaderHeight() {
+  get headerHeight() {
     return this.baseUnit * 6;
   }
 };

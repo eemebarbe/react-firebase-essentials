@@ -59,10 +59,12 @@ const BodyOuter = styled.div`
 
 const BodyWrapper = styled.div`
   padding: 0px ${metrics.bodyPadding}px;
+  padding-top: ${metrics.headerHeight}px;
   width: ${metrics.bodyWidth}px;
   height: 100%;
   @media (max-width: 480px) {
     width: 100%;
+    padding-top: 0px;
   }
 `;
 

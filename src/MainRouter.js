@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -31,16 +31,15 @@ import { colors } from "./themes";
 const AppWrapper = styled.div`
   height: 100%;
   width: 100%;
-  overflow: hidden;
+
   position: absolute;
 `;
 
 const ScrollBox = styled.div`
   height: 100%;
   width: 100%;
-  overflow: hidden;
   position: absolute;
-  overflow-y: auto;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 `;
 
@@ -49,6 +48,7 @@ const MainRouter = () => {
   const { userState, userDispatch } = useContext(UserContext);
   const { page, setOverlay } = useContext(OverlayContext);
   const userId = userState.userId;
+  const scrollRef = useRef();
   const db = firebase.firestore();
 
   useEffect(() => {
@@ -85,6 +85,12 @@ const MainRouter = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  });
+
   const noMatch = () => {
     return <H1>404</H1>;
   };
@@ -119,8 +125,8 @@ const MainRouter = () => {
         <Toast />
         {page && <Overlay />}
         {userId && <MobileMenuBar />}
-        <ScrollBox>
-          <Header />
+        <Header />
+        <ScrollBox ref={scrollRef}>
           <Route
             render={({ location }) => (
               <TransitionGroup appear>

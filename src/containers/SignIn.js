@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import {
   P,
   H1,
@@ -38,16 +38,17 @@ const AuthSeparator = styled.div`
 `;
 
 const SignIn = () => {
-  const [validCaptcha, setCaptcha] = useState(false);
   const [facebookLoadState, setFacebookLoadState] = useState(false);
   const [googleLoadState, setGoogleLoadState] = useState(false);
   const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
   const { setOverlay } = useContext(OverlayContext);
+  const recaptchaRef = useRef(null);
   const db = firebase.firestore();
 
   const onClickSubmit = e => {
     e.preventDefault();
+    recaptchaRef.current.execute();
     if (email) {
       window.localStorage.setItem("confirmationEmail", email);
       const actionCodeSettings = {
@@ -123,19 +124,12 @@ const SignIn = () => {
   };
 
   const captcha = value => {
-    if (!value) {
-      setCaptcha(false);
-    } else {
-      const checkRecaptcha = firebase
-        .functions()
-        .httpsCallable("checkRecaptcha");
-
-      checkRecaptcha({ response: value })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => console.log(err));
-    }
+    const checkRecaptcha = firebase.functions().httpsCallable("checkRecaptcha");
+    checkRecaptcha({ captchaResponse: value })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -157,12 +151,12 @@ const SignIn = () => {
             autoComplete="email"
           />
         </div>
-        {/*
-      <ReCAPTCHA
-        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-        onChange={captcha}
-      />
-      */}
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+          onChange={captcha}
+          size="invisible"
+        />
         <div>
           <Button marginBottom onClick={onClickSubmit}>
             SIGN IN WITH EMAIL

@@ -1,28 +1,20 @@
 const functions = require("firebase-functions");
-const rp = require("request-promise");
+const axios = require("axios");
+const cors = require("cors")({ origin: "*" });
 
-exports.checkRecaptcha = functions.https.onRequest((req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  const response = req.query.response;
-  rp({
-    uri: "https://recaptcha.google.com/recaptcha/api/siteverify",
-    method: "POST",
-    formData: {
-      secret: process.env.RECAPTCHA_SECRET,
-      response: response
-    },
-    json: true
+exports.checkRecaptcha = functions.https.onCall((data, context) => {
+  return axios({
+    method: "post",
+    url: "https://recaptcha.google.com/recaptcha/api/siteverify",
+    params: {
+      secret: functions.config().recaptcha.secret,
+      response: data.captchaResponse
+    }
   })
     .then(result => {
-      if (result.success) {
-        res.send("You're good to go, human.");
-        return 1;
-      } else {
-        res.send("Recaptcha verification failed. Are you a robot?");
-        return 1;
-      }
+      return { success: result.data.success };
     })
     .catch(reason => {
-      res.send("Recaptcha request failed.");
+      return { success: false };
     });
 });

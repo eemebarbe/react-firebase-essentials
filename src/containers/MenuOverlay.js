@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const Header = styled.div`
   width: 100%;
-  height: ${metrics.mobileHeaderHeight - 1}px;
+  height: ${metrics.headerHeight - 1}px;
   display: flex;
   justify-content: center;
   align-items: center;
