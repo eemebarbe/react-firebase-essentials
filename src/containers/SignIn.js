@@ -11,7 +11,6 @@ import {
 } from "../components";
 import { ToastContext } from "../contexts/toastContext";
 import { OverlayContext } from "../contexts/overlayContext";
-import ReCAPTCHA from "react-google-recaptcha";
 import firebase from "../firebase.js";
 import "firebase/functions";
 import "firebase/firestore";
@@ -43,12 +42,10 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
   const { setOverlay } = useContext(OverlayContext);
-  const recaptchaRef = useRef(null);
   const db = firebase.firestore();
 
   const onClickSubmit = e => {
     e.preventDefault();
-    recaptchaRef.current.execute();
     if (email) {
       window.localStorage.setItem("confirmationEmail", email);
       const actionCodeSettings = {
@@ -123,15 +120,6 @@ const SignIn = () => {
       });
   };
 
-  const captcha = value => {
-    const checkRecaptcha = firebase.functions().httpsCallable("checkRecaptcha");
-    checkRecaptcha({ captchaResponse: value })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.log(err));
-  };
-
   return (
     <BodyWrapper>
       <H1>SIGN UP/SIGN IN</H1>
@@ -151,12 +139,6 @@ const SignIn = () => {
             autoComplete="email"
           />
         </div>
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-          onChange={captcha}
-          size="invisible"
-        />
         <div>
           <Button marginBottom onClick={onClickSubmit}>
             SIGN IN WITH EMAIL

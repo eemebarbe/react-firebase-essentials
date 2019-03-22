@@ -21,7 +21,6 @@ const Lander = props => {
         </li>
         <li>Toast popup system already set up for user feedback</li>
         <li>VERY few dependencies</li>
-        <li>Cloud function for processing recaptchas</li>
         <li>Basic security rules written for Firestore</li>
         <li>A pinch of mother's love</li>
       </P>
