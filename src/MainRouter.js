@@ -31,15 +31,16 @@ import { colors } from "./themes";
 const AppWrapper = styled.div`
   height: 100%;
   width: 100%;
-
+  overflow: hidden;
   position: absolute;
 `;
 
 const ScrollBox = styled.div`
   height: 100%;
   width: 100%;
+  overflow: hidden;
   position: absolute;
-  overflow: auto;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 `;
 
