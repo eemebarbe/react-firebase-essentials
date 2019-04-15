@@ -21,9 +21,9 @@ const Input = styled.input`
   &:focus {
     border-bottom: 1px solid ${props => props.theme.mainText};
   }
-  -webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: content-box; /* Firefox, other Gecko */
-  box-sizing: content-box; /* Opera/IE 8+ */
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
   @media (max-width: 480px) {
     width: 100%;
   }

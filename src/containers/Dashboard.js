@@ -15,19 +15,23 @@ const Dashboard = () => {
 
   const onClickSubmit = e => {
     e.preventDefault();
-    db.collection("users")
-      .doc(firebase.auth().currentUser.uid)
-      .set(
-        {
-          firstName: firstName,
-          lastName: lastName
-        },
-        { merge: true }
-      )
-      .then(() => {
-        setMoreInfoComplete(true);
-        sendMessage("Welcome!");
-      });
+    if (firstName && lastName) {
+      db.collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .set(
+          {
+            firstName: firstName,
+            lastName: lastName
+          },
+          { merge: true }
+        )
+        .then(() => {
+          setMoreInfoComplete(true);
+          sendMessage("Welcome!");
+        });
+    } else {
+      sendMessage("Please complete the form.");
+    }
   };
 
   const moreInfo = () => {

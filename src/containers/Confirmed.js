@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input, CenteredDiv, Message, P } from "../components";
+import {
+  Button,
+  Input,
+  CenteredDiv,
+  Message,
+  P,
+  BodyWrapper
+} from "../components";
 import firebase from "../firebase.js";
 import "firebase/firestore";
 
@@ -33,12 +40,15 @@ const Confirmed = () => {
               })
               .then(res => {
                 setComplete(true);
-                setTimeout(() => {
-                  window.close();
-                }, 5000);
               });
           }
           window.localStorage.removeItem("confirmationEmail");
+          return;
+        })
+        .then(result => {
+          setTimeout(() => {
+            window.close();
+          }, 5000);
         })
         .catch(error => {
           setFirstAttempt(false);
@@ -58,18 +68,16 @@ const Confirmed = () => {
     const secondAttemptText =
       "It appears you've incorrectly entered your email address. Please try again.";
     return (
-      <CenteredDiv vertical horizontal>
-        <div>
-          <P>{firstAttempt ? firstAttemptText : secondAttemptText}</P>
-          <Input
-            onChange={e => setEmail(e.target.value)}
-            name="email"
-            placeholder="Email address"
-            autoComplete="email"
-          />
-          <Button onClick={() => newDeviceCompletion(email)}>CONFIRM</Button>
-        </div>
-      </CenteredDiv>
+      <div>
+        <P>{firstAttempt ? firstAttemptText : secondAttemptText}</P>
+        <Input
+          onChange={e => setEmail(e.target.value)}
+          name="email"
+          placeholder="Email address"
+          autoComplete="email"
+        />
+        <Button onClick={() => newDeviceCompletion(email)}>CONFIRM</Button>
+      </div>
     );
   };
 
@@ -89,7 +97,7 @@ const Confirmed = () => {
     }
   };
 
-  return <>{confirmationCheck()}</>;
+  return <BodyWrapper>{confirmationCheck()}</BodyWrapper>;
 };
 
 export default Confirmed;

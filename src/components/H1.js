@@ -8,7 +8,7 @@ const P = styled.h1`
   margin: 0;
   font-family: "Kollektif-Bold";
   position: relative;
-  top: 2px;
+  top: 8px;
   @media (max-width: 480px) {
     font-size: 3.5rem;
   }

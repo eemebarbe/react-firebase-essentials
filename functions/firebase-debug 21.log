@@ -1,0 +1,13 @@
+[debug] [2019-03-19T13:55:18.899Z] ----------------------------------------------------------------------
+[debug] [2019-03-19T13:55:18.901Z] Command:       /Users/jeremybarbe/.nvm/versions/node/v10.0.0/bin/node /Users/jeremybarbe/.nvm/versions/node/v10.0.0/bin/firebase deploy --only functions
+[debug] [2019-03-19T13:55:18.902Z] CLI Version:   6.2.2
+[debug] [2019-03-19T13:55:18.902Z] Platform:      darwin
+[debug] [2019-03-19T13:55:18.902Z] Node Version:  v10.0.0
+[debug] [2019-03-19T13:55:18.910Z] Time:          Tue Mar 19 2019 21:55:18 GMT+0800 (CST)
+[debug] [2019-03-19T13:55:18.910Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-19T13:55:18.931Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-19T13:55:18.931Z] > authorizing via signed-in user
+[debug] [2019-03-19T13:55:18.931Z] [iam] checking project grippping for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2019-03-19T13:55:18.934Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/grippping:testIamPermissions  
+

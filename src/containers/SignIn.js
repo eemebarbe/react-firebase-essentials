@@ -46,7 +46,7 @@ const SignIn = () => {
 
   const onClickSubmit = e => {
     e.preventDefault();
-    if (email) {
+    if (email && /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
       window.localStorage.setItem("confirmationEmail", email);
       const actionCodeSettings = {
         url: "http://" + process.env.REACT_APP_BASE_URL + "/confirmed",

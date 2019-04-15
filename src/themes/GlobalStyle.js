@@ -4,6 +4,14 @@ import { metrics } from "../themes";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Kollektif';
+    src: url('${Kollektif}') format('truetype');
+  }
+  @font-face {
+    font-family: 'Kollektif-Bold';
+    src: url('${KollektifBold}') format('truetype');
+  }
   html {
     height: 100%;
     width: 100%;
@@ -11,14 +19,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${metrics.baseUnit}px;
     background-color: ${props => props.theme.background};
     color: ${props => props.theme.mainText};
-    @font-face {
-      font-family: 'Kollektif';
-      src: url('${Kollektif}') format('truetype');
-    }
-    @font-face {
-      font-family: 'Kollektif-Bold';
-      src: url('${KollektifBold}') format('truetype');
-    }
     @media (max-width: 480px){ 
       font-size: ${metrics.baseUnit}px;
     }
