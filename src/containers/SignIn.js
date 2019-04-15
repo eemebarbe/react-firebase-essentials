@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import {
   P,
   H1,
@@ -11,6 +11,7 @@ import {
 } from "../components";
 import { ToastContext } from "../contexts/toastContext";
 import { OverlayContext } from "../contexts/overlayContext";
+import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
 import "firebase/functions";
 import "firebase/firestore";
@@ -40,13 +41,17 @@ const SignIn = () => {
   const [facebookLoadState, setFacebookLoadState] = useState(false);
   const [googleLoadState, setGoogleLoadState] = useState(false);
   const [email, setEmail] = useState("");
+  const { userState, userDispatch } = useContext(UserContext);
   const { sendMessage } = useContext(ToastContext);
   const { setOverlay } = useContext(OverlayContext);
   const db = firebase.firestore();
 
   const onClickSubmit = e => {
     e.preventDefault();
-    if (email && /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
+    if (
+      email &&
+      /^(?!\.)[0-9a-zA-Z\.]+(?<!\.)@(?!\.)[0-9a-zA-Z\.]+(?<!\.)$/.test(email)
+    ) {
       window.localStorage.setItem("confirmationEmail", email);
       const actionCodeSettings = {
         url: "http://" + process.env.REACT_APP_BASE_URL + "/confirmed",
@@ -56,6 +61,12 @@ const SignIn = () => {
         .auth()
         .sendSignInLinkToEmail(email, actionCodeSettings)
         .then(() => {
+          userDispatch({
+            type: "email",
+            payload: {
+              email: email
+            }
+          });
           setOverlay("checkEmail");
         })
         .catch(error => {

@@ -13,6 +13,15 @@ const reducer = (state, action) => {
       return { ...action.payload };
     case "userId":
       return { ...state, userId: action.payload };
+    case "email":
+      return {
+        ...state,
+        userData: {
+          email: action.payload.email,
+          firstName: state.userData.firstName,
+          lastName: state.userData.lastName
+        }
+      };
     case "updateProfile":
       return {
         ...state,
@@ -26,7 +35,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         userData: {
-          email: action.payload.email,
+          email: state.userData.email,
           firstName: action.payload.firstName,
           lastName: action.payload.lastName
         }

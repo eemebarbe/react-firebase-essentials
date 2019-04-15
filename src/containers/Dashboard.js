@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [moreInfoComplete, setMoreInfoComplete] = useState(false);
-  const { userState } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext);
   const { sendMessage } = useContext(ToastContext);
   const db = firebase.firestore();
 
@@ -26,6 +26,13 @@ const Dashboard = () => {
           { merge: true }
         )
         .then(() => {
+          userDispatch({
+            type: "additionalInfo",
+            payload: {
+              firstName: firstName,
+              lastName: lastName
+            }
+          });
           setMoreInfoComplete(true);
           sendMessage("Welcome!");
         });
@@ -117,7 +124,7 @@ const Dashboard = () => {
       </BodyWrapper>
     );
   };
-  return moreInfoComplete || userState.userData.email
+  return moreInfoComplete || userState.userData.firstName
     ? dashboard()
     : moreInfo();
 };

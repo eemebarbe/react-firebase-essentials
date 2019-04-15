@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Button,
   Input,
@@ -7,10 +7,12 @@ import {
   P,
   BodyWrapper
 } from "../components";
+import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
 import "firebase/firestore";
 
 const Confirmed = () => {
+  const { userDispatch } = useContext(UserContext);
   const [newDevice, setNewDevice] = useState(false);
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [email, setEmail] = useState(null);
@@ -57,7 +59,16 @@ const Confirmed = () => {
   };
 
   const newDeviceCompletion = email => {
-    if (email) {
+    if (
+      email &&
+      /^(?!\.)[0-9a-zA-Z\.]+(?<!\.)@(?!\.)[0-9a-zA-Z\.]+(?<!\.)$/.test(email)
+    ) {
+      userDispatch({
+        type: "email",
+        payload: {
+          email: email
+        }
+      });
       finishConfirmation(email);
     }
   };
