@@ -11,7 +11,6 @@ import {
 } from "../components";
 import { ToastContext } from "../contexts/toastContext";
 import { OverlayContext } from "../contexts/overlayContext";
-import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
 import "firebase/functions";
 import "firebase/firestore";
@@ -41,7 +40,6 @@ const SignIn = () => {
   const [facebookLoadState, setFacebookLoadState] = useState(false);
   const [googleLoadState, setGoogleLoadState] = useState(false);
   const [email, setEmail] = useState("");
-  const { userState, userDispatch } = useContext(UserContext);
   const { sendMessage } = useContext(ToastContext);
   const { setOverlay } = useContext(OverlayContext);
   const db = firebase.firestore();
@@ -61,12 +59,6 @@ const SignIn = () => {
         .auth()
         .sendSignInLinkToEmail(email, actionCodeSettings)
         .then(() => {
-          userDispatch({
-            type: "email",
-            payload: {
-              email: email
-            }
-          });
           setOverlay("checkEmail");
         })
         .catch(error => {
