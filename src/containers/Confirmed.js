@@ -113,7 +113,12 @@ const Confirmed = () => {
     }
   };
 
-  return <BodyWrapper>{confirmationCheck()}</BodyWrapper>;
+  return (
+    <>
+      {confirmationCheck()}
+      <BodyWrapper />
+    </>
+  );
 };
 
 export default Confirmed;
