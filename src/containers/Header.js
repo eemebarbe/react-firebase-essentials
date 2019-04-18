@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { withRouter } from "react-router-dom";
+import { Overlay } from "../components";
+import MenuOverlay from "../containers/MenuOverlay";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { OverlayContext } from "../contexts/overlayContext";
 import { UserContext } from "../contexts/userContext";
 import styled from "styled-components";
 import { metrics } from "../themes";
@@ -94,19 +95,19 @@ const MenuButton = styled.div`
 `;
 
 const HeaderWithRouter = props => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const { userState } = useContext(UserContext);
   const userId = userState.userId;
-  const { page, setOverlay } = useContext(OverlayContext);
   const pushTo = path => {
     props.location.pathname !== path && props.history.push(path);
   };
 
   const toggleMenu = () => {
-    page ? setOverlay(null) : setOverlay("menu");
+    menuOpen ? setMenuOpen(false) : setMenuOpen(true);
   };
 
   const menuButtonState = () => {
-    return page ? null : (
+    return menuOpen ? null : (
       <CSSTransition key="hamburger" timeout={1000} classNames="grow">
         <Hamburger>
           <div>
@@ -119,20 +120,31 @@ const HeaderWithRouter = props => {
     );
   };
 
+  const menu = () => {
+    return (
+      <Overlay>
+        <MenuOverlay setMenuOpen={() => setMenuOpen(false)} />
+      </Overlay>
+    );
+  };
+
   return (
-    <Header {...props}>
-      <HeaderInner>
-        <CompanyLogo
-          onClick={() => (userId ? pushTo("/dashboard") : pushTo("/"))}>
-          REACT-FIREBASE-ESSENTIALS
-        </CompanyLogo>
-        {userId && (
-          <MenuButton onClick={toggleMenu}>
-            <TransitionGroup appear>{menuButtonState()}</TransitionGroup>
-          </MenuButton>
-        )}
-      </HeaderInner>
-    </Header>
+    <>
+      {menuOpen && menu()}
+      <Header {...props}>
+        <HeaderInner>
+          <CompanyLogo
+            onClick={() => (userId ? pushTo("/dashboard") : pushTo("/"))}>
+            REACT-FIREBASE-ESSENTIALS
+          </CompanyLogo>
+          {userId && (
+            <MenuButton onClick={toggleMenu}>
+              <TransitionGroup appear>{menuButtonState()}</TransitionGroup>
+            </MenuButton>
+          )}
+        </HeaderInner>
+      </Header>
+    </>
   );
 };
 

@@ -3,7 +3,6 @@ import firebase from "../firebase.js";
 import { withRouter } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { UserContext } from "../contexts/userContext";
-import { OverlayContext } from "../contexts/overlayContext";
 import { Switch } from "../components";
 import styled from "styled-components";
 import { metrics } from "../themes";
@@ -151,9 +150,9 @@ const MenuButton = styled.div`
 
 const MenuOverlay = props => {
   const { userState, userDispatch } = useContext(UserContext);
-  const { page, setOverlay } = useContext(OverlayContext);
   const signOut = () => {
-    setOverlay(null);
+    window.localStorage.removeItem("userData");
+    props.setMenuOpen();
     firebase.auth().signOut();
     userDispatch({
       type: "userId",
@@ -161,12 +160,8 @@ const MenuOverlay = props => {
     });
   };
 
-  const toggleMenu = () => {
-    page ? setOverlay(null) : setOverlay("menu");
-  };
-
   const pushTo = path => {
-    setOverlay(null);
+    props.setMenuOpen();
     !samePath(path) && props.history.push(path);
   };
 
@@ -188,7 +183,7 @@ const MenuOverlay = props => {
             checked={userState.styleMode === "dark"}
             onChange={toggleStyles}
           />
-          <MenuButton onClick={toggleMenu}>
+          <MenuButton onClick={() => props.setMenuOpen()}>
             <TransitionGroup appear>
               {" "}
               <CSSTransition key="close" timeout={1000} classNames="grow">

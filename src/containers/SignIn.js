@@ -7,10 +7,13 @@ import {
   GoogleAuth,
   Input,
   Form,
+  Overlay,
+  CenteredDiv,
+  Message,
   BodyWrapper
 } from "../components";
 import { ToastContext } from "../contexts/toastContext";
-import { OverlayContext } from "../contexts/overlayContext";
+import { UserContext } from "../contexts/userContext";
 import firebase from "../firebase.js";
 import "firebase/functions";
 import "firebase/firestore";
@@ -41,7 +44,7 @@ const SignIn = () => {
   const [googleLoadState, setGoogleLoadState] = useState(false);
   const [email, setEmail] = useState("");
   const { sendMessage } = useContext(ToastContext);
-  const { setOverlay } = useContext(OverlayContext);
+  const { userState, userDispatch } = useContext(UserContext);
   const db = firebase.firestore();
 
   const onClickSubmit = e => {
@@ -59,7 +62,12 @@ const SignIn = () => {
         .auth()
         .sendSignInLinkToEmail(email, actionCodeSettings)
         .then(() => {
-          setOverlay("checkEmail");
+          userDispatch({
+            type: "verifying",
+            payload: {
+              verifying: true
+            }
+          });
         })
         .catch(error => {
           sendMessage(error.message);
@@ -123,41 +131,56 @@ const SignIn = () => {
       });
   };
 
+  const overlay = () => {
+    return (
+      <Overlay>
+        <CenteredDiv vertical horizontal>
+          <Message>
+            Please open the email we sent you, so we can verify your account!
+          </Message>
+        </CenteredDiv>
+      </Overlay>
+    );
+  };
+
   return (
-    <BodyWrapper>
-      <H1>SIGN UP/SIGN IN</H1>
-      <P>
-        Signing in and signing up are the same process, and no password is asked
-        for...hopefully you don't mind! Users typically don't log out of
-        applications anyway, and I believe that verification by email feels more
-        secure in the era of so many data breaches. I hope to have both options
-        built in the future.
-      </P>
-      <Form>
-        <div>
-          <Input
-            onChange={e => setEmail(e.target.value)}
-            name="email"
-            placeholder="Email address"
-            autoComplete="email"
-          />
-        </div>
-        <div>
-          <Button marginBottom onClick={onClickSubmit}>
-            SIGN IN WITH EMAIL
-          </Button>
-        </div>
-      </Form>
-      <AuthSeparator>
-        <span>OR</span>
-      </AuthSeparator>
-      <FacebookAuth
-        marginBottom
-        loading={facebookLoadState}
-        onClick={authWithFacebook}
-      />
-      <GoogleAuth loading={googleLoadState} onClick={authWithGoogle} />
-    </BodyWrapper>
+    <>
+      {userState.verifying && overlay()}
+      <BodyWrapper>
+        <H1>SIGN UP/SIGN IN</H1>
+        <P>
+          Signing in and signing up are the same process, and no password is
+          asked for...hopefully you don't mind! Users typically don't log out of
+          applications anyway, and I believe that verification by email feels
+          more secure in the era of so many data breaches. I hope to have both
+          options built in the future.
+        </P>
+        <Form>
+          <div>
+            <Input
+              onChange={e => setEmail(e.target.value)}
+              name="email"
+              placeholder="Email address"
+              autoComplete="email"
+            />
+          </div>
+          <div>
+            <Button marginBottom onClick={onClickSubmit}>
+              SIGN IN WITH EMAIL
+            </Button>
+          </div>
+        </Form>
+        <AuthSeparator>
+          <span>OR</span>
+        </AuthSeparator>
+        <FacebookAuth
+          marginBottom
+          loading={facebookLoadState}
+          onClick={authWithFacebook}
+        />
+        <GoogleAuth loading={googleLoadState} onClick={authWithGoogle} />
+      </BodyWrapper>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import {
   CenteredDiv,
   Message,
   P,
+  Overlay,
   BodyWrapper
 } from "../components";
 import { UserContext } from "../contexts/userContext";
@@ -92,19 +93,23 @@ const Confirmed = () => {
     );
   };
 
+  const confirmed = () => {
+    return (
+      <CenteredDiv vertical horizontal>
+        <Message>You are now confirmed! Navigate back to the app!</Message>
+      </CenteredDiv>
+    );
+  };
+
   const confirmationCheck = () => {
     if (
       newDevice === true &&
       complete !== true &&
       !firebase.auth().currentUser
     ) {
-      return newDeviceCheck();
+      return <Overlay>{newDeviceCheck()}</Overlay>;
     } else {
-      return (
-        <CenteredDiv vertical horizontal>
-          <Message>You are now confirmed! Navigate back to the app!</Message>
-        </CenteredDiv>
-      );
+      return <Overlay>{confirmed()}</Overlay>;
     }
   };
 

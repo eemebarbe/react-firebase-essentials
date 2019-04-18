@@ -13,15 +13,7 @@ import Confirmed from "./containers/Confirmed";
 import Profile from "./containers/Profile";
 import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
-import { OverlayContext } from "./contexts/overlayContext";
-import {
-  CenteredDiv,
-  H1,
-  Toast,
-  Spinner,
-  MobileMenuBar,
-  Overlay
-} from "./components";
+import { CenteredDiv, H1, Toast, Spinner, MobileMenuBar } from "./components";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./themes/GlobalStyle";
 import firebase from "./firebase.js";
@@ -47,7 +39,6 @@ const ScrollBox = styled.div`
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
   const { userState, userDispatch } = useContext(UserContext);
-  const { page, setOverlay } = useContext(OverlayContext);
   const userId = userState.userId;
   const scrollRef = useRef();
   const db = firebase.firestore();
@@ -56,17 +47,29 @@ const MainRouter = () => {
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const uid = firebase.auth().currentUser.uid;
-        db.collection("users")
-          .doc(uid)
-          .get()
-          .then(res => {
-            setOverlay(null);
-            if (res.data() && res.data().firstName) {
-              userDispatch({ type: "additionalInfo", payload: res.data() });
-            }
-            userDispatch({ type: "userId", payload: uid });
-            setInitComplete(true);
+        let persistedUser = window.localStorage.getItem("userData");
+        if (!persistedUser) {
+          db.collection("users")
+            .doc(uid)
+            .get()
+            .then(res => {
+              if (res.data() && res.data().firstName) {
+                userDispatch(
+                  { type: "additionalInfo", payload: res.data() },
+                  { type: "verifying", payload: false }
+                );
+              }
+              userDispatch({ type: "userId", payload: uid });
+              setInitComplete(true);
+            });
+        } else {
+          userDispatch({
+            type: "persistedUser",
+            payload: JSON.parse(persistedUser)
           });
+          userDispatch({ type: "userId", payload: uid });
+          setInitComplete(true);
+        }
       } else {
         userDispatch({
           type: "signOut"
@@ -112,9 +115,7 @@ const MainRouter = () => {
 
   const nestedSwitch = () => {
     return (
-      <AppWrapper>
-        <Toast />
-        {page && <Overlay />}
+      <>
         {userId && <MobileMenuBar />}
         <Header />
         <ScrollBox ref={scrollRef}>
@@ -150,17 +151,20 @@ const MainRouter = () => {
             )}
           />
         </ScrollBox>
-      </AppWrapper>
+      </>
     );
   };
 
   const router = () => {
     return (
       <Router>
-        <Switch>
-          <Route path={"/confirmed"} render={() => <Confirmed />} />
-          <Route path="*" render={nestedSwitch} />
-        </Switch>
+        <>
+          <Toast />
+          <Switch>
+            <Route path={"/confirmed"} render={() => <Confirmed />} />
+            <Route path="*" render={nestedSwitch} />
+          </Switch>
+        </>
       </Router>
     );
   };
@@ -184,7 +188,7 @@ const MainRouter = () => {
       }>
       <>
         <GlobalStyle />
-        {renderApp()}
+        <AppWrapper>{renderApp()}</AppWrapper>
       </>
     </ThemeProvider>
   );
