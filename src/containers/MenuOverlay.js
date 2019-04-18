@@ -153,7 +153,6 @@ const MenuOverlay = props => {
   const { userState, userDispatch } = useContext(UserContext);
   const { page, setOverlay } = useContext(OverlayContext);
   const signOut = () => {
-    window.localStorage.removeItem("userData");
     setOverlay(null);
     firebase.auth().signOut();
     userDispatch({
