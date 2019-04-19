@@ -26,3 +26,4 @@ yarn-error.log*
 
 #firebase env
 /functions/.env.yaml
+/functions/node_modules

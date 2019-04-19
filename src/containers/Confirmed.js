@@ -80,7 +80,7 @@ const Confirmed = () => {
     const secondAttemptText =
       "It appears you've incorrectly entered your email address. Please try again.";
     return (
-      <div>
+      <BodyWrapper>
         <P>{firstAttempt ? firstAttemptText : secondAttemptText}</P>
         <Input
           onChange={e => setEmail(e.target.value)}
@@ -89,7 +89,7 @@ const Confirmed = () => {
           autoComplete="email"
         />
         <Button onClick={() => newDeviceCompletion(email)}>CONFIRM</Button>
-      </div>
+      </BodyWrapper>
     );
   };
 
@@ -113,12 +113,7 @@ const Confirmed = () => {
     }
   };
 
-  return (
-    <>
-      {confirmationCheck()}
-      <BodyWrapper />
-    </>
-  );
+  return confirmationCheck();
 };
 
 export default Confirmed;
