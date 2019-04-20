@@ -150,8 +150,9 @@ const MenuButton = styled.div`
 
 const MenuOverlay = props => {
   const { userState, userDispatch } = useContext(UserContext);
+  const styleMode = window.localStorage.getItem("styleMode");
+
   const signOut = () => {
-    window.localStorage.removeItem("userData");
     props.setMenuOpen();
     firebase.auth().signOut();
     userDispatch({
@@ -170,19 +171,19 @@ const MenuOverlay = props => {
   };
 
   const toggleStyles = () => {
+    const newStyle = styleMode === "main" ? "dark" : "main";
     userDispatch({
       type: "styleMode",
-      payload: userState.styleMode === "main" ? "dark" : "main"
+      payload: newStyle
     });
+    window.localStorage.setItem("styleMode", newStyle);
   };
+
   return (
     <>
       <Header>
         <HeaderInner>
-          <Switch
-            checked={userState.styleMode === "dark"}
-            onChange={toggleStyles}
-          />
+          <Switch checked={styleMode === "dark"} onChange={toggleStyles} />
           <MenuButton onClick={() => props.setMenuOpen()}>
             <TransitionGroup appear>
               {" "}

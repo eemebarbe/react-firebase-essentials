@@ -6,16 +6,16 @@ const Background = styled.div`
   z-index: 10;
   height: 100%;
   width: 100%;
-  background-color: ${props => props.theme.overlayBackground};
-  &::after {
+  background-color: transparent;
+  &::before {
     content: "";
     position: absolute;
-    left: calc(50% - 75px);
-    top: calc(50% - 75px);
+    left: calc(50% - 400px);
+    top: calc(50% - 400px);
     border-radius: 100%;
-    width: 150px;
-    height: 150px;
-    box-shadow: 0px 0px 0px 2000px red;
+    width: 800px;
+    height: 800px;
+    box-shadow: ${props => "0px 0px 0px 2000px darkblue"}};
   }
 `;
 

@@ -47,29 +47,19 @@ const MainRouter = () => {
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const uid = firebase.auth().currentUser.uid;
-        let persistedUser = window.localStorage.getItem("userData");
-        if (!persistedUser) {
-          db.collection("users")
-            .doc(uid)
-            .get()
-            .then(res => {
-              if (res.data() && res.data().firstName) {
-                userDispatch(
-                  { type: "additionalInfo", payload: res.data() },
-                  { type: "verifying", payload: false }
-                );
-              }
-              userDispatch({ type: "userId", payload: uid });
-              setInitComplete(true);
-            });
-        } else {
-          userDispatch({
-            type: "persistedUser",
-            payload: JSON.parse(persistedUser)
+        db.collection("users")
+          .doc(uid)
+          .get()
+          .then(res => {
+            if (res.data() && res.data().firstName) {
+              userDispatch(
+                { type: "additionalInfo", payload: res.data() },
+                { type: "verifying", payload: false }
+              );
+            }
+            userDispatch({ type: "userId", payload: uid });
+            setInitComplete(true);
           });
-          userDispatch({ type: "userId", payload: uid });
-          setInitComplete(true);
-        }
       } else {
         userDispatch({
           type: "signOut"
@@ -180,12 +170,10 @@ const MainRouter = () => {
     return app;
   };
 
-  const userData = JSON.parse(window.localStorage.getItem("userData"));
+  const styleMode = window.localStorage.getItem("styleMode");
   return (
     <ThemeProvider
-      theme={
-        userData && userData.styleMode === "dark" ? colors.dark : colors.main
-      }>
+      theme={styleMode && styleMode === "dark" ? colors.dark : colors.main}>
       <>
         <GlobalStyle />
         <AppWrapper>{renderApp()}</AppWrapper>

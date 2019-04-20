@@ -1,9 +1,10 @@
 import React, { useReducer, createContext } from "react";
+const styleMode = window.localStorage.getItem("styleMode");
 
 const initialState = {
   userId: null,
   userData: { email: null, firstName: null, lastName: null },
-  styleMode: "main",
+  styleMode: styleMode ? styleMode : "main",
   verifying: false
 };
 export const UserContext = createContext(initialState);
@@ -54,9 +55,6 @@ const reducer = (state, action) => {
 
 export const UserProvider = props => {
   const [userState, userDispatch] = useReducer(reducer, initialState);
-  if (userState.userId) {
-    window.localStorage.setItem("userData", JSON.stringify(userState));
-  }
   return (
     <UserContext.Provider value={{ userState, userDispatch }}>
       {props.children}
