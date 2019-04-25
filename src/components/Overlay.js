@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
 
@@ -16,7 +16,7 @@ const Background = styled.div`
     border-radius: 100%;
     width: 0px;
     height: 0px;
-    box-shadow: ${props => "0px 0px 0px 2000px black"};
+    box-shadow: 0px 0px 0px 2000px ${props => props.theme.overlayBackground};
   }
   &.looneyTunes-appear:before,
   &.looneyTunes-enter:before {
@@ -53,10 +53,15 @@ const Background = styled.div`
 `;
 
 const Overlay = props => {
+  const [showChildren, setShowChildren] = useState(false);
+
   return (
     <TransitionGroup appear>
-      <CSSTransition timeout={2000} classNames="looneyTunes">
-        <Background>{props.children}</Background>
+      <CSSTransition
+        timeout={400}
+        classNames="looneyTunes"
+        onEntered={() => setShowChildren(true)}>
+        <Background>{showChildren && props.children}</Background>
       </CSSTransition>
     </TransitionGroup>
   );
