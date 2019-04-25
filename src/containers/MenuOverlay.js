@@ -149,7 +149,7 @@ const MenuButton = styled.div`
 `;
 
 const MenuOverlay = props => {
-  const { userState, userDispatch } = useContext(UserContext);
+  const { userDispatch } = useContext(UserContext);
   const styleMode = window.localStorage.getItem("styleMode");
 
   const signOut = () => {
@@ -186,7 +186,6 @@ const MenuOverlay = props => {
           <Switch checked={styleMode === "dark"} onChange={toggleStyles} />
           <MenuButton onClick={() => props.setMenuOpen()}>
             <TransitionGroup appear>
-              {" "}
               <CSSTransition key="close" timeout={1000} classNames="grow">
                 <Close />
               </CSSTransition>
