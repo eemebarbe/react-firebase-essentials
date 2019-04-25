@@ -7,6 +7,5 @@ const config = {
   databaseURL: process.env.REACT_APP_DATABASE_URL,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID
 };
-const app = firebase.initializeApp(config);
-//app.functions().useFunctionsEmulator("http://localhost:5000");
-export default app;
+firebase.initializeApp(config);
+export default firebase;
