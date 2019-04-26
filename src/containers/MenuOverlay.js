@@ -16,6 +16,8 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
+  z-index: 30;
+  position: relative;
   width: 100%;
   height: ${metrics.headerHeight - 1}px;
   display: flex;
@@ -62,24 +64,11 @@ const MenuItem = styled.button`
     opacity: 0;
     z-index: 1;
     transform: translateY(24px);
-    -webkit-transform: translateY(24px);
-    -moz-transform: translateY(24px);
-    -ms-transform: translateY(24px);
-    -o-transform: translateY(24px);
   }
   &.fade-appear-active,
   &.fade-enter.fade-enter-active {
     opacity: 1;
     transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
-    -webkit-transition: opacity 400ms linear 400ms,
-      transform 400ms ease-out 400ms;
-    -moz-transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
-    -o-transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
     transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
     transition-delay: ${props => props.child * 0.2}s;
   }
@@ -102,17 +91,9 @@ const Close = styled.div`
   }
   &:before {
     transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
   }
   &:after {
     transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
   }
   &.grow-appear:before,
   &.grow-enter:before,
@@ -126,10 +107,6 @@ const Close = styled.div`
   &.grow-appear-active:after,
   &.grow-enter.grow-enter-active:after {
     height: ${metrics.baseUnit * 3 - 2}px;
-    transition: height 400ms ease-out;
-    -webkit-transition: height 400ms ease-out;
-    -moz-transition: height 400ms ease-out;
-    -o-transition: height 400ms ease-out;
     transition: height 400ms ease-out;
   }
   &.grow-exit:before,

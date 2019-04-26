@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smooth: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
     width: 100%;

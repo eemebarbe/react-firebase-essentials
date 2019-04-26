@@ -20,7 +20,6 @@ const Switched = styled.label`
     right: 0;
     bottom: 0;
     background-color: ${props => props.theme.overlayDetail};
-    -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: ${metrics.baseUnit * 3}px;
     &:before {
@@ -31,7 +30,6 @@ const Switched = styled.label`
       left: ${metrics.baseUnit / 2}px;
       bottom: ${metrics.baseUnit / 2}px;
       background-color: white;
-      -webkit-transition: 0.4s;
       transition: 0.4s;
       border-radius: 50%;
     }
@@ -41,8 +39,6 @@ const Switched = styled.label`
   }
 
   input:checked + span:before {
-    -webkit-transform: translateX(${metrics.baseUnit * 3}px);
-    -ms-transform: translateX(${metrics.baseUnit * 3}px);
     transform: translateX(${metrics.baseUnit * 3}px);
   }
 `;
