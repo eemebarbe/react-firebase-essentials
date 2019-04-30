@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -27,20 +27,10 @@ const AppWrapper = styled.div`
   position: absolute;
 `;
 
-const ScrollBox = styled.div`
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: absolute;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-`;
-
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
   const { userState, userDispatch } = useContext(UserContext);
   const userId = userState.userId;
-  const scrollRef = useRef();
   const db = firebase.firestore();
 
   useEffect(() => {
@@ -68,12 +58,6 @@ const MainRouter = () => {
       }
     });
   }, []);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = 0;
-    }
-  });
 
   const noMatch = () => {
     return <H1>404</H1>;
@@ -108,39 +92,37 @@ const MainRouter = () => {
       <>
         {userId && <MobileMenuBar />}
         <Header />
-        <ScrollBox ref={scrollRef}>
-          <Route
-            render={({ location }) => (
-              <TransitionGroup appear>
-                <CSSTransition
-                  key={location.key}
-                  timeout={1000}
-                  classNames="fade">
-                  <Switch location={location}>
-                    <Route
-                      exact
-                      path={"/"}
-                      render={() => reRouteIfAuthenticated(<Lander />)}
-                    />
-                    <Route
-                      path={"/signin"}
-                      render={() => reRouteIfAuthenticated(<SignIn />)}
-                    />
-                    <Route
-                      path={"/dashboard"}
-                      render={() => routeWithAuth(<Dashboard />)}
-                    />
-                    <Route
-                      path={"/profile"}
-                      render={() => routeWithAuth(<Profile />)}
-                    />
-                    <Route path="*" render={noMatch} />
-                  </Switch>
-                </CSSTransition>
-              </TransitionGroup>
-            )}
-          />
-        </ScrollBox>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup appear>
+              <CSSTransition
+                key={location.key}
+                timeout={1000}
+                classNames="fade">
+                <Switch location={location}>
+                  <Route
+                    exact
+                    path={"/"}
+                    render={() => reRouteIfAuthenticated(<Lander />)}
+                  />
+                  <Route
+                    path={"/signin"}
+                    render={() => reRouteIfAuthenticated(<SignIn />)}
+                  />
+                  <Route
+                    path={"/dashboard"}
+                    render={() => routeWithAuth(<Dashboard />)}
+                  />
+                  <Route
+                    path={"/profile"}
+                    render={() => routeWithAuth(<Profile />)}
+                  />
+                  <Route path="*" render={noMatch} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </>
     );
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { metrics } from "../themes";
 
@@ -7,7 +7,10 @@ const BodyOuter = styled.div`
   justify-content: center;
   position: absolute;
   width: 100%;
+  height: 100%;
   overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   &.fade-appear,
   &.fade-enter {
     opacity: 0;
@@ -36,7 +39,6 @@ const BodyWrapper = styled.div`
   padding: 0px ${metrics.bodyPadding}px;
   padding-top: ${metrics.headerHeight}px;
   width: ${metrics.bodyWidth}px;
-  height: 100%;
   @media (max-width: 480px) {
     width: 100%;
     padding-top: 0px;
@@ -51,8 +53,16 @@ const BodyInner = styled.div`
 `;
 
 const Wrapper = props => {
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  });
+
   return (
-    <BodyOuter>
+    <BodyOuter ref={scrollRef}>
       <BodyWrapper>
         <BodyInner>{props.children}</BodyInner>
       </BodyWrapper>
