@@ -55,7 +55,7 @@ const MenuItem = styled.button`
   padding: 0;
   font-size: 4rem;
   line-height: 1.5;
-  top: 2px;
+  top: 8px;
   cursor: pointer;
   outline: 0;
   font-family: "Kollektif-Bold";

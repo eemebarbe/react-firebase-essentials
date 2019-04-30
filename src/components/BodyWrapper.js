@@ -56,10 +56,11 @@ const Wrapper = props => {
   const scrollRef = useRef();
 
   useEffect(() => {
+    console.log(scrollRef.current.scrollTop);
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
     }
-  });
+  }, []);
 
   return (
     <BodyOuter ref={scrollRef}>

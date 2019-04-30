@@ -107,13 +107,13 @@ const Confirmed = () => {
       complete !== true &&
       !firebase.auth().currentUser
     ) {
-      return <Overlay>{newDeviceCheck()}</Overlay>;
+      return newDeviceCheck();
     } else {
-      return <Overlay>{confirmed()}</Overlay>;
+      return confirmed();
     }
   };
 
-  return confirmationCheck();
+  return <Overlay visible={true}>{confirmationCheck()}</Overlay>;
 };
 
 export default Confirmed;

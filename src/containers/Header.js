@@ -76,12 +76,6 @@ const Hamburger = styled.div`
     width: ${metrics.headerHeight / 3}px;
     transition: width 400ms ease-out;
   }
-  &.grow-exit {
-    width: ${metrics.headerHeight / 3}px;
-  }
-  &.grow-exit.grow-exit-active {
-    width: 0px;
-  }
 `;
 
 const MenuButton = styled.div`
@@ -118,7 +112,7 @@ const HeaderWithRouter = props => {
 
   const menu = () => {
     return (
-      <Overlay>
+      <Overlay visible={menuOpen}>
         <MenuOverlay setMenuOpen={() => setMenuOpen(false)} />
       </Overlay>
     );
