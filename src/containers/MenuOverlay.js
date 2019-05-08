@@ -69,7 +69,10 @@ const MenuItem = styled.button`
   &.fade-enter.fade-enter-active {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
+    transition: opacity ${metrics.animationLength}ms linear
+        ${metrics.animationLength}ms,
+      transform ${metrics.animationLength}ms ease-out
+        ${metrics.animationLength}ms;
     transition-delay: ${props => props.child * 0.2}s;
   }
 `;
@@ -107,7 +110,7 @@ const Close = styled.div`
   &.grow-appear-active:after,
   &.grow-enter.grow-enter-active:after {
     height: ${metrics.baseUnit * 3 - 2}px;
-    transition: height 400ms ease-out;
+    transition: height ${metrics.animationLength}ms ease-out;
   }
   &.grow-exit:before,
   &.grow-exit:after {

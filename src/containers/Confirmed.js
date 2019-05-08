@@ -60,10 +60,7 @@ const Confirmed = () => {
   };
 
   const newDeviceCompletion = email => {
-    if (
-      email &&
-      /^(?!\.)[0-9a-zA-Z\.]+(?<!\.)@(?!\.)[0-9a-zA-Z\.]+(?<!\.)$/.test(email)
-    ) {
+    if (email && email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
       userDispatch({
         type: "email",
         payload: {

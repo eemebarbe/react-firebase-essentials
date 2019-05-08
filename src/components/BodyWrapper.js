@@ -21,9 +21,11 @@ const BodyOuter = styled.div`
   &.fade-enter.fade-enter-active {
     opacity: 1;
     transform: translateX(0px);
-    transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
+    transition: opacity ${metrics.animationLength}ms linear
+        ${metrics.animationLength}ms,
+      transform ${metrics.animationLength}ms ease-out
+        ${metrics.animationLength}ms;
   }
-
   &.fade-exit {
     opacity: 1;
     transform: translateX(0px);
@@ -31,7 +33,8 @@ const BodyOuter = styled.div`
   &.fade-exit.fade-exit-active {
     opacity: 0;
     transform: translateX(-24px);
-    transition: opacity 400ms linear, transform 400ms ease-in;
+    transition: opacity ${metrics.animationLength}ms linear,
+      transform ${metrics.animationLength}ms ease-in;
   }
 `;
 
@@ -56,7 +59,6 @@ const Wrapper = props => {
   const scrollRef = useRef();
 
   useEffect(() => {
-    console.log(scrollRef.current.scrollTop);
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
     }

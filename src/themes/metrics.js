@@ -12,7 +12,8 @@ const metrics = {
   },
   get headerHeight() {
     return this.baseUnit * 6;
-  }
+  },
+  animationLength: 400
 };
 
 export default metrics;

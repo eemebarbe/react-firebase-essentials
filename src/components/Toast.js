@@ -7,11 +7,11 @@ import Transition from "react-transition-group/Transition";
 const transitionStyles = {
   entered: {
     transform: `translateY(-${metrics.baseUnit * 9}px)`,
-    transition: `transform 400ms ease-in-out`
+    transition: `transform ${metrics.animationLength}ms ease-in-out`
   },
   exiting: {
     transform: "translateY(0px)",
-    transition: `transform 400ms ease-in-out`
+    transition: `transform ${metrics.animationLength}ms ease-in-out`
   },
   exited: {
     transform: "translateY(0px)"
@@ -81,7 +81,7 @@ const ToastWithContext = props => {
   };
 
   return (
-    <Transition in={show} timeout={400} onExited={onRest}>
+    <Transition in={show} timeout={metrics.animationLength} onExited={onRest}>
       {motionState => (
         <ToastContainer
           {...props}

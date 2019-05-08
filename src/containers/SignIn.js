@@ -49,10 +49,7 @@ const SignIn = () => {
 
   const onClickSubmit = e => {
     e.preventDefault();
-    if (
-      email &&
-      /^(?!\.)[0-9a-zA-Z\.]+(?<!\.)@(?!\.)[0-9a-zA-Z\.]+(?<!\.)$/.test(email)
-    ) {
+    if (email && email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
       window.localStorage.setItem("confirmationEmail", email);
       const actionCodeSettings = {
         url: "http://" + process.env.REACT_APP_BASE_URL + "/confirmed",
@@ -133,7 +130,7 @@ const SignIn = () => {
 
   const overlay = () => {
     return (
-      <Overlay>
+      <Overlay visible={userState.verifying}>
         <CenteredDiv vertical horizontal>
           <Message>
             Please open the email we sent you, so we can verify your account!
@@ -145,7 +142,7 @@ const SignIn = () => {
 
   return (
     <>
-      {userState.verifying && overlay()}
+      {overlay()}
       <BodyWrapper>
         <H1>SIGN UP/SIGN IN</H1>
         <P>

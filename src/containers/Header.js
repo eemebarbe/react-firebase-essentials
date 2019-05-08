@@ -74,7 +74,7 @@ const Hamburger = styled.div`
   &.grow-appear-active,
   &.grow-enter.grow-enter-active {
     width: ${metrics.headerHeight / 3}px;
-    transition: width 400ms ease-out;
+    transition: width ${metrics.animationLength}ms ease-out;
   }
 `;
 
@@ -120,7 +120,7 @@ const HeaderWithRouter = props => {
 
   return (
     <>
-      {menuOpen && menu()}
+      {menu()}
       <Header {...props}>
         <HeaderInner>
           <CompanyLogo
