@@ -75,10 +75,6 @@ const Hamburger = styled.div`
   &.grow-enter.grow-enter-active {
     width: ${metrics.headerHeight / 3}px;
     transition: width 400ms ease-out;
-    -webkit-transition: width 400ms ease-out;
-    -moz-transition: width 400ms ease-out;
-    -o-transition: width 400ms ease-out;
-    transition: width 400ms ease-out;
   }
   &.grow-exit {
     width: ${metrics.headerHeight / 3}px;
