@@ -2,14 +2,8 @@
 
 **Live demo at: (https://react-firebase-essentials.com)**
 
-This thing ain't ready yet. But when it is, oh boy:
+This is a full stack application, indended to provide the basic features that any online product or service may need, so that you can get straight to building out the important parts of your MVP without getting bogged down with the boring tasks that you've already done for a million apps before.
 
-- All components are built with Hooks
-- Utilizing the Context API for shared data
-- Styled-Components all day, baybeeee
-- Authentication UI flows already built out for email, Facebook and Google
-- Toast popup system already set up for user feedback
-- Push API for extra important user alerts
-- VERY few dependencies
-- Basic security rules written for Firestore
-- A pinch of mother's love
+Authentication UI flows have already been built out, it's as simple as plugging in your API keys. Basic security rules have already been written for the database. It's built entirely with React Hooks and the new Context API, utilizing Styled-Components, and requires very few dependencies. Built on top of Create-React-App.
+
+To get started, make sure you have both Create React App and the Firebase CLI installed. Plug your Firebase configuration details into `.env.production.local`. Make sure you `npm run build` before deploying to Firebase.
