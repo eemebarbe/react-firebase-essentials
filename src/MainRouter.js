@@ -18,13 +18,22 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./themes/GlobalStyle";
 import firebase from "./firebase.js";
 import "firebase/firestore";
-import { colors, metrics } from "./themes";
+import { colors } from "./themes";
 
 const AppWrapper = styled.div`
   height: 100%;
   width: 100%;
   overflow: hidden;
   position: absolute;
+`;
+
+const ScrollBox = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const MainRouter = () => {
@@ -97,7 +106,7 @@ const MainRouter = () => {
             <TransitionGroup appear>
               <CSSTransition
                 key={location.key}
-                timeout={metrics.animationLength * 2}
+                timeout={1000}
                 classNames="fade">
                 <Switch location={location}>
                   <Route

@@ -74,7 +74,17 @@ const Hamburger = styled.div`
   &.grow-appear-active,
   &.grow-enter.grow-enter-active {
     width: ${metrics.headerHeight / 3}px;
-    transition: width ${metrics.animationLength}ms ease-out;
+    transition: width 400ms ease-out;
+    -webkit-transition: width 400ms ease-out;
+    -moz-transition: width 400ms ease-out;
+    -o-transition: width 400ms ease-out;
+    transition: width 400ms ease-out;
+  }
+  &.grow-exit {
+    width: ${metrics.headerHeight / 3}px;
+  }
+  &.grow-exit.grow-exit-active {
+    width: 0px;
   }
 `;
 
@@ -112,7 +122,7 @@ const HeaderWithRouter = props => {
 
   const menu = () => {
     return (
-      <Overlay visible={menuOpen}>
+      <Overlay>
         <MenuOverlay setMenuOpen={() => setMenuOpen(false)} />
       </Overlay>
     );
@@ -120,7 +130,7 @@ const HeaderWithRouter = props => {
 
   return (
     <>
-      {menu()}
+      {menuOpen && menu()}
       <Header {...props}>
         <HeaderInner>
           <CompanyLogo
