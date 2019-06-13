@@ -1,38 +1,27 @@
 const functions = require("firebase-functions");
-const axios = require("axios");
+const admin = require("firebase-admin");
+admin.initializeApp(functions.config().firebase);
 
-exports.checkRecaptcha = functions.https.onCall((data, context) => {
-  const recaptchaResult = () => {
-    return axios({
-      method: "post",
-      url: "https://recaptcha.google.com/recaptcha/api/siteverify",
-      params: {
-        secret: functions.config().recaptcha.secret,
-        response: data.captchaResponse
-      }
-    })
-      .then(result => {
-        return result.data.success;
-      })
-      .catch(reason => {
-        return { success: false };
-      });
+exports.sendPushNotification = functions.https.onCall((data, context) => {
+  var message = {
+    notification: {
+      title: "I'm a push notifiction, Morty!",
+      body: "IT'S PUSH NOTIFICATION RICK!!!"
+    },
+    token: data.token
   };
-  if (recaptchaResult()) {
-    const actionCodeSettings = {
-      url: "http://" + functions.config().app.base_url + "/confirmed",
-      handleCodeInApp: true
-    };
-    functions
-      .auth()
-      .sendSignInLinkToEmail(data.email, actionCodeSettings)
-      .then(res => {
-        return { success: true };
-      })
-      .catch(error => {
-        return { success: false };
-      });
-  } else {
-    return { success: false };
-  }
+
+  // Send a message to the device corresponding to the provided
+  // registration token.
+  admin
+    .messaging()
+    .send(message)
+    .then(response => {
+      console.log("Successfully sent message:", response);
+      return;
+    })
+    .catch(error => {
+      console.log("Error sending message:", error);
+      return;
+    });
 });
