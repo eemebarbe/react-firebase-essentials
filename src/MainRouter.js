@@ -43,6 +43,14 @@ const MainRouter = () => {
   const db = firebase.firestore();
 
   useEffect(() => {
+    var sendPushNotification = firebase
+      .functions()
+      .httpsCallable("sendPushNotification");
+    sendPushNotification({
+      token:
+        "exZb-Z-lAKk:APA91bEJX29FlTzgvJc7V4QGW_4HxvLwCYAlJIr_702o6Qgs7Xhf-ZR7z3ikENgbrWRA-SEIl-FENSz1i4go8VMk7BQR7sh7HKF82l_ZdoAYSYBy1n4B01ZMf2tTxpmHOCR-gtDO-R5P"
+    }).then(res => console.log(res));
+
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const uid = firebase.auth().currentUser.uid;

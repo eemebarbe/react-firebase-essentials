@@ -4,13 +4,16 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /users/{uid} {
-      allow write: if request.resource.data.keys().hasOnly(['email']) || request.resource.data.keys().hasOnly(['email', 'firstName', 'lastName'])
-      && request.resource.data.firstName is string
+      allow write: if request.resource.data.keys().hasOnly(['email']) || 
+      request.resource.data.firstName is string
       && request.resource.data.lastName is string
+      && request.auth.uid == uid ||
+      request.resource.data.pushTokenWeb is string
       && request.auth.uid == uid;
-      allow update: if request.resource.data.keys().hasOnly(['email', 'firstName', 'lastName'])
-      && request.resource.data.firstName is string
+      allow update: if request.resource.data.firstName is string
       && request.resource.data.lastName is string
+      && request.auth.uid == uid ||
+      request.resource.data.pushTokenWeb is string
       && request.auth.uid == uid;
       allow read: if request.auth.uid == uid;
     }

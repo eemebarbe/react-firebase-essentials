@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { P, H1, Button, Input, Form, BodyWrapper } from "../components";
 import { UserContext } from "../contexts/userContext";
 import { ToastContext } from "../contexts/toastContext";
@@ -12,6 +12,37 @@ const Dashboard = () => {
   const { userState, userDispatch } = useContext(UserContext);
   const { sendMessage } = useContext(ToastContext);
   const db = firebase.firestore();
+
+  useEffect(() => {
+    if (
+      (moreInfoComplete || userState.userData.firstName) &&
+      Notification.permission === "default"
+    ) {
+      requestNotifications();
+    }
+  }, []);
+
+  const requestNotifications = () => {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        const messaging = firebase.messaging();
+        messaging
+          .getToken()
+          .then(currentToken => {
+            db.collection("users")
+              .doc(firebase.auth().currentUser.uid)
+              .set({ pushTokenWeb: currentToken }, { merge: true })
+              .then(() => {
+                sendMessage("Notifications activated!");
+              })
+              .catch(err => console.log(err));
+          })
+          .catch(err => {
+            console.log("An error occurred while retrieving token.", err);
+          });
+      }
+    });
+  };
 
   const onClickSubmit = e => {
     e.preventDefault();
@@ -35,6 +66,7 @@ const Dashboard = () => {
           });
           setMoreInfoComplete(true);
           sendMessage("Welcome!");
+          requestNotifications();
         });
     } else {
       sendMessage("Please complete the form.");
