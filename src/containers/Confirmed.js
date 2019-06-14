@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import {
   Button,
   Input,
@@ -14,7 +15,7 @@ import { ToastContext } from "../contexts/toastContext";
 import firebase from "../firebase.js";
 import "firebase/firestore";
 
-const Confirmed = () => {
+const Confirmed = props => {
   const { userDispatch } = useContext(UserContext);
   const { sendMessage } = useContext(ToastContext);
   const [newDevice, setNewDevice] = useState(false);
@@ -47,16 +48,33 @@ const Confirmed = () => {
               .then(res => {
                 setloadState(false);
               });
+          } else {
+            db.collection("users")
+              .doc(result.user.uid)
+              .get()
+              .then(res => {
+                if (res.data() && res.data().firstName) {
+                  userDispatch(
+                    { type: "additionalInfo", payload: res.data() },
+                    { type: "verifying", payload: false },
+                    { type: "userId", payload: result.user.uid }
+                  );
+                }
+              });
           }
           window.localStorage.removeItem("confirmationEmail");
           return;
         })
         .then(result => {
-          setComplete(true);
           setloadState(false);
-          setTimeout(() => {
-            window.close();
-          }, 5000);
+          if (newDevice) {
+            props.history.push("/dashboard");
+          } else {
+            setComplete(true);
+            /*setTimeout(() => {
+              window.close();
+            }, 5000);*/
+          }
         })
         .catch(error => {
           setloadState(false);
@@ -132,4 +150,4 @@ const Confirmed = () => {
   );
 };
 
-export default Confirmed;
+export default withRouter(Confirmed);
