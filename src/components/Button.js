@@ -35,7 +35,11 @@ const ButtonWithLoadState = props => {
       return props.children;
     }
   };
-  return <Button {...props}>{loadState()}</Button>;
+  return (
+    <Button disabled={props.loading} {...props}>
+      {loadState()}
+    </Button>
+  );
 };
 
 export default ButtonWithLoadState;

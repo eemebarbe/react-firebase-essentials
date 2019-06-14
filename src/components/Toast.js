@@ -58,6 +58,9 @@ const ToastContainer = styled.div`
         padding: ${metrics.baseUnit * 2}px;
         width: 100%;
         text-align: center;
+        @media (max-width: 480px) {
+          padding: ${metrics.baseUnit}px;
+        }
       }
     }
   }
