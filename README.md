@@ -6,7 +6,7 @@ This is a full application template indended to provide the basic features that 
 
 Features:
 
-- Modern authentication UI flows have already been built out, it's as simple as plugging in your Firebase API keys.
+- Modern authentication UI flows have already been built out, it's as simple as plugging in your Firebase API keys. Email, Facebook and Google are all included methods.
 - Basic security rules have already been written for the database.
 - It's built entirely with React Hooks and the new Context API. Built on top of Create-React-App.
 - Also includes Push Notifications
