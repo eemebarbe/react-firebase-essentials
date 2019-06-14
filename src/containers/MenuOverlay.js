@@ -129,7 +129,7 @@ const MenuButton = styled.div`
 `;
 
 const MenuOverlay = props => {
-  const { userState, userDispatch } = useContext(UserContext);
+  const { userDispatch } = useContext(UserContext);
   const styleMode = window.localStorage.getItem("styleMode");
 
   const signOut = () => {

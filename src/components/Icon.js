@@ -20,7 +20,7 @@ const Link = styled.a`
 const wrappedIcon = props => {
   return (
     <Link {...props} href={props.linkTo}>
-      <img {...props} />
+      <img alt="icon" {...props} />
     </Link>
   );
 };

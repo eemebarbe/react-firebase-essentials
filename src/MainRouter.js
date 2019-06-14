@@ -27,15 +27,6 @@ const AppWrapper = styled.div`
   position: absolute;
 `;
 
-const ScrollBox = styled.div`
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: absolute;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-`;
-
 const MainRouter = () => {
   const [initializationComplete, setInitComplete] = useState(false);
   const { userState, userDispatch } = useContext(UserContext);
