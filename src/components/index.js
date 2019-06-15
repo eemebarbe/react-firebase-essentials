@@ -11,6 +11,8 @@ import Form from "./Form";
 import BodyWrapper from "./BodyWrapper";
 import MobileMenuBar from "./MobileMenuBar";
 import Spinner from "./Spinner";
+import Hamburger from "./Hamburger";
+import Close from "./Close";
 import Switch from "./Switch";
 import Overlay from "./Overlay";
 import { GoogleAuth, FacebookAuth } from "./SocialAuthButton";
@@ -27,6 +29,8 @@ export {
   Switch,
   Icon,
   Spinner,
+  Hamburger,
+  Close,
   Form,
   Overlay,
   GoogleAuth,

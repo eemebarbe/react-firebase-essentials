@@ -16,6 +16,9 @@ const BodyOuter = styled.div`
     opacity: 0;
     z-index: 1;
     transform: translateX(24px);
+    @media (max-width: 480px) {
+      transform: translateX(12px);
+    }
   }
   &.fade-appear-active,
   &.fade-enter.fade-enter-active {
@@ -32,6 +35,9 @@ const BodyOuter = styled.div`
     opacity: 0;
     transform: translateX(-24px);
     transition: opacity 400ms linear, transform 400ms ease-in;
+    @media (max-width: 480px) {
+      transform: translateX(-12px);
+    }
   }
 `;
 

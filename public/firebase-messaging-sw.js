@@ -5,4 +5,7 @@ firebase.initializeApp({
   messagingSenderId: process.env.PUSH_API_ID
 });
 
-const messaging = firebase.messaging();
+var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+if (!iOS) {
+  const messaging = firebase.messaging();
+}

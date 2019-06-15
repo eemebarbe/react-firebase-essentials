@@ -23,25 +23,29 @@ const Dashboard = () => {
   }, []);
 
   const requestNotifications = () => {
-    Notification.requestPermission().then(permission => {
-      if (permission === "granted") {
-        const messaging = firebase.messaging();
-        messaging
-          .getToken()
-          .then(currentToken => {
-            db.collection("users")
-              .doc(firebase.auth().currentUser.uid)
-              .set({ pushTokenWeb: currentToken }, { merge: true })
-              .then(() => {
-                sendMessage("Notifications activated!");
-              })
-              .catch(err => console.log(err));
-          })
-          .catch(err => {
-            console.log("An error occurred while retrieving token.", err);
-          });
-      }
-    });
+    var iOS =
+      !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+    if (!iOS) {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          const messaging = firebase.messaging();
+          messaging
+            .getToken()
+            .then(currentToken => {
+              db.collection("users")
+                .doc(firebase.auth().currentUser.uid)
+                .set({ pushTokenWeb: currentToken }, { merge: true })
+                .then(() => {
+                  sendMessage("Notifications activated!");
+                })
+                .catch(err => console.log(err));
+            })
+            .catch(err => {
+              console.log("An error occurred while retrieving token.", err);
+            });
+        }
+      });
+    }
   };
 
   const onClickSubmit = e => {

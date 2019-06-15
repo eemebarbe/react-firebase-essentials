@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import { withRouter } from "react-router-dom";
-import { Overlay } from "../components";
+import { Overlay, Hamburger } from "../components";
 import MenuOverlay from "../containers/MenuOverlay";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { UserContext } from "../contexts/userContext";
 import styled from "styled-components";
 import { metrics } from "../themes";
@@ -47,43 +46,6 @@ const CompanyLogo = styled.button`
   font-family: "Kollektif";
 `;
 
-const Hamburger = styled.div`
-  position: absolute;
-  flex-direction: column;
-  justify-content: center;
-  height: ${metrics.headerHeight / 3}px;
-  width: ${metrics.headerHeight / 3}px;
-  div {
-    flex-direction: column;
-    width: 100%;
-  }
-  div :nth-child(1),
-  div :nth-child(2) {
-    margin-bottom: ${metrics.baseUnit - 2}px;
-  }
-  span {
-    width: 100%;
-    height: 0;
-    border-top: 1px solid ${props => props.theme.mainText};
-  }
-  &.grow-appear,
-  &.grow-enter {
-    width: 0px;
-    z-index: 1;
-  }
-  &.grow-appear-active,
-  &.grow-enter.grow-enter-active {
-    width: ${metrics.headerHeight / 3}px;
-    transition: width 400ms ease-out;
-  }
-  &.grow-exit {
-    width: ${metrics.headerHeight / 3}px;
-  }
-  &.grow-exit.grow-exit-active {
-    width: 0px;
-  }
-`;
-
 const MenuButton = styled.div`
   height: ${metrics.headerHeight / 3}px;
   width: ${metrics.headerHeight / 3}px;
@@ -103,17 +65,7 @@ const HeaderWithRouter = props => {
   };
 
   const menuButtonState = () => {
-    return menuOpen ? null : (
-      <CSSTransition key="hamburger" timeout={1000} classNames="grow">
-        <Hamburger>
-          <div>
-            <span />
-            <span />
-            <span />
-          </div>
-        </Hamburger>
-      </CSSTransition>
-    );
+    return menuOpen ? null : <Hamburger />;
   };
 
   const menu = () => {
@@ -134,9 +86,7 @@ const HeaderWithRouter = props => {
             REACT-FIREBASE-ESSENTIALS
           </CompanyLogo>
           {userId && (
-            <MenuButton onClick={toggleMenu}>
-              <TransitionGroup appear>{menuButtonState()}</TransitionGroup>
-            </MenuButton>
+            <MenuButton onClick={toggleMenu}>{menuButtonState()}</MenuButton>
           )}
         </HeaderInner>
       </Header>

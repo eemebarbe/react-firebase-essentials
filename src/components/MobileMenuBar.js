@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Hamburger } from "../components";
 import { withRouter } from "react-router-dom";
 import { metrics } from "../themes";
 
@@ -12,40 +13,16 @@ const Container = styled.div`
   bottom: 0;
   position: absolute;
   border-top: 1px solid ${props => props.theme.inactive};
+  height: ${metrics.mobileMenuHeight - 1}px;
   @media (max-width: 480px) {
     display: flex;
-  }
-  div {
-    padding: 0px ${metrics.bodyPadding}px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    div {
-      padding: 0;
-      height: ${metrics.mobileMenuHeight - 1}px;
-      align-items: center;
-      justify-content: space-between;
-      div {
-        align-items: center;
-        justify-content: center;
-      }
-    }
   }
 `;
 
 const MobileMenuBar = props => {
-  const pushTo = path => {
-    props.location.pathname !== path && props.history.push(path);
-  };
-
   return (
     <Container>
-      <div>
-        <div>
-          <div onClick={() => pushTo("/dashboard")}>DASHBOARD</div>
-          <div onClick={() => pushTo("/profile")}>PROFILE</div>
-        </div>
-      </div>
+      <Hamburger />
     </Container>
   );
 };
