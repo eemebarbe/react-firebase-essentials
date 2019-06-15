@@ -46,12 +46,6 @@ const CompanyLogo = styled.button`
   font-family: "Kollektif";
 `;
 
-const MenuButton = styled.div`
-  height: ${metrics.headerHeight / 3}px;
-  width: ${metrics.headerHeight / 3}px;
-  z-index: 30;
-`;
-
 const HeaderWithRouter = props => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { userState } = useContext(UserContext);
@@ -65,7 +59,7 @@ const HeaderWithRouter = props => {
   };
 
   const menuButtonState = () => {
-    return menuOpen ? null : <Hamburger />;
+    return menuOpen ? null : <Hamburger onClick={toggleMenu} />;
   };
 
   const menu = () => {
@@ -83,11 +77,9 @@ const HeaderWithRouter = props => {
         <HeaderInner>
           <CompanyLogo
             onClick={() => (userId ? pushTo("/dashboard") : pushTo("/"))}>
-            REACT-FIREBASE-ESSENTIALS
+            React Firebase Essentials
           </CompanyLogo>
-          {userId && (
-            <MenuButton onClick={toggleMenu}>{menuButtonState()}</MenuButton>
-          )}
+          {userId && menuButtonState()}
         </HeaderInner>
       </Header>
     </>

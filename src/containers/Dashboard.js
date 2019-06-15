@@ -113,7 +113,7 @@ const Dashboard = () => {
   const dashboard = () => {
     return (
       <BodyWrapper>
-        <H1>DASHBOARD</H1>
+        <H1>Dashboard</H1>
         <P>
           So this is your dashboard. Maybe you'll put a few graphs here, you've
           always wanted to try out D3. Maybe a news feed, or updates on new

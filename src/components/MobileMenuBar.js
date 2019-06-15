@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Hamburger } from "../components";
+import { Overlay } from "../components";
+import MenuOverlay from "../containers/MenuOverlay";
 import { withRouter } from "react-router-dom";
 import { metrics } from "../themes";
 
 const Container = styled.div`
   display: none;
-  z-index: 4;
+  z-index: 40;
   width: 100%;
   justify-content: center;
+  align-items: center;
   background-color: ${props => props.theme.background};
   bottom: 0;
   position: absolute;
@@ -20,10 +22,23 @@ const Container = styled.div`
 `;
 
 const MobileMenuBar = props => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const menu = () => {
+    return (
+      <Overlay>
+        <MenuOverlay setMenuOpen={() => setMenuOpen(false)} />
+      </Overlay>
+    );
+  };
+
   return (
-    <Container>
-      <Hamburger />
-    </Container>
+    <>
+      {menuOpen && menu()}
+      <Container>
+        <div onClick={() => setMenuOpen(!menuOpen)}>Open Menu</div>
+      </Container>
+    </>
   );
 };
 

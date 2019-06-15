@@ -52,7 +52,7 @@ const Profile = () => {
 
   return (
     <BodyWrapper>
-      <H1>PROFILE</H1>
+      <H1>Profile</H1>
       <P>Update your personal information here.</P>
       <Form>
         <div>
@@ -75,7 +75,7 @@ const Profile = () => {
         </div>
         <div>
           <Button loading={loadState} onClick={e => onClickSubmit(e)}>
-            SUBMIT
+            Submit
           </Button>
         </div>
       </Form>

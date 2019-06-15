@@ -61,7 +61,7 @@ const Confirmed = props => {
           onClick={() => {
             props.history.push("/signin");
           }}>
-          RETURN TO SIGN IN PAGE
+          Return To Sign In Page
         </Button>
       </CenteredDiv>
     );

@@ -144,7 +144,7 @@ const SignIn = () => {
     <>
       {userState.verifying && overlay()}
       <BodyWrapper>
-        <H1>SIGN UP/SIGN IN</H1>
+        <H1>Sign Up/Sign In</H1>
         <P>
           Signing in and signing up are the same process, and no password is
           asked for...hopefully you don't mind! Users typically don't log out of
@@ -163,7 +163,7 @@ const SignIn = () => {
           </div>
           <div>
             <Button marginBottom onClick={onClickSubmit}>
-              SIGN IN WITH EMAIL
+              Sign In With Email
             </Button>
           </div>
         </Form>

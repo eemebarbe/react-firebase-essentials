@@ -24,7 +24,7 @@ const ToastContainer = styled.div`
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: -${metrics.baseUnit * 8}px;
+  bottom: -${metrics.baseUnit * 7}px;
   pointer-events: none;
   @media (max-width: 480px) {
     bottom: ${-(metrics.baseUnit * 8) + metrics.mobileMenuHeight}px;

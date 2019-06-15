@@ -12,16 +12,21 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  align-content: center;
+  @media (max-width: 480px) {
+    align-items: center;
+  }
 `;
 
-const Header = styled.div`
+const MenuHeader = styled.div`
   width: 100%;
   height: ${metrics.headerHeight - 1}px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${props => props.theme.overlayDetail};
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const HeaderInner = styled.div`
@@ -38,6 +43,9 @@ const HeaderInner = styled.div`
 const BackgroundInner = styled.div`
   padding: 0px ${metrics.bodyPadding}px;
   width: ${metrics.bodyWidth}px;
+  @media (max-width: 480px) {
+    margin-bottom: ${metrics.mobileMenuHeight}px;
+  }
 `;
 
 const MenuItem = styled.button`
@@ -49,6 +57,8 @@ const MenuItem = styled.button`
   border: 0;
   margin-top: ${metrics.baseUnit * 3}px;
   height: ${metrics.baseUnit * 6}px;
+  width: 100%;
+  text-align: left;
   outline: none;
   padding: 0;
   font-size: 4rem;
@@ -57,10 +67,20 @@ const MenuItem = styled.button`
   cursor: pointer;
   outline: 0;
   font-family: "Kollektif-Bold";
+  &:last-child {
+    display: none;
+  }
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+    height: ${metrics.baseUnit * 3}px;
+    text-align: center;
+    &:last-child {
+      display: initial;
+    }
+  }
   &.fade-appear,
   &.fade-enter {
     opacity: 0;
-    z-index: 1;
     transform: translateY(24px);
   }
   &.fade-appear-active,
@@ -68,19 +88,18 @@ const MenuItem = styled.button`
     opacity: 1;
     transform: translateY(0);
     transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
-    -webkit-transition: opacity 400ms linear 400ms,
-      transform 400ms ease-out 400ms;
-    -moz-transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
-    -o-transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
+    transition-delay: ${props => props.child * 0.2}s;
+  }
+  &.switch-appear,
+  &.switch-enter {
+    opacity: 0;
+  }
+  &.switch-appear-active,
+  &.switch-enter.switch-enter-active {
+    opacity: 1;
     transition: opacity 400ms linear 400ms, transform 400ms ease-out 400ms;
     transition-delay: ${props => props.child * 0.2}s;
   }
-`;
-
-const MenuButton = styled.div`
-  height: ${metrics.headerHeight / 3}px;
-  width: ${metrics.headerHeight / 3}px;
-  z-index: 30;
 `;
 
 const MenuOverlay = props => {
@@ -116,19 +135,12 @@ const MenuOverlay = props => {
 
   return (
     <>
-      <Header>
+      <MenuHeader>
         <HeaderInner>
           <Switch checked={styleMode === "dark"} onChange={toggleStyles} />
-          <MenuButton onClick={() => props.setMenuOpen()}>
-            <TransitionGroup appear>
-              {" "}
-              <CSSTransition key="close" timeout={1000} classNames="grow">
-                <Close />
-              </CSSTransition>
-            </TransitionGroup>
-          </MenuButton>
+          <Close onClick={() => props.setMenuOpen()} />
         </HeaderInner>
-      </Header>
+      </MenuHeader>
       <Container>
         <BackgroundInner>
           <TransitionGroup appear>
@@ -136,14 +148,14 @@ const MenuOverlay = props => {
               <MenuItem
                 samePath={samePath("/dashboard")}
                 onClick={() => pushTo("/dashboard")}>
-                DASHBOARD
+                Dashboard
               </MenuItem>
             </CSSTransition>
             <CSSTransition child={1} timeout={1000} classNames="fade">
               <MenuItem
                 samePath={samePath("/profile")}
                 onClick={() => pushTo("/profile")}>
-                PROFILE
+                Profile
               </MenuItem>
             </CSSTransition>
             <CSSTransition child={2} timeout={1000} classNames="fade">
@@ -152,11 +164,19 @@ const MenuOverlay = props => {
                   window.location.href =
                     "http://github.com/eemebarbe/react-firebase-essentials";
                 }}>
-                GITHUB
+                Github
               </MenuItem>
             </CSSTransition>
             <CSSTransition child={3} timeout={1000} classNames="fade">
-              <MenuItem onClick={signOut}>SIGN OUT</MenuItem>
+              <MenuItem onClick={signOut}>Sign out</MenuItem>
+            </CSSTransition>
+            <CSSTransition child={4} timeout={1000} classNames="switch">
+              <MenuItem>
+                <Switch
+                  checked={styleMode === "dark"}
+                  onChange={toggleStyles}
+                />
+              </MenuItem>
             </CSSTransition>
           </TransitionGroup>
         </BackgroundInner>

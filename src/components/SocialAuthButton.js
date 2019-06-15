@@ -41,7 +41,7 @@ const SocialConstructor = props => {
           <img alt="social-icon" src={props.logo} />
         </div>
       </AuthIcon>
-      <span>SIGN IN WITH {props.company}</span>
+      <span>Sign In With {props.company}</span>
     </AuthButton>
   );
 };
@@ -51,7 +51,7 @@ export const FacebookAuth = props => {
     <SocialConstructor
       {...props}
       logo={icons.facebook}
-      company="FACEBOOK"
+      company="Facebook"
       onClick={props.onClick}
     />
   );
@@ -63,7 +63,7 @@ export const GoogleAuth = props => {
       background
       {...props}
       logo={icons.google}
-      company="GOOGLE"
+      company="Google"
       onClick={props.onClick}
     />
   );

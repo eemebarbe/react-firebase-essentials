@@ -9,10 +9,6 @@ const HamburgerStyle = styled.div`
   justify-content: center;
   height: ${metrics.headerHeight / 3}px;
   width: ${metrics.headerHeight / 3}px;
-  @media (max-width: 480px) {
-    height: ${metrics.mobileMenuHeight / 2}px;
-    width: ${metrics.mobileMenuHeight / 2}px;
-  }
   div {
     flex-direction: column;
     width: 100%;
@@ -35,28 +31,42 @@ const HamburgerStyle = styled.div`
   &.grow-enter.grow-enter-active {
     width: ${metrics.headerHeight / 3}px;
     transition: width 400ms ease-out;
+    @media (max-width: 480px) {
+      width: ${metrics.headerHeight / 2}px;
+    }
   }
   &.grow-exit {
     width: ${metrics.headerHeight / 3}px;
+    @media (max-width: 480px) {
+      width: ${metrics.headerHeight / 2}px;
+    }
   }
   &.grow-exit.grow-exit-active {
     width: 0px;
   }
 `;
 
-const Hamburger = () => {
+const MenuButton = styled.div`
+  height: ${metrics.headerHeight / 3}px;
+  width: ${metrics.headerHeight / 3}px;
+  z-index: 30;
+`;
+
+const Hamburger = props => {
   return (
-    <TransitionGroup appear>
-      <CSSTransition key="hamburger" timeout={1000} classNames="grow">
-        <HamburgerStyle>
-          <div>
-            <span />
-            <span />
-            <span />
-          </div>
-        </HamburgerStyle>
-      </CSSTransition>
-    </TransitionGroup>
+    <MenuButton onClick={props.onClick}>
+      <TransitionGroup appear>
+        <CSSTransition key="hamburger" timeout={1000} classNames="grow">
+          <HamburgerStyle>
+            <div>
+              <span />
+              <span />
+              <span />
+            </div>
+          </HamburgerStyle>
+        </CSSTransition>
+      </TransitionGroup>
+    </MenuButton>
   );
 };
 
