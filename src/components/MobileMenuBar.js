@@ -11,7 +11,8 @@ const Container = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.background};
+  background-color: ${props =>
+    props.menuOpen ? props.theme.overlayBackground : props.theme.background};
   bottom: 0;
   position: absolute;
   border-top: 1px solid ${props => props.theme.inactive};
@@ -35,7 +36,7 @@ const MobileMenuBar = props => {
   return (
     <>
       {menuOpen && menu()}
-      <Container>
+      <Container menuOpen={menuOpen}>
         <div onClick={() => setMenuOpen(!menuOpen)}>Open Menu</div>
       </Container>
     </>

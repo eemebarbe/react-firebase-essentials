@@ -19,6 +19,6 @@ Getting set up:
 
 - Make sure you have both Create-React-App and the Firebase CLI installed.
 - Copy the contents from `.env.empty` and create an `.env.production.local` and put your Firebase credentials there. Be sure to create an `.env.development.local` for working locally as well.
-- Enable Facebook and Google in the authentication section of the Firebase console, and include whatever credentials are necessary.
+- Enable Facebook and Google in the authentication section of the Firebase console, and include whatever credentials are necessary. Enable Email/Password authentication as well, and make sure that "Email link" is turned on as well.
 - In your project settings, click on the cloud messaging tab and copy your sender ID into your .env files as well.
 - Make sure you `npm run build` before deploying any changes to Firebase hosting.

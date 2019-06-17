@@ -72,7 +72,9 @@ const MenuItem = styled.button`
   }
   @media (max-width: 480px) {
     font-size: 2.5rem;
-    height: ${metrics.baseUnit * 3}px;
+    margin-top: 0;
+    line-height: ${metrics.baseUnit * 3}px;
+    height: 1;
     text-align: center;
     &:last-child {
       display: initial;

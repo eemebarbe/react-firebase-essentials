@@ -12,40 +12,40 @@ const Dashboard = () => {
   const { userState, userDispatch } = useContext(UserContext);
   const { sendMessage } = useContext(ToastContext);
   const db = firebase.firestore();
+  const iOS =
+    !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
   useEffect(() => {
     if (
       (moreInfoComplete || userState.userData.firstName) &&
-      Notification.permission === "default"
+      "Notification" in window &&
+      Notification.permission === "default" &&
+      !iOS
     ) {
       requestNotifications();
     }
   }, []);
 
   const requestNotifications = () => {
-    var iOS =
-      !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-    if (!iOS) {
-      Notification.requestPermission().then(permission => {
-        if (permission === "granted") {
-          const messaging = firebase.messaging();
-          messaging
-            .getToken()
-            .then(currentToken => {
-              db.collection("users")
-                .doc(firebase.auth().currentUser.uid)
-                .set({ pushTokenWeb: currentToken }, { merge: true })
-                .then(() => {
-                  sendMessage("Notifications activated!");
-                })
-                .catch(err => console.log(err));
-            })
-            .catch(err => {
-              console.log("An error occurred while retrieving token.", err);
-            });
-        }
-      });
-    }
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        const messaging = firebase.messaging();
+        messaging
+          .getToken()
+          .then(currentToken => {
+            db.collection("users")
+              .doc(firebase.auth().currentUser.uid)
+              .set({ pushTokenWeb: currentToken }, { merge: true })
+              .then(() => {
+                sendMessage("Notifications activated!");
+              })
+              .catch(err => console.log(err));
+          })
+          .catch(err => {
+            console.log("An error occurred while retrieving token.", err);
+          });
+      }
+    });
   };
 
   const onClickSubmit = e => {
