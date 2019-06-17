@@ -24,7 +24,7 @@ const Lander = props => {
         <li>Basic security rules written for Firestore</li>
         <li>A pinch of mother's love</li>
       </P>
-      <Button onClick={signIn}>TAKE A TOUR</Button>
+      <Button onClick={signIn}>Take a Tour</Button>
     </BodyWrapper>
   );
 };

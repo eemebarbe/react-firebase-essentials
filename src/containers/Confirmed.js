@@ -53,8 +53,8 @@ const Confirmed = props => {
       <CenteredDiv vertical horizontal>
         <Message>
           It appears that you're trying to verify your account from a different
-          device than the one you began with. Please complete the verification
-          process from the same device you started from.
+          device or browser than the one you began with. Please complete the
+          verification process from the same device/browser you started from.
         </Message>
         <Button
           marginTop
