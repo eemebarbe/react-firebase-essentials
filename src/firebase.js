@@ -11,8 +11,7 @@ const config = {
 };
 firebase.initializeApp(config);
 
-var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-if (!iOS) {
+if ("Notification" in window) {
   const messaging = firebase.messaging();
   messaging.usePublicVapidKey(process.env.REACT_APP_FIREBASE_MESSAGING_CERT);
 

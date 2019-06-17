@@ -12,15 +12,12 @@ const Dashboard = () => {
   const { userState, userDispatch } = useContext(UserContext);
   const { sendMessage } = useContext(ToastContext);
   const db = firebase.firestore();
-  const iOS =
-    !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
   useEffect(() => {
     if (
       (moreInfoComplete || userState.userData.firstName) &&
       "Notification" in window &&
-      Notification.permission === "default" &&
-      !iOS
+      Notification.permission === "default"
     ) {
       requestNotifications();
     }

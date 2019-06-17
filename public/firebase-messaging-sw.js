@@ -5,7 +5,6 @@ firebase.initializeApp({
   messagingSenderId: process.env.REACT_APP_PUSH_API_ID
 });
 
-var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-if (!iOS) {
+if ("Notification" in window) {
   const messaging = firebase.messaging();
 }
