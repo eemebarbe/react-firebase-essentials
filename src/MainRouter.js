@@ -13,12 +13,21 @@ import Confirmed from "./containers/Confirmed";
 import Profile from "./containers/Profile";
 import Header from "./containers/Header";
 import { UserContext } from "./contexts/userContext";
-import { CenteredDiv, H1, Toast, Spinner, MobileMenuBar } from "./components";
+import {
+  CenteredDiv,
+  H1,
+  Toast,
+  Spinner,
+  MobileMenuBar,
+  BodyWrapper,
+  P
+} from "./components";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./themes/GlobalStyle";
 import firebase from "./firebase.js";
 import "firebase/firestore";
 import { colors } from "./themes";
+import { sendPushNotification } from "./helpers/cloudFunctions";
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -34,14 +43,6 @@ const MainRouter = () => {
   const db = firebase.firestore();
 
   useEffect(() => {
-    var sendPushNotification = firebase
-      .functions()
-      .httpsCallable("sendPushNotification");
-    sendPushNotification({
-      token:
-        "exZb-Z-lAKk:APA91bEJX29FlTzgvJc7V4QGW_4HxvLwCYAlJIr_702o6Qgs7Xhf-ZR7z3ikENgbrWRA-SEIl-FENSz1i4go8VMk7BQR7sh7HKF82l_ZdoAYSYBy1n4B01ZMf2tTxpmHOCR-gtDO-R5P"
-    }).then(res => console.log(res));
-
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const uid = firebase.auth().currentUser.uid;
@@ -68,7 +69,12 @@ const MainRouter = () => {
   }, []);
 
   const noMatch = () => {
-    return <H1>404</H1>;
+    return (
+      <BodyWrapper>
+        <H1>Oops!</H1>
+        <P>You're looking for a page that doesn't exist.</P>
+      </BodyWrapper>
+    );
   };
 
   const routeWithAuth = destination => {

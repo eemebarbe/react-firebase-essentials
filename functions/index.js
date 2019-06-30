@@ -5,8 +5,8 @@ admin.initializeApp(functions.config().firebase);
 exports.sendPushNotification = functions.https.onCall((data, context) => {
   var message = {
     notification: {
-      title: "I'm a push notifiction, Morty!",
-      body: "IT'S PUSH NOTIFICATION RICK!!!"
+      title: data.title,
+      body: data.body
     },
     token: data.token
   };

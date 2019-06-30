@@ -15,7 +15,9 @@ const Container = styled.div`
     props.menuOpen ? props.theme.overlayBackground : props.theme.background};
   bottom: 0;
   position: absolute;
-  border-top: 1px solid ${props => props.theme.inactive};
+  border-top: 1px solid
+    ${props =>
+      props.menuOpen ? props.theme.overlayDetail : props.theme.inactive};
   height: ${metrics.mobileMenuHeight - 1}px;
   @media (max-width: 480px) {
     display: flex;
@@ -37,7 +39,9 @@ const MobileMenuBar = props => {
     <>
       {menuOpen && menu()}
       <Container menuOpen={menuOpen}>
-        <div onClick={() => setMenuOpen(!menuOpen)}>Open Menu</div>
+        <div onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? "Close Menu" : "Open Menu"}
+        </div>
       </Container>
     </>
   );

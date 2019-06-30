@@ -41,7 +41,7 @@ const SocialConstructor = props => {
           <img alt="social-icon" src={props.logo} />
         </div>
       </AuthIcon>
-      <span>Sign In With {props.company}</span>
+      <span>Sign in with {props.company}</span>
     </AuthButton>
   );
 };

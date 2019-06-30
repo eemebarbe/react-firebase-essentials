@@ -3,7 +3,12 @@ const styleMode = window.localStorage.getItem("styleMode");
 
 const initialState = {
   userId: null,
-  userData: { email: null, firstName: null, lastName: null },
+  userData: {
+    email: null,
+    firstName: null,
+    lastName: null,
+    pushTokenWeb: null
+  },
   styleMode: styleMode ? styleMode : "main",
   verifying: false
 };
@@ -39,7 +44,8 @@ const reducer = (state, action) => {
         userData: {
           email: state.userData.email,
           firstName: action.payload.firstName,
-          lastName: action.payload.lastName
+          lastName: action.payload.lastName,
+          pushTokenWeb: action.payload.pushTokenWeb
         }
       };
     case "styleMode":

@@ -124,7 +124,7 @@ const SignIn = () => {
         } else {
           sendMessage(err.message);
         }
-        setFacebookLoadState(false);
+        setGoogleLoadState(false);
       });
   };
 
@@ -163,7 +163,7 @@ const SignIn = () => {
           </div>
           <div>
             <Button marginBottom onClick={onClickSubmit}>
-              Sign In With Email
+              Sign in with Email
             </Button>
           </div>
         </Form>
