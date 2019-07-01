@@ -15,7 +15,7 @@ Features:
 - Requires very few dependencies.
 - Dark Mode! You gotta have dark mode!
 
-Getting set up:
+Getting set up (because we're using both the Create-React-App CLI and the Firebase CLI, the order you do these really matters!):
 
 1. Make sure you have both Create-React-App and the Firebase CLI installed. Create a new project in the Firebase console.
 2. Clone the project and `npm i`.
