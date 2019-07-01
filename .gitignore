@@ -25,6 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 #firebase env
+.firebaserc
 /functions/.env.yaml
 /functions/node_modules
 /functions/package-lock.json
