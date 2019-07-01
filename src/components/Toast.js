@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { ToastContext } from "../contexts/toastContext";
+import { UserContext } from "../contexts/userContext";
 import { metrics } from "../themes";
 import Transition from "react-transition-group/Transition";
 
@@ -27,7 +28,8 @@ const ToastContainer = styled.div`
   bottom: -${metrics.baseUnit * 7}px;
   pointer-events: none;
   @media (max-width: 480px) {
-    bottom: ${-(metrics.baseUnit * 8) + metrics.mobileMenuHeight}px;
+    bottom: ${props =>
+      -(metrics.baseUnit * 8) + (props.loggedIn && metrics.mobileMenuHeight)}px;
   }
   div {
     padding: 0px ${metrics.baseUnit * 2}px;
@@ -69,6 +71,7 @@ const ToastContainer = styled.div`
 const ToastWithContext = props => {
   const [show, setShow] = useState(false);
   const { message, sendMessage } = useContext(ToastContext);
+  const { userState } = useContext(UserContext);
 
   useEffect(() => {
     if (message) {
@@ -88,13 +91,14 @@ const ToastWithContext = props => {
       {motionState => (
         <ToastContainer
           {...props}
+          loggedIn={userState.userData.firstName}
           id="container"
           style={{
             ...transitionStyles[motionState]
           }}>
-          <div {...props}>
-            <div {...props}>
-              <div {...props}>{message}</div>
+          <div>
+            <div>
+              <div>{message}</div>
             </div>
           </div>
         </ToastContainer>

@@ -43,6 +43,12 @@ const MainRouter = () => {
   const db = firebase.firestore();
 
   useEffect(() => {
+    sendPushNotification({
+      token: userState.userData.pushTokenWeb,
+      title: "Boop",
+      body: "shoop"
+    });
+
     firebase.auth().onAuthStateChanged(user => {
       if (!!user) {
         const uid = firebase.auth().currentUser.uid;
