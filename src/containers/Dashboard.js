@@ -101,7 +101,7 @@ const Dashboard = () => {
               autoComplete="family-name"
             />
           </div>
-          <Button onClick={e => onClickSubmit(e)}>SUBMIT</Button>
+          <Button onClick={e => onClickSubmit(e)}>Submit</Button>
         </Form>
       </BodyWrapper>
     );
