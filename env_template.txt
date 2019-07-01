@@ -1,7 +1,15 @@
 REACT_APP_BASE_URL=localhost:3000
+
+# Found in project settings under the General tab
 REACT_APP_FIREBASE_PROJECT_ID=
 REACT_APP_FIREBASE_API_KEY=
+
+# Found in project settings under the Cloud Messaging tab
 REACT_APP_FIREBASE_MESSAGING_CERT=
 REACT_APP_FIREBASE_MESSAGING_ID=
+
+# Found in the hosting tab
 REACT_APP_FIREBASE_DOMAIN=
+
+# Found in the database tab (must switch to Realtime Database to get the URL)
 REACT_APP_DATABASE_URL=
