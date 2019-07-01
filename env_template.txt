@@ -1,3 +1,6 @@
+# Leave this the same for your development file, 
+# and change it to whichever URL you want users 
+# to access your site with in the production file
 REACT_APP_BASE_URL=localhost:3000
 
 # Found in project settings under the General tab
@@ -8,7 +11,7 @@ REACT_APP_FIREBASE_API_KEY=
 REACT_APP_FIREBASE_MESSAGING_CERT=
 REACT_APP_FIREBASE_MESSAGING_ID=
 
-# Found in the hosting tab
+# Found in the Hosting tab
 REACT_APP_FIREBASE_DOMAIN=
 
 # Found in the database tab (must switch to Realtime Database to get the URL)
