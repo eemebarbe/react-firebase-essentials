@@ -15,11 +15,12 @@ Features:
 - Requires very few dependencies.
 - Dark Mode! You gotta have dark mode!
 
-Getting set up (this is probaby incomplete...still wrapping a few things up!):
+Getting set up:
 
-- Make sure you have both Create-React-App and the Firebase CLI installed.
-- Copy the contents from `.env_template.txt` and create an `.env.production.local` and put your Firebase credentials there. Be sure to create an `.env.development.local` for working locally as well.
-- Change the name in .firebaserc to your project's name.
-- Enable Facebook and Google in the authentication section of the Firebase console, and include whatever credentials are necessary. Enable Email/Password authentication as well, and make sure that "Email link" is turned on as well.
-- In your project settings, click on the cloud messaging tab and copy your sender ID into your .env files as well.
-- Make sure you `npm run build` before deploying any changes to Firebase hosting.
+1. Make sure you have both Create-React-App and the Firebase CLI installed. Create a new project in the Firebase console.
+2. Clone the project and `npm i`.
+3. Set up Firebase with `firebase init`. IMPORTANT: When prompted, never overwrite any of the files. When asked, "What to you want to use as your public directory?", enter `build`
+4. Copy the contents from `.env_template.txt` and create an `.env.production.local` and put your Firebase keys there. Be sure to create an `.env.development.local` for working locally as well.
+5. Go into `public/firebase-messaging-sw.js` and manually change the messagingSenderId, which will be the same as `REACT_APP_FIREBASE_MESSAGING_ID` in your `.env` files.
+6. Enable Facebook, Google, and Email/Password authentication in the Firebase console. When enabling "Email/Password", be sure to enable "Email link" as well.
+7. Run `npm run build` to create a production build of your project, and `firebase deploy`. Your application should now be hosted and ready to visit.
