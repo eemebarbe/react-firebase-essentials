@@ -1,4 +1,4 @@
-## A React-Hooks based app template, built on Firebase, that did all of the boring stuff for you!
+## A React Hooks based app template, built on Firebase, that did all of the boring stuff for you!
 
 **Live demo at: (https://react-firebase-essentials.com)**
 
