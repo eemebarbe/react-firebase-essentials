@@ -17,7 +17,7 @@ Features:
 
 Getting set up (because we're using both the Create-React-App CLI and the Firebase CLI, the order you do these really matters!):
 
-1. Make sure you have both Create-React-App and the Firebase CLI installed. Create a new project in the Firebase console.
+1. Make sure you have both Create-React-App and the Firebase CLI installed. Create a new project in the Firebase console and _make sure_ you go into project settings and choose a GCP resource location under the general tab.
 2. Clone the project and `npm i`.
 3. Set up Firebase with `firebase init`. IMPORTANT: When prompted, never overwrite any of the files. When asked, "What to you want to use as your public directory?", enter `build`.
 4. Copy the contents from `.env_template.txt` and create an `.env.production.local` and put your Firebase keys there. Be sure to create an `.env.development.local` for working locally as well.
