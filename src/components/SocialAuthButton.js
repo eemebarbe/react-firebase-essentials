@@ -18,7 +18,8 @@ const AuthIcon = styled.div`
   div {
     width: ${metrics.baseUnit * 2}px;
     height: ${metrics.baseUnit * 2}px;
-    background-color: ${props => (props.background ? "white" : null)};
+    background-color: ${props =>
+      props.background ? props.theme.detailText : null};
     border-radius: ${metrics.globalBorderRadius / 2}px;
     display: flex;
     justify-content: center;

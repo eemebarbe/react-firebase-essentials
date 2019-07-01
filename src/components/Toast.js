@@ -49,14 +49,14 @@ const ToastContainer = styled.div`
       padding: 0;
       width: ${metrics.bodyWidth / 2}px;
       line-height: ${metrics.baseUnit * 2}px;
-      color: white;
+      color: ${props => props.theme.detailText};
       background-color: ${props => props.theme.secondaryColor};
       display: flex;
       justify-content: center;
       align-content: center;
       font-family: "Kollektif-Bold";
       div {
-        color: white;
+        color: ${props => props.theme.detailText};
         padding: ${metrics.baseUnit * 2}px;
         width: 100%;
         text-align: center;

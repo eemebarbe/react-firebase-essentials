@@ -29,7 +29,7 @@ const Switched = styled.label`
       width: ${metrics.baseUnit * 2}px;
       left: ${metrics.baseUnit / 2}px;
       bottom: ${metrics.baseUnit / 2}px;
-      background-color: white;
+      background-color: ${props => props.theme.detailText};
       transition: 0.4s;
       border-radius: 50%;
     }

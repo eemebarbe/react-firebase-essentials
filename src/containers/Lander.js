@@ -10,19 +10,34 @@ const Lander = props => {
   return (
     <BodyWrapper>
       <H1>React Firebase Essentials</H1>
-      <H2>This thing ain't ready yet. But when it is, oh boy:</H2>
+      <H2>
+        A React-Hooks based app template, built on Firebase, that did all of the
+        boring stuff for you!
+      </H2>
       <P>
-        <li>All components are built with Hooks</li>
-        <li>Utilizing the Context API for shared data</li>
-        <li>Styled-Components all day, baybeeee</li>
         <li>
-          Authentication UI flows already built out for email, Facebook and
-          Google
+          Modern authentication UI flows have already been built out, it's as
+          simple as plugging in your Firebase API keys. Email, Facebook and
+          Google are all included methods.
         </li>
-        <li>Toast popup system already set up for user feedback</li>
-        <li>VERY few dependencies</li>
-        <li>Basic security rules written for Firestore</li>
-        <li>A pinch of mother's love</li>
+        <li>
+          Basic security rules have already been written for the database.
+        </li>
+        <li>
+          It's built entirely with React Hooks and the new Context API. Built on
+          top of Create-React-App.
+        </li>
+        <li>Mobile-ready responsive design.</li>
+        <li>
+          Push Notifications set up out of the box, with a cloud function
+          supplied for triggering messages.
+        </li>
+        <li>
+          Utilizes Styled-Components, carefully using global variables that
+          allow you to quickly and easily adjust to your tastes.
+        </li>
+        <li>Requires very few dependencies.</li>
+        <li>Dark Mode! You gotta have dark mode!</li>
       </P>
       <Button onClick={signIn}>Take a Tour</Button>
     </BodyWrapper>
