@@ -21,10 +21,18 @@ const Lander = props => {
         </li>
         <li>Mobile-ready responsive design.</li>
         <li>
+          It's built entirely with React Hooks and the new Context API. Built on
+          top of Create-React-App.
+        </li>
+        <li>
           Push Notifications set up out of the box, with a cloud function
           supplied for triggering messages.
         </li>
         <li>Requires very few dependencies.</li>
+        <li>
+          Utilizes Styled-Components, carefully using global variables that
+          allow you to quickly and easily adjust to your tastes.
+        </li>
         <li>Dark Mode! You gotta have dark mode!</li>
       </P>
       <Button onClick={signIn}>Take a Tour</Button>

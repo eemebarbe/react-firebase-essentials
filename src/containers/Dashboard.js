@@ -77,7 +77,7 @@ const Dashboard = () => {
   const moreInfo = () => {
     return (
       <BodyWrapper>
-        <H1>MORE INFO</H1>
+        <H1>Onboarding</H1>
         <P>
           This is an introduction screen that shows up after the user
           successfully logs in for the first time. It's a good opportunity to
