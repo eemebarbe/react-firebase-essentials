@@ -1,0 +1,153 @@
+[debug] [2019-11-25T19:40:12.782Z] ----------------------------------------------------------------------
+[debug] [2019-11-25T19:40:12.784Z] Command:       /Users/apple/.nvm/versions/node/v12.6.0/bin/node /Users/apple/.nvm/versions/node/v12.6.0/bin/firebase deploy
+[debug] [2019-11-25T19:40:12.784Z] CLI Version:   7.8.1
+[debug] [2019-11-25T19:40:12.784Z] Platform:      darwin
+[debug] [2019-11-25T19:40:12.784Z] Node Version:  v12.6.0
+[debug] [2019-11-25T19:40:12.785Z] Time:          Tue Nov 26 2019 03:40:12 GMT+0800 (Taipei Standard Time)
+[debug] [2019-11-25T19:40:12.785Z] ----------------------------------------------------------------------
+[debug] [2019-11-25T19:40:12.785Z] 
+[debug] [2019-11-25T19:40:12.791Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-25T19:40:12.792Z] > authorizing via signed-in user
+[debug] [2019-11-25T19:40:12.792Z] [iam] checking project react-firebase-marketplace-2 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-11-25T19:40:12.793Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/react-firebase-marketplace-2:testIamPermissions  
+
+[debug] [2019-11-25T19:40:13.801Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:40:13.803Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/react-firebase-marketplace-2  
+ 
+[debug] [2019-11-25T19:40:50.226Z] ----------------------------------------------------------------------
+[debug] [2019-11-25T19:40:50.228Z] Command:       /Users/apple/.nvm/versions/node/v12.6.0/bin/node /Users/apple/.nvm/versions/node/v12.6.0/bin/firebase deploy
+[debug] [2019-11-25T19:40:50.228Z] CLI Version:   7.8.1
+[debug] [2019-11-25T19:40:50.228Z] Platform:      darwin
+[debug] [2019-11-25T19:40:50.228Z] Node Version:  v12.6.0
+[debug] [2019-11-25T19:40:50.229Z] Time:          Tue Nov 26 2019 03:40:50 GMT+0800 (Taipei Standard Time)
+[debug] [2019-11-25T19:40:50.229Z] ----------------------------------------------------------------------
+[debug] [2019-11-25T19:40:50.229Z] 
+[debug] [2019-11-25T19:40:50.234Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-25T19:40:50.235Z] > authorizing via signed-in user
+[debug] [2019-11-25T19:40:50.235Z] [iam] checking project react-firebase-marketplace-2 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-11-25T19:40:50.236Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/react-firebase-marketplace-2:testIamPermissions  
+
+[debug] [2019-11-25T19:40:51.196Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:40:51.198Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/react-firebase-marketplace-2  
+ 
+[debug] [2019-11-25T19:40:51.830Z] <<< HTTP RESPONSE 200
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions.
+ Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+[info] 
+[info] === Deploying to 'react-firebase-marketplace-2'...
+[info] 
+[info] i  deploying storage, firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2019-11-25T19:40:53.975Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/react-firebase-marketplace-2  
+ 
+[debug] [2019-11-25T19:40:55.301Z] <<< HTTP RESPONSE 200
+[info] i  firebase.storage: checking storage.rules for compilation errors...
+[debug] [2019-11-25T19:40:55.303Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2:test  
+
+[debug] [2019-11-25T19:40:56.458Z] <<< HTTP RESPONSE 200
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully
+[info] i  firestore: reading indexes from firestore.indexes.json...
+[info] i  cloud.firestore: checking firestore.rules for compilation errors...
+[debug] [2019-11-25T19:40:56.460Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2:test  
+
+[debug] [2019-11-25T19:40:57.650Z] <<< HTTP RESPONSE 200
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully
+[debug] [2019-11-25T19:40:57.651Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "firebase-admin": "^8.1.0",
+    "firebase-functions": "^2.1.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.0",
+    "eslint-plugin-promise": "^3.6.0"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-11-25T19:40:57.653Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/react-firebase-marketplace-2/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2019-11-25T19:40:57.653Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/react-firebase-marketplace-2/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2019-11-25T19:40:58.889Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2019-11-25T19:40:58.890Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:40:58.891Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/react-firebase-marketplace-2/adminSdkConfig  
+ 
+[debug] [2019-11-25T19:40:59.501Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:40:59.502Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/react-firebase-marketplace-2/versions  
+
+[debug] [2019-11-25T19:41:02.766Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:02.768Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2/releases?pageSize=10&pageToken=  
+ 
+[debug] [2019-11-25T19:41:03.247Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:03.249Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2/rulesets/914f5e75-8e4e-4639-842c-3f7c32cd0926  
+ 
+[debug] [2019-11-25T19:41:04.510Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2019-11-25T19:41:04.511Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2/rulesets  
+
+[debug] [2019-11-25T19:41:04.857Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:04.857Z] [rules] created ruleset projects/react-firebase-marketplace-2/rulesets/11b04b2a-cfdb-406f-a15d-33f85064dd5c
+[debug] [2019-11-25T19:41:04.858Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2/releases?pageSize=10&pageToken=  
+ 
+[debug] [2019-11-25T19:41:04.859Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/react-firebase-marketplace-2/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2019-11-25T19:41:05.515Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:05.516Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/react-firebase-marketplace-2/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2019-11-25T19:41:06.157Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: deployed indexes in firestore.indexes.json successfully
+[debug] [2019-11-25T19:41:06.158Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:06.160Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2/rulesets/74429e9a-7264-4f3a-9a3e-9e20eb77fe76  
+ 
+[debug] [2019-11-25T19:41:07.383Z] <<< HTTP RESPONSE 200
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload...
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-11-25T19:41:07.385Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/react-firebase-marketplace-2/configs  
+ 
+[debug] [2019-11-25T19:41:07.784Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (40.73 KB) for uploading
+[debug] [2019-11-25T19:41:07.908Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/react-firebase-marketplace-2/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2019-11-25T19:41:09.093Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:09.094Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-ac98c2d9-ac21-470c-8d9e-5ea2333aa2fa/c91a026f-e479-4e2d-a3cb-f118930fc7bb.zip?GoogleAccessId=service-677635468125@gcf-admin-robot.iam.gserviceaccount.com&Expires=1574712668&Signature=BtwfYB%2FSZS%2BgivB%2FzAg9w1Dx50P591cb%2BB2HOeUiue2RR2506tKNzNRn4rOUT3Zp4FMMvqRLSttF631OkqiCqIZX7QTvNnIZ9zHcrIwg1v1lHaeKrHfXwgNMztNK72QFlC%2B6NRzyIjdUJakWyC%2FLia6gsSru%2Byj063LdTFHM5rMBzWgGAy4kwwEgBJZGAaDOs%2BVDK5w2qG6UGmdqTPRWMd%2FV4MqQJc%2BDWLKy0NKZkGr%2BwD8DTiACTN7tTcOehli8Q0hqVkobKujRXNQC9BwIbqc0rd1OJTy6P%2FY3AGY4oOLhZGH92CbMbGOtKvOtXNBp%2BM1IFpQtw0z%2Bb3KVxVjz0g%3D%3D  
+ <request body omitted>
+[debug] [2019-11-25T19:41:09.791Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting[react-firebase-marketplace-2]: beginning deploy...
+[info] i  hosting[react-firebase-marketplace-2]: found 4 files in public
+[debug] [2019-11-25T19:41:09.804Z] [hosting] hash cache [cHVibGlj] stored for 4 files
+[debug] [2019-11-25T19:41:09.804Z] [hosting][hash queue][FINAL]
+[debug] [2019-11-25T19:41:09.804Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/react-firebase-marketplace-2/versions/c3949e1674524005:populateFiles  
+ <request body omitted>
+[debug] [2019-11-25T19:41:11.298Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:11.300Z] [hosting][populate queue][FINAL]
+[debug] [2019-11-25T19:41:11.300Z] [hosting] uploads queued: 2
+[debug] [2019-11-25T19:41:13.906Z] [hosting][upload queue][FINAL]
+[info] ✔  hosting[react-firebase-marketplace-2]: file upload complete
+[debug] [2019-11-25T19:41:13.907Z] [hosting] deploy completed after 4115ms
+[debug] [2019-11-25T19:41:13.908Z] [rules] releasing firebase.storage/react-firebase-marketplace-2.appspot.com with ruleset projects/react-firebase-marketplace-2/rulesets/11b04b2a-cfdb-406f-a15d-33f85064dd5c
+[debug] [2019-11-25T19:41:13.909Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2/releases/firebase.storage/react-firebase-marketplace-2.appspot.com  
+
+[debug] [2019-11-25T19:41:15.109Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-25T19:41:15.109Z] [rules] updated release projects/react-firebase-marketplace-2/releases/firebase.storage/react-firebase-marketplace-2.appspot.com
+[info] ✔  storage: released rules storage.rules to firebase.storage
+[debug] [2019-11-25T19:41:15.110Z] [rules] releasing cloud.firestore with ruleset projects/react-firebase-marketplace-2/rulesets/74429e9a-7264-4f3a-9a3e-9e20eb77fe76
+[debug] [2019-11-25T19:41:15.110Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/react-firebase-marketplace-2/releases/cloud.firestore  
+
