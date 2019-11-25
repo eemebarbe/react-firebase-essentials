@@ -1,8 +1,8 @@
-## A React Hooks based app template, built on Firebase, that did all of the boring stuff for you!
+## A full-stack app template that you can have hosted and running in minutes. Based on React-Hooks and Firebase.
 
 **Live demo at: (https://react-firebase-essentials.com)**
 
-This is a full application template indended to provide the basic features that most online products or services need to get started, so that you can go straight into building out the important parts of your MVP without getting bogged down with the boring tasks that you've already done for a million apps before.
+This is a full application template intended to provide the basic features that most online products or services need to get started, so that you can get straight into building out the important parts of your MVP without getting bogged down with the boring tasks that you've already done for a million apps before.
 
 **Features:**
 
