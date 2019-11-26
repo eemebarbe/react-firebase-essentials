@@ -66,7 +66,7 @@ const MenuItem = styled.button`
   top: 2px;
   cursor: pointer;
   outline: 0;
-  font-family: "Kollektif-Bold";
+  font-weight: 700;
   &:last-child {
     display: none;
   }
@@ -149,14 +149,16 @@ const MenuOverlay = props => {
             <CSSTransition child={0} timeout={1000} classNames="fade">
               <MenuItem
                 samePath={samePath("/dashboard")}
-                onClick={() => pushTo("/dashboard")}>
+                onClick={() => pushTo("/dashboard")}
+              >
                 Dashboard
               </MenuItem>
             </CSSTransition>
             <CSSTransition child={1} timeout={1000} classNames="fade">
               <MenuItem
                 samePath={samePath("/profile")}
-                onClick={() => pushTo("/profile")}>
+                onClick={() => pushTo("/profile")}
+              >
                 Profile
               </MenuItem>
             </CSSTransition>
@@ -165,7 +167,8 @@ const MenuOverlay = props => {
                 onClick={() => {
                   window.location.href =
                     "http://github.com/eemebarbe/react-firebase-essentials";
-                }}>
+                }}
+              >
                 Github
               </MenuItem>
             </CSSTransition>

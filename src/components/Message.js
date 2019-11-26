@@ -5,7 +5,7 @@ const Message = styled.div`
   position: relative;
   z-index: 42;
   font-size: 2.5rem;
-  font-family: "Kollektif-Bold";
+  font-weight: 700;
   color: ${props => props.theme.overlayDetail};
   padding: ${metrics.bodyPadding}px;
 `;

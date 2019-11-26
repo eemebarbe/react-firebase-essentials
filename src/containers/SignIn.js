@@ -30,7 +30,7 @@ const AuthSeparator = styled.div`
   width: ${metrics.baseUnit * 16}px;
   margin-bottom: ${metrics.baseUnit}px;
   color: ${props => props.theme.inactive};
-  font-family: "Kollektif-Bold";
+  font-weight: 700;
   span {
     margin: 0px ${metrics.baseUnit}px;
   }

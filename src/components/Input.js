@@ -10,7 +10,6 @@ const Input = styled.input`
   outline: none;
   margin: none;
   margin-bottom: ${metrics.baseUnit}px;
-  font-family: inherit;
   padding: 0;
   height: ${metrics.baseUnit * 3 - 1}px;
   width: ${metrics.baseUnit * 16}px;

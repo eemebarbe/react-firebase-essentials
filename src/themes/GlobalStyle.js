@@ -1,17 +1,8 @@
-import Kollektif from "./fonts/Kollektif.ttf";
-import KollektifBold from "./fonts/Kollektif-Bold.ttf";
 import { metrics } from "../themes";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Kollektif';
-    src: url('${Kollektif}') format('truetype');
-  }
-  @font-face {
-    font-family: 'Kollektif-Bold';
-    src: url('${KollektifBold}') format('truetype');
-  }
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
   html {
     height: 100%;
     width: 100%;
@@ -24,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body {
+    input, textarea, button {
+      font-family: inherit;
+    }
+    font-family: 'Questrial', sans-serif;
     margin: 0;
     padding: 0;
     -webkit-font-smooth: antialiased;
@@ -31,7 +26,6 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     width: 100%;
     overflow: hidden;
-    font-family: 'Kollektif';
     list-style-position: inside;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     input:-webkit-autofill, 

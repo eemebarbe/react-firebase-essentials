@@ -43,7 +43,6 @@ const CompanyLogo = styled.button`
   cursor: pointer;
   outline: 0;
   font-size: 1.25rem;
-  font-family: "Kollektif";
 `;
 
 const HeaderWithRouter = props => {

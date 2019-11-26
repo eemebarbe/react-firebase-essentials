@@ -21,7 +21,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Kollektif-Bold";
+  font-weight: 700;
   @media (max-width: 480px) {
     width: 100%;
   }

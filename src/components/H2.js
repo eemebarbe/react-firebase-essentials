@@ -6,7 +6,7 @@ const H2 = styled.h2`
   line-height: 1.5;
   margin: 0;
   margin-bottom: ${metrics.baseUnit * 2}px;
-  font-family: "Kollektif-Bold";
+  font-weight: 700;
   position: relative;
   @media (max-width: 480px) {
     font-size: 1.5rem;

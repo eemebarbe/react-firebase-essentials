@@ -54,7 +54,7 @@ const ToastContainer = styled.div`
       display: flex;
       justify-content: center;
       align-content: center;
-      font-family: "Kollektif-Bold";
+      font-weight: 700;
       div {
         color: ${props => props.theme.detailText};
         padding: ${metrics.baseUnit * 2}px;
@@ -95,7 +95,8 @@ const ToastWithContext = props => {
           id="container"
           style={{
             ...transitionStyles[motionState]
-          }}>
+          }}
+        >
           <div>
             <div>
               <div>{message}</div>
