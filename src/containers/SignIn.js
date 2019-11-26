@@ -26,8 +26,8 @@ const AuthSeparator = styled.div`
   align-items: center;
   line-height: 1;
   font-size: ${metrics.smallText}px;
-  height: ${metrics.baseUnit * 1}px;
-  width: ${metrics.baseUnit * 16}px;
+  height: ${metrics.baseUnit * 2}px;
+  width: ${metrics.baseUnit * 20}px;
   margin-bottom: ${metrics.baseUnit}px;
   color: ${props => props.theme.inactive};
   font-weight: 700;
