@@ -175,14 +175,9 @@ const MenuOverlay = props => {
             <CSSTransition child={3} timeout={1000} classNames="fade">
               <MenuItem onClick={signOut}>Sign out</MenuItem>
             </CSSTransition>
-            <CSSTransition child={4} timeout={1000} classNames="switch">
-              <MenuItem>
-                <Switch
-                  checked={styleMode === "dark"}
-                  onChange={toggleStyles}
-                />
-              </MenuItem>
-            </CSSTransition>
+            <MenuItem>
+              <Switch checked={styleMode === "dark"} onChange={toggleStyles} />
+            </MenuItem>
           </TransitionGroup>
         </BackgroundInner>
       </Container>

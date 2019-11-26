@@ -17,25 +17,28 @@ const Lander = props => {
       </H2>
       <P>
         <li>
-          Modern authentication UI flows have already been built out, it's as
-          simple as plugging in your Firebase API keys.
-        </li>
-        <li>
-          Basic security rules have already been written for the database.
+          Modern authentication and onboarding UI flows have already been built
+          out, it's as simple as plugging in your Firebase API keys.
         </li>
         <li>Mobile-ready responsive design.</li>
+        <li>
+          Utilizes Styled-Components, carefully using global variables that
+          allow you to quickly and easily adjust to your tastes.
+        </li>
         <li>
           It's built entirely with React Hooks and the new Context API. Built on
           top of Create-React-App.
         </li>
         <li>
+          Requires very few dependencies. The least popular module it uses has
+          6.4k stars on Github.
+        </li>
+        <li>
+          Basic security rules have already been written for the Firestore DB.
+        </li>
+        <li>
           Push Notifications set up out of the box, with a cloud function
           supplied for triggering messages.
-        </li>
-        <li>Requires very few dependencies.</li>
-        <li>
-          Utilizes Styled-Components, carefully using global variables that
-          allow you to quickly and easily adjust to your tastes.
         </li>
         <li>Dark Mode! You gotta have dark mode!</li>
       </P>
