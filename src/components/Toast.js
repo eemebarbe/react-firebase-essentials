@@ -36,12 +36,12 @@ const ToastContainer = styled.div`
     width: ${metrics.bodyWidth}px;
     display: flex;
     justify-content: flex-end;
-    font-size: 1.5rem;
+    font-size: ${metrics.regularText}px;
     @media (max-width: 480px) {
       width: 100%;
       padding: 0;
       margin: 0px ${metrics.baseUnit}px;
-      font-size: 1.25rem;
+      font-size: ${metrics.smallText}px;
     }
     div {
       visibility: ${props => props.visibility};

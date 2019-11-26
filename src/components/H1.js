@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { metrics } from "../themes";
 
 const P = styled.h1`
-  font-size: 4rem;
+  font-size: ${metrics.H1}px;
   line-height: 1.5;
   margin: 0;
   font-weight: 700;
   position: relative;
   top: 8px;
   @media (max-width: 480px) {
-    font-size: 3.5rem;
+    font-size: ${metrics.H1Mobile}px;
   }
 `;
 

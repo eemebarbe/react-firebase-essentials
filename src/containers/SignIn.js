@@ -25,7 +25,7 @@ const AuthSeparator = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1;
-  font-size: 1rem;
+  font-size: ${metrics.smallText}px;
   height: ${metrics.baseUnit * 1}px;
   width: ${metrics.baseUnit * 16}px;
   margin-bottom: ${metrics.baseUnit}px;

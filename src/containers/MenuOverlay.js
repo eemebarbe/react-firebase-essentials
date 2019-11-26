@@ -61,7 +61,7 @@ const MenuItem = styled.button`
   text-align: left;
   outline: none;
   padding: 0;
-  font-size: 4rem;
+  font-size: ${metrics.H1}px;
   line-height: 1.5;
   top: 2px;
   cursor: pointer;
@@ -71,7 +71,7 @@ const MenuItem = styled.button`
     display: none;
   }
   @media (max-width: 480px) {
-    font-size: 2.5rem;
+    font-size: ${metrics.H2}px;
     margin-top: 0;
     line-height: ${metrics.baseUnit * 3}px;
     height: 1;

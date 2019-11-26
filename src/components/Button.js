@@ -4,8 +4,8 @@ import { metrics } from "../themes";
 import { Spinner } from "../components";
 
 const Button = styled.button`
-  min-height: ${metrics.baseUnit * 3}px;
-  width: ${metrics.baseUnit * 16}px;
+  min-height: ${metrics.baseUnit * 4}px;
+  width: ${metrics.baseUnit * 20}px;
   background-color: ${props => props.color || props.theme.primaryButton};
   color: ${props => props.theme.detailText};
   border: 0;
@@ -15,7 +15,7 @@ const Button = styled.button`
   margin-right: ${props => (props.marginRight ? metrics.baseUnit + "px" : 0)};
   margin-bottom: ${props => (props.marginBottom ? metrics.baseUnit + "px" : 0)};
   margin-top: ${props => (props.marginTop ? metrics.baseUnit + "px" : 0)};
-  font-size: 1rem;
+  font-size: ${metrics.smallText}px;
   cursor: pointer;
   outline: 0;
   display: flex;

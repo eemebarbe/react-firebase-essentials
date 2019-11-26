@@ -4,16 +4,16 @@ import { metrics } from "../themes";
 import { H1, H2, P, BodyWrapper } from "../components";
 
 const OL = styled.ol`
-  font-size: 1.25rem;
-  line-height: 2rem;
+  font-size: ${metrics.smallText}px;
+  line-height: 2;
   margin-left: ${metrics.baseUnit * 3}px;
   padding-left: 0;
   margin-bottom: ${metrics.baseUnit * 3}px;
 `;
 
 const UL = styled.ul`
-  font-size: 1.25rem;
-  line-height: 2rem;
+  font-size: ${metrics.smallText}px;
+  line-height: 2;
   margin-left: ${metrics.baseUnit * 3}px;
   padding-left: 0;
   margin-bottom: ${metrics.baseUnit * 3}px;

@@ -42,7 +42,7 @@ const CompanyLogo = styled.button`
   padding: 0;
   cursor: pointer;
   outline: 0;
-  font-size: 1.25rem;
+  font-size: ${metrics.smallText}px;
 `;
 
 const HeaderWithRouter = props => {

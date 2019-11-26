@@ -12,8 +12,8 @@ const Input = styled.input`
   margin-bottom: ${metrics.baseUnit}px;
   padding: 0;
   height: ${metrics.baseUnit * 3 - 1}px;
-  width: ${metrics.baseUnit * 16}px;
-  font-size: 1.5rem;
+  width: ${metrics.baseUnit * 20}px;
+  font-size: ${metrics.regularText}px;
   &::placeholder {
     color: ${props => props.theme.inactive};
   }

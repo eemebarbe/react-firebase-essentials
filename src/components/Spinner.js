@@ -15,14 +15,14 @@ const rotate = keyframes`
 const SpinnerTemplate = styled.div`
   border-radius: 50%;
   width: ${props =>
-    props.large ? metrics.baseUnit * 6 + 4 : metrics.baseUnit * 1.5}px;
+    props.large ? metrics.baseUnit * 8 + 6 : metrics.baseUnit * 1.5}px;
   height: ${props =>
-    props.large ? metrics.baseUnit * 6 + 4 : metrics.baseUnit * 1.5}px;
+    props.large ? metrics.baseUnit * 8 + 6 : metrics.baseUnit * 1.5}px;
   position: absolute;
 `;
 
 const Circle = styled(SpinnerTemplate)`
-  border: 2px solid
+  border: 3px solid
     ${props =>
       (props.secondary && props.theme.inactive) || props.theme.detailText};
   opacity: 0.33;
@@ -30,8 +30,8 @@ const Circle = styled(SpinnerTemplate)`
 `;
 
 const Highlight = styled(SpinnerTemplate)`
-  border: 2px solid rgba(0, 0, 0, 0);
-  border-top: 2px solid
+  border: 3px solid rgba(0, 0, 0, 0);
+  border-top: 3px solid
     ${props =>
       (props.secondary && props.theme.inactive) || props.theme.detailText};
   animation: ${rotate} 1s infinite ease-in-out;
