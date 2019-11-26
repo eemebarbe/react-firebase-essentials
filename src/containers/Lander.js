@@ -12,7 +12,8 @@ const Lander = props => {
       <H1>React Firebase Essentials</H1>
       <H2>
         A fully-featured single-page app template that you can have hosted and
-        running in minutes. Based on React-Hooks and Firebase.
+        running in minutes. Based on create-react-app and Firebase. Written with
+        React-Hooks.
       </H2>
       <P>
         <li>

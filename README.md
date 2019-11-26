@@ -1,4 +1,4 @@
-## A fully-featured single-page app template that you can have hosted and running in minutes. Based on React-Hooks and Firebase.
+## A fully-featured single-page app template that you can have hosted and running in minutes. Based on create-react-app and Firebase. Written with React-Hooks.
 
 **Live demo at: (https://react-firebase-essentials.com)**
 
@@ -17,7 +17,7 @@ This is a full application template intended to provide the basic features that 
 
 **Getting set up:** (in minutes)
 
-1. Make sure you have both Create-React-App and the Firebase CLI installed. Create a new project in the Firebase console and **make sure** you go into project settings and choose a GCP resource location under the general tab.
+1. Make sure you have the Firebase CLI installed. Create a new project in the Firebase console and **make sure** you go into project settings and choose a GCP resource location under the general tab.
 2. Enable Facebook, Google, and Email/Password authentication in the Firebase console. When enabling "Email/Password", be sure to enable "Email link" as well. (OAuth with Facebook and Google will require some additional steps, outlined when you view each method in the Firebase authentication console)
 3. Clone the project and `npm run setup`.
 4. Select your Firebase project in the command line by using `firebase use [YOUR_PROJECT_ID]`.
