@@ -12,6 +12,7 @@ import Dashboard from "./containers/Dashboard";
 import Confirmed from "./containers/Confirmed";
 import Profile from "./containers/Profile";
 import Header from "./containers/Header";
+import PrivacyPolicy from "./containers/PrivacyPolicy";
 import { UserContext } from "./contexts/userContext";
 import {
   CenteredDiv,
@@ -118,7 +119,8 @@ const MainRouter = () => {
               <CSSTransition
                 key={location.key}
                 timeout={1000}
-                classNames="fade">
+                classNames="fade"
+              >
                 <Switch location={location}>
                   <Route
                     exact
@@ -136,6 +138,10 @@ const MainRouter = () => {
                   <Route
                     path={"/profile"}
                     render={() => routeWithAuth(<Profile />)}
+                  />
+                  <Route
+                    path={"/privacy-policy"}
+                    render={() => <PrivacyPolicy />}
                   />
                   <Route path="*" render={noMatch} />
                 </Switch>
@@ -175,7 +181,8 @@ const MainRouter = () => {
   const styleMode = window.localStorage.getItem("styleMode");
   return (
     <ThemeProvider
-      theme={styleMode && styleMode === "dark" ? colors.dark : colors.main}>
+      theme={styleMode && styleMode === "dark" ? colors.dark : colors.main}
+    >
       <>
         <GlobalStyle />
         <AppWrapper>{renderApp()}</AppWrapper>

@@ -42,7 +42,7 @@ const CompanyLogo = styled.button`
   padding: 0;
   cursor: pointer;
   outline: 0;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-family: "Kollektif";
 `;
 
@@ -76,7 +76,8 @@ const HeaderWithRouter = props => {
       <Header {...props}>
         <HeaderInner>
           <CompanyLogo
-            onClick={() => (userId ? pushTo("/dashboard") : pushTo("/"))}>
+            onClick={() => (userId ? pushTo("/dashboard") : pushTo("/"))}
+          >
             React Firebase Essentials
           </CompanyLogo>
           {userId && menuButtonState()}

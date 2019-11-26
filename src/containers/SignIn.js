@@ -147,13 +147,10 @@ const SignIn = () => {
         <H1>Sign Up/Sign In</H1>
         <P>
           Signing in and signing up are the same process, and no password is
-          asked for...hopefully you don't mind! Users typically don't log out of
-          applications anyway, and I believe that verification by email feels
-          more secure in the era of so many data breaches.{" "}
-          <b>
-            NOTE: Facebook's OAuth currently doesn't work because I didn't
-            include a privacy policy in the demo app.
-          </b>
+          asked for...hopefully you don't mind! I believe that verification by
+          email is better for consumer trust in the era of so many data
+          breaches, and is arguably safer than a traditional authentication
+          setup.
         </P>
         <Form>
           <div>
