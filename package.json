@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "setup": "npm i && cd functions && npm i && cd .."
+    "setup": "npm i && cd functions && npm i && cd .. && cp env_template.txt .env.production.local && cp env_template.txt .env.development.local"
   },
   "eslintConfig": {
     "extends": "react-app"
