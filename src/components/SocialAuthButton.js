@@ -5,13 +5,13 @@ import { metrics, icons } from "../themes";
 
 const AuthButton = styled(Button)`
   span {
-    width: ${metrics.baseUnit * 13.5}px;
+    width: ${metrics.baseUnit * 16.5}px;
   }
 `;
 
 const AuthIcon = styled.div`
   width: ${metrics.baseUnit * 2.5}px;
-  height: ${metrics.baseUnit * 3}px;
+  height: ${metrics.baseUnit * 4}px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
