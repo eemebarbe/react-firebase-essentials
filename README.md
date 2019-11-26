@@ -1,4 +1,4 @@
-## A fully-featured single-page app template that you can have hosted and running in minutes. Based on create-react-app and Firebase. Written with React-Hooks.
+## A fully-featured single-page app template, hosted and running in minutes. Based on create-react-app and Firebase. Written with React-Hooks.
 
 **Live demo at: (https://react-firebase-essentials.com)**
 
