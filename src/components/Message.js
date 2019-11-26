@@ -4,7 +4,7 @@ import { metrics } from "../themes";
 const Message = styled.div`
   position: relative;
   z-index: 42;
-  font-size: ${metrics.regularText}px;
+  font-size: ${metrics.H2}px;
   font-weight: 700;
   color: ${props => props.theme.overlayDetail};
   padding: ${metrics.bodyPadding}px;
