@@ -59,7 +59,7 @@ const Dashboard = () => {
         )
         .then(() => {
           userDispatch({
-            type: "additionalInfo",
+            type: "updateProfile",
             payload: {
               firstName: firstName,
               lastName: lastName

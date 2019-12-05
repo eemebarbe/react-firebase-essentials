@@ -59,7 +59,7 @@ const MainRouter = () => {
           .then(res => {
             if (res.data() && res.data().firstName) {
               userDispatch(
-                { type: "additionalInfo", payload: res.data() },
+                { type: "updateProfile", payload: res.data() },
                 { type: "verifying", payload: false }
               );
             }

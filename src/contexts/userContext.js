@@ -20,32 +20,12 @@ const reducer = (state, action) => {
       return { ...state, userId: action.payload };
     case "verifying":
       return { ...state, verifying: action.payload };
-    case "email":
-      return {
-        ...state,
-        userData: {
-          email: action.payload.email,
-          firstName: state.userData.firstName,
-          lastName: state.userData.lastName
-        }
-      };
     case "updateProfile":
       return {
         ...state,
         userData: {
-          email: state.userData.email,
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName
-        }
-      };
-    case "additionalInfo":
-      return {
-        ...state,
-        userData: {
-          email: state.userData.email,
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
-          pushTokenWeb: action.payload.pushTokenWeb
+          ...state.userData,
+          ...action.payload
         }
       };
     case "styleMode":
